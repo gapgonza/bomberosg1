@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="bombero">
+  <ClassDiagramComponents>
+    <Class name="Bombero" package="" visibility="public" xPosition="13.0" yPosition="80.0">
+      <Fields>
+        <Field name="codigo" type="int" visibility="private"/>
+        <Field name="dni" type="String" visibility="private"/>
+        <Field name="nombreCompleto" type="String" visibility="private"/>
+        <Field name="grupoSanguineo" type="String" visibility="private"/>
+        <Field name="fechaNacimiento" type="Date" visibility="private"/>
+        <Field name="celular" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="actualizarDatos" returnType="void" visibility="public"/>
+        <Method name="darBaja" returnType="void" visibility="public"/>
+        <Method name="Bombero" returnType="String" visibility="public">
+          <Argument type="String" name="DNI"/>
+          <Argument type="String" name="nombreCompleto"/>
+          <Argument type="String" name="grupoSanguineo"/>
+          <Argument type="Date" name="fechaNacimiento"/>
+          <Argument type="String" name="celular"/>
+        </Method>
+        <Method name="Bombero" returnType="String" visibility="public">
+          <Argument type="String" name="codigoBombero"/>
+          <Argument type="String" name="DNI"/>
+          <Argument type="String" name="nombreCompleto"/>
+          <Argument type="String" name="grupoSanguineo"/>
+          <Argument type="Date" name="fechaNacimiento"/>
+          <Argument type="String" name="celular"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Cuartel" package="" visibility="public" xPosition="722.0" yPosition="130.0">
+      <Fields>
+        <Field name="codigoCuartel" type="String" visibility="private"/>
+        <Field name="nombreCuartel" type="String" visibility="private"/>
+        <Field name="domicilio" type="String" visibility="private"/>
+        <Field name="coordenadas" type="Object" visibility="private"/>
+        <Field name="telefono" type="String" visibility="private"/>
+        <Field name="correoElectronico" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="asignarBrigada" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Brigada" package="" visibility="public" xPosition="386.0" yPosition="38.0">
+      <Fields>
+        <Field name="nombreClave" type="String" visibility="private"/>
+        <Field name="especialidad" type="Especialidad" visibility="private"/>
+        <Field name="bomberos" type="List&lt;Bombero&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="asignarIncidente" returnType="void" visibility="public"/>
+        <Method name="resolverIncidente" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Incidente" package="" visibility="public" xPosition="369.0" yPosition="346.0">
+      <Fields>
+        <Field name="fechaHora" type="Date" visibility="private"/>
+        <Field name="tipoEmergencia" type="TipoEmergencia" visibility="private"/>
+        <Field name="detalles" type="String" visibility="private"/>
+        <Field name="brigadaAsignada" type="Brigada" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="asignarBrigada" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="es parte de" source="Bombero" target="Brigada" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="tiene varias" source="Cuartel" target="Brigada" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="atiende varios" source="Brigada" target="Incidente" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
