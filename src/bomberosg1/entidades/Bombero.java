@@ -18,6 +18,9 @@ public class Bombero {
     private Date fechaNacimiento;
     private String celular;
 
+    public Bombero() {
+    }
+    
     public Bombero(String DNI, String nombreCompleto, String grupoSanguineo, Date fechaNacimiento, String celular) {
         this.DNI = DNI;
         this.nombreCompleto = nombreCompleto;
@@ -82,5 +85,11 @@ public class Bombero {
     public void setCelular(String celular) {
         this.celular = celular;
     }
+
+    @Override
+    public String toString() {
+        return "Bombero{" + "codigoBombero=" + codigoBombero + ", DNI=" + DNI + ", nombreCompleto=" + nombreCompleto + ", grupoSanguineo=" + grupoSanguineo + ", fechaNacimiento=" + fechaNacimiento + ", celular=" + celular + '}';
+    }
+    
     
 }

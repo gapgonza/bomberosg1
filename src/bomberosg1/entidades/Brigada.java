@@ -4,10 +4,10 @@
  */
 package bomberosg1.entidades;
 
-/**
- *
- * @author Gonza
- */
+import java.util.List;
+
 public class Brigada {
-    
+    private String nombreClave;
+    private Especialidad especialidad; // Esta puede ser una enumeración
+    private List<Bombero> bomberos; // Una lista de bomberos
 }

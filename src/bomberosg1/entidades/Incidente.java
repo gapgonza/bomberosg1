@@ -4,10 +4,15 @@
  */
 package bomberosg1.entidades;
 
-/**
- *
- * @author Gonza
- */
+import java.util.Date;
+
 public class Incidente {
-    
+    private Coordenada ubicacion;
+    private Date fechaHora;
+    private TipoEmergencia tipoEmergencia; // Esta puede ser una enumeración
+    private String detalles;
+    private Brigada brigadaAsignada;
+    private Date fechaResolucion;
+    private int calificacionExito;
+
 }
