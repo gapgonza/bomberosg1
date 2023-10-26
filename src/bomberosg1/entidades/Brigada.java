@@ -42,9 +42,12 @@ public class Brigada {
         this.bomberos = bomberos;
     }
     
-    public void asignarIncidente() {
-    }
-
-    public void resolverIncidente() {
-    }
+    
+    //lo controla BrigadaData
+   
+//    public void asignarIncidente() {
+//    }
+//
+//    public void resolverIncidente() {
+//    }
 }

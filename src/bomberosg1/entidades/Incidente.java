@@ -52,7 +52,8 @@ public class Incidente {
         this.brigadaAsignada = brigadaAsignada;
     }
 
-    
-    public void asignarBrigada() {
-    }
+    // Esto lo controla EmergenciaData
+//    
+//    public void asignarBrigada() {
+//    }
 }

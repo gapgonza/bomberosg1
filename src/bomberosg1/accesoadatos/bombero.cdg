@@ -2,7 +2,7 @@
 
 <ClassDiagram name="bombero">
   <ClassDiagramComponents>
-    <Class name="Bombero" package="" visibility="public" xPosition="13.0" yPosition="80.0">
+    <Class name="Bombero" package="" visibility="public" xPosition="24.0" yPosition="38.0">
       <Fields>
         <Field name="codigo" type="int" visibility="private"/>
         <Field name="dni" type="String" visibility="private"/>
@@ -34,7 +34,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Cuartel" package="" visibility="public" xPosition="722.0" yPosition="130.0">
+    <Class name="Cuartel" package="" visibility="public" xPosition="719.0" yPosition="38.0">
       <Fields>
         <Field name="codigoCuartel" type="String" visibility="private"/>
         <Field name="nombreCuartel" type="String" visibility="private"/>
@@ -60,7 +60,7 @@
         <Method name="resolverIncidente" returnType="void" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Incidente" package="" visibility="public" xPosition="369.0" yPosition="346.0">
+    <Class name="Incidente" package="" visibility="public" xPosition="386.0" yPosition="330.0">
       <Fields>
         <Field name="fechaHora" type="Date" visibility="private"/>
         <Field name="tipoEmergencia" type="TipoEmergencia" visibility="private"/>
@@ -74,8 +74,8 @@
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <HasRelation name="es parte de" source="Bombero" target="Brigada" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..1"/>
     <HasRelation name="tiene varias" source="Cuartel" target="Brigada" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="es parte de" source="Bombero" target="Brigada" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..1"/>
     <HasRelation name="atiende varios" source="Brigada" target="Incidente" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..1"/>
   </ClassDiagramRelations>
 </ClassDiagram>

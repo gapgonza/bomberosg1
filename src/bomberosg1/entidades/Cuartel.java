@@ -76,8 +76,9 @@ public class Cuartel {
         this.correoElectronico = correoElectronico;
     }
     
-    public void asignarBrigada() {
-        
-    }
+    //Esto lo controla CuartelData
+//    public void asignarBrigada() {
+//        
+//    }
     
 }
