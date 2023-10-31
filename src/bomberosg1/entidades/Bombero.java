@@ -4,78 +4,72 @@
  */
 package bomberosg1.entidades;
 
-import java.util.Date;
+import java.time.LocalDate;
+
+
 
 /**
  *
  * @author Gonza
  */
 public class Bombero {
-    private String codigoBombero;
-    private String DNI;
-    private String nombreCompleto;
-    private String grupoSanguineo;
-    private Date fechaNacimiento;
+    private int idBombero;
+    private int dni;
+    private String nombreApellido;
+    private LocalDate fechaNac;
     private String celular;
+    private int codBrigada;
 
     public Bombero() {
     }
-    
-    public Bombero(String DNI, String nombreCompleto, String grupoSanguineo, Date fechaNacimiento, String celular) {
-        this.DNI = DNI;
-        this.nombreCompleto = nombreCompleto;
-        this.grupoSanguineo = grupoSanguineo;
-        this.fechaNacimiento = fechaNacimiento;
+
+    public Bombero(int idBombero, int dni, String nombreApellido, LocalDate fechaNac, String celular, int codBrigada) {
+        this.idBombero = idBombero;
+        this.dni = dni;
+        this.nombreApellido = nombreApellido;
+        this.fechaNac = fechaNac;
         this.celular = celular;
+        this.codBrigada = codBrigada;
     }
 
-    public Bombero(String codigoBombero, String DNI, String nombreCompleto, String grupoSanguineo, Date fechaNacimiento, String celular) {
-        this.codigoBombero = codigoBombero;
-        this.DNI = DNI;
-        this.nombreCompleto = nombreCompleto;
-        this.grupoSanguineo = grupoSanguineo;
-        this.fechaNacimiento = fechaNacimiento;
+    public Bombero(int dni, String nombreApellido, LocalDate fechaNac, String celular, int codBrigada) {
+        this.dni = dni;
+        this.nombreApellido = nombreApellido;
+        this.fechaNac = fechaNac;
         this.celular = celular;
+        this.codBrigada = codBrigada;
     }
 
-    public String getCodigoBombero() {
-        return codigoBombero;
+    public int getIdBombero() {
+        return idBombero;
     }
 
-    public void setCodigoBombero(String codigoBombero) {
-        this.codigoBombero = codigoBombero;
+    public void setIdBombero(int idBombero) {
+        this.idBombero = idBombero;
     }
 
-    public String getDNI() {
-        return DNI;
+    public int getDni() {
+        return dni;
     }
 
-    public void setDNI(String DNI) {
-        this.DNI = DNI;
+    public void setDni(int dni) {
+        this.dni = dni;
     }
 
-    public String getNombreCompleto() {
-        return nombreCompleto;
+    public String getNombreApellido() {
+        return nombreApellido;
     }
 
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
+    public void setNombreApellido(String nombreApellido) {
+        this.nombreApellido = nombreApellido;
     }
 
-    public String getGrupoSanguineo() {
-        return grupoSanguineo;
+    public LocalDate getFechaNac() {
+        return fechaNac;
     }
 
-    public void setGrupoSanguineo(String grupoSanguineo) {
-        this.grupoSanguineo = grupoSanguineo;
-    }
-
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setFechaNac(LocalDate fechaNac) {
+        this.fechaNac = fechaNac;
     }
 
     public String getCelular() {
@@ -86,9 +80,17 @@ public class Bombero {
         this.celular = celular;
     }
 
+    public int getCodBrigada() {
+        return codBrigada;
+    }
+
+    public void setCodBrigada(int codBrigada) {
+        this.codBrigada = codBrigada;
+    }
+
     @Override
     public String toString() {
-        return "Bombero{" + "codigoBombero=" + codigoBombero + ", DNI=" + DNI + ", nombreCompleto=" + nombreCompleto + ", grupoSanguineo=" + grupoSanguineo + ", fechaNacimiento=" + fechaNacimiento + ", celular=" + celular + '}';
+        return "Bombero{" + "idBombero=" + idBombero + ", dni=" + dni + ", nombreApellido=" + nombreApellido + ", codBrigada=" + codBrigada + '}';
     }
     
     
