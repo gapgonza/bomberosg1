@@ -5,7 +5,9 @@
 package bomberosg1;
 
 import bomberosg1.accesoadatos.BomberoData;
+import bomberosg1.accesoadatos.BrigadaData;
 import bomberosg1.entidades.Bombero;
+import bomberosg1.entidades.Brigada;
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -19,10 +21,19 @@ public class Bomberosg1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+/*----------------BomberoData-------------------*/
 ///////////Alta Bombero
-        Bombero b1 = new Bombero(35767572, "Alan Peñiñorey", LocalDate.of(1991, Month.MARCH, 25), "2664328916", 1);
-        BomberoData bomberoData = new BomberoData();
-        bomberoData.alta(b1);
+//        Bombero b1 = new Bombero(35767572, "Alan Peñiñorey", LocalDate.of(1991, Month.MARCH, 25), "2664328916", 0);
+//        BomberoData bomberoData = new BomberoData();
+//        bomberoData.altaBombero(b1);
+
+/*---------------BrigadaData----------------*/
+//        Brigada brigada = new Brigada("Brigada 1", "Especialidad 1", true, 0);
+//        BrigadaData brigadaData = new BrigadaData();
+//        brigadaData.darAltaBrigada(brigada);
+/*------------------CuartelData---------------*/
+
+
     }
     
 }

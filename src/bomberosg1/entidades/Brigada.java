@@ -5,43 +5,71 @@ import bomberosg1.entidades.Bombero;
 import java.util.List;
 
 public class Brigada {
-    private String nombreClave;
-    private Especialidad especialidad;
-    private List<Bombero> bomberos;
+    private int codBrigada;
+    private String nombreBrigada;
+    private String especialidad;
+    private boolean libre;
+    private int numeroCuartel;
+    
 
     public Brigada() {
     }
-
-    public Brigada(String nombreClave, Especialidad especialidad, List<Bombero> bomberos) {
-        this.nombreClave = nombreClave;
+    
+    public Brigada(int codBrigada, String nombreBrigada, String especialidad, boolean libre, int numeroCuartel) {
+        this.codBrigada = codBrigada;
+        this.nombreBrigada = nombreBrigada;
         this.especialidad = especialidad;
-        this.bomberos = bomberos;
+        this.libre = libre;
+        this.numeroCuartel = numeroCuartel;
+    }
+    
+    public Brigada(String nombreBrigada, String especialidad, boolean libre, int numeroCuartel) {
+        this.nombreBrigada = nombreBrigada;
+        this.especialidad = especialidad;
+        this.libre = libre;
+        this.numeroCuartel = numeroCuartel;
+    }
+    
+    public int getCodBrigada() {
+        return codBrigada;
     }
 
-    public String getNombreClave() {
-        return nombreClave;
+    public void setCodBrigada(int codBrigada) {
+        this.codBrigada = codBrigada;
     }
 
-    public void setNombreClave(String nombreClave) {
-        this.nombreClave = nombreClave;
+    public String getNombreBrigada() {
+        return nombreBrigada;
     }
 
-    public Especialidad getEspecialidad() {
+    public void setNombreBrigada(String nombreBrigada) {
+        this.nombreBrigada = nombreBrigada;
+    }
+
+    public String getEspecialidad() {
         return especialidad;
     }
 
-    public void setEspecialidad(Especialidad especialidad) {
+    public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
 
-    public List<Bombero> getBomberos() {
-        return bomberos;
+    public boolean isLibre() {
+        return libre;
     }
 
-    public void setBomberos(List<Bombero> bomberos) {
-        this.bomberos = bomberos;
+    public void setLibre(boolean libre) {
+        this.libre = libre;
     }
-    
+
+    public int getNumeroCuartel() {
+        return numeroCuartel;
+    }
+
+    public void setNumeroCuartel(int numeroCuartel) {
+        this.numeroCuartel = numeroCuartel;
+    }
+
     
     //lo controla BrigadaData
    
@@ -50,4 +78,5 @@ public class Brigada {
 //
 //    public void resolverIncidente() {
 //    }
+    
 }

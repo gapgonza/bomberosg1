@@ -28,7 +28,7 @@ public class BomberoData {
         con = Conexion.getConexion();
     }
 
-    public void alta(Bombero bombero) {
+    public void altaBombero(Bombero bombero) {
         String sql = "INSERT INTO bombero (dni, nombreApellido, fechaNac, celular, codBrigada) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -42,7 +42,7 @@ public class BomberoData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 bombero.setIdBombero(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Se dio de alta el bombero");
+                JOptionPane.showMessageDialog(null, "Bombero guardado exitosamente");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -50,5 +50,12 @@ public class BomberoData {
         }
     }
     
+    public void modificarBombero(Bombero bombero){
+        
+    }
+    
+    public void eliminarBombero(int idBombero){
+        
+    }
     
 }
