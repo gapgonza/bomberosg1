@@ -18,26 +18,32 @@ public class Bombero {
     private String nombreApellido;
     private LocalDate fechaNac;
     private String celular;
-    private int codBrigada;
+    private Brigada codBrigada;
+    private String grupoSanguineo;
+    private boolean activo;
 
     public Bombero() {
     }
 
-    public Bombero(int idBombero, int dni, String nombreApellido, LocalDate fechaNac, String celular, int codBrigada) {
+    public Bombero(int dni, String nombreApellido, LocalDate fechaNac, String celular, Brigada codBrigada, String grupoSanguineo, boolean activo) {
+        this.dni = dni;
+        this.nombreApellido = nombreApellido;
+        this.fechaNac = fechaNac;
+        this.celular = celular;
+        this.codBrigada = codBrigada;
+        this.grupoSanguineo = grupoSanguineo;
+        this.activo = activo;
+    }
+
+    public Bombero(int idBombero, int dni, String nombreApellido, LocalDate fechaNac, String celular, Brigada codBrigada, String grupoSanguineo, boolean activo) {
         this.idBombero = idBombero;
         this.dni = dni;
         this.nombreApellido = nombreApellido;
         this.fechaNac = fechaNac;
         this.celular = celular;
         this.codBrigada = codBrigada;
-    }
-
-    public Bombero(int dni, String nombreApellido, LocalDate fechaNac, String celular, int codBrigada) {
-        this.dni = dni;
-        this.nombreApellido = nombreApellido;
-        this.fechaNac = fechaNac;
-        this.celular = celular;
-        this.codBrigada = codBrigada;
+        this.grupoSanguineo = grupoSanguineo;
+        this.activo = activo;
     }
 
     public int getIdBombero() {
@@ -80,18 +86,34 @@ public class Bombero {
         this.celular = celular;
     }
 
-    public int getCodBrigada() {
+    public Brigada getCodBrigada() {
         return codBrigada;
     }
 
-    public void setCodBrigada(int codBrigada) {
+    public void setCodBrigada(Brigada codBrigada) {
         this.codBrigada = codBrigada;
+    }
+
+    public String getGrupoSanguineo() {
+        return grupoSanguineo;
+    }
+
+    public void setGrupoSanguineo(String grupoSanguineo) {
+        this.grupoSanguineo = grupoSanguineo;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     @Override
     public String toString() {
-        return "Bombero{" + "idBombero=" + idBombero + ", dni=" + dni + ", nombreApellido=" + nombreApellido + ", codBrigada=" + codBrigada + '}';
+        return "Bombero{" + "dni=" + dni + ", nombreApellido=" + nombreApellido + ", codBrigada=" + codBrigada + ", grupoSanguineo=" + grupoSanguineo + ", activo=" + activo + '}';
     }
-    
+
     
 }
