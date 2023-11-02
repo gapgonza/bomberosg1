@@ -6,6 +6,8 @@ package bomberosg1.accesoadatos;
 
 import bomberosg1.entidades.Bombero;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -46,7 +48,16 @@ public class BomberoData {
     }
     
     public void modificarBombero(Bombero bombero){
-        String sql = ""
+        String sql = "UPDATE bombero SET dni=?, apellido=?, nombre=?, fechaNacimiento=?, grupoSanguineo=?, celular=?, codBrigada=?"
+                + " WHERE idBombero=?";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "error al acceder a la tabla Bombero");
+        }
+        
     }
     
     public void eliminarBombero(int idBombero){
