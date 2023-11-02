@@ -26,21 +26,178 @@ public class FormBombero extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jtDni = new javax.swing.JTextField();
+        jtNombre = new javax.swing.JTextField();
+        jtApellido = new javax.swing.JTextField();
+        jdFechaNac = new com.toedter.calendar.JDateChooser();
+        jLabel9 = new javax.swing.JLabel();
+        jtCelular = new javax.swing.JTextField();
+        jcGrupoSang = new javax.swing.JComboBox<>();
+        jcBrigadaAsignar = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        jtDisponibilidad = new javax.swing.JTextField();
+        jbNuevo = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaBombero = new javax.swing.JTable();
+        jbModificar = new javax.swing.JButton();
+        jbDarBaja = new javax.swing.JButton();
+        jbSalir = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
+        jLabel1.setText("FORMULARIO BOMBERO");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel2.setText("DNI:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel3.setText("Nombre:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel4.setText("Apellido:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel5.setText("Fecha de Nacimiento");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel6.setText("Grupo Sanguineo:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel7.setText("Celular:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel8.setText("Asignar a Brigada:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, -1, -1));
+
+        jtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtDniKeyReleased(evt);
+            }
+        });
+        jPanel1.add(jtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 90, -1));
+        jPanel1.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 110, -1));
+        jPanel1.add(jtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 120, -1));
+        jPanel1.add(jdFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, 130, -1));
+
+        jLabel9.setText("------------------------------------------------------------------------------------------------------------------");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 570, -1));
+        jPanel1.add(jtCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 90, -1));
+
+        jcGrupoSang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jcGrupoSang, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 110, -1));
+
+        jcBrigadaAsignar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jcBrigadaAsignar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 120, -1));
+
+        jLabel10.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel10.setText("Disponibilidad:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, -1, -1));
+        jPanel1.add(jtDisponibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 40, -1));
+
+        jbNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jbNuevo.setText("Nuevo");
+        jPanel1.add(jbNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 70, -1));
+
+        TablaBombero.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(TablaBombero);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 570, 130));
+
+        jbModificar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jbModificar.setText("Modificar");
+        jPanel1.add(jbModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, -1, -1));
+
+        jbDarBaja.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jbDarBaja.setText("Dar Baja");
+        jPanel1.add(jbDarBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, -1, -1));
+
+        jbSalir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 630, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 448, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jtDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtDniKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablaBombero;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbDarBaja;
+    private javax.swing.JButton jbModificar;
+    private javax.swing.JButton jbNuevo;
+    private javax.swing.JButton jbSalir;
+    private javax.swing.JComboBox<String> jcBrigadaAsignar;
+    private javax.swing.JComboBox<String> jcGrupoSang;
+    private com.toedter.calendar.JDateChooser jdFechaNac;
+    private javax.swing.JTextField jtApellido;
+    private javax.swing.JTextField jtCelular;
+    private javax.swing.JTextField jtDisponibilidad;
+    private javax.swing.JTextField jtDni;
+    private javax.swing.JTextField jtNombre;
     // End of variables declaration//GEN-END:variables
 }

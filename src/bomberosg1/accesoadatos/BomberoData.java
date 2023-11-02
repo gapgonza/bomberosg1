@@ -28,9 +28,10 @@ public class BomberoData {
             ps.setInt(1, bombero.getDni());
             ps.setString(2, bombero.getNombreApellido());
             ps.setDate(3, Date.valueOf(bombero.getFechaNac()));
-            ps.setString(4, bombero.getCelular());
-            ps.setInt(5, bombero.getCodBrigada().getCodBrigada());
-            ps.setBoolean(6, true);
+            ps.setString(4, bombero.getGrupoSanguineo());
+            ps.setString(5, bombero.getCelular());
+            ps.setInt(6, bombero.getCodBrigada().getCodBrigada());
+            ps.setBoolean(7, true);
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -45,7 +46,7 @@ public class BomberoData {
     }
     
     public void modificarBombero(Bombero bombero){
-        
+        String sql = ""
     }
     
     public void eliminarBombero(int idBombero){

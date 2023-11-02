@@ -8,6 +8,7 @@ import bomberosg1.entidades.Cuartel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Gonza
@@ -21,13 +22,28 @@ public class CuartelData {
 }
     
     public void altaCuartel(Cuartel cuartel){
-        String sql = "INSERT INTO cuartel (nombreCuartel,direccion,coord_X,coord_Y,telefono, correo" 
+        String sql = "INSERT INTO cuartel (nombreCuartel,direccion,coord_X,coord_Y,telefono, correo)" 
                 + "VALUES (?, ?, ?, ?, ?, ?)";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, cuartel.getNombreCuartel());
+            ps.setString(2, cuartel.getDomicilio());
+            ps.setInt(3, cuartel.getCoordenadaX());
+            ps.setInt(4, cuartel.getCoordenadaY());
+            ps.setString(5, cuartel.getTelefono());
+            ps.setString(6, cuartel.getCorreoElectronico());
+            ps.executeUpdate();
+            
+            ResultSet rs = ps.getGeneratedKeys();
+            if(rs.next()){
+                cuartel.setCodigoCuartel(rs.getInt(1));
+                JOptionPane.showMessageDialog(null, "Cuartel agregado Exitosamente");
+            }
+            ps.close();
+            
         } catch (SQLException ex) {
-            Logger.getLogger(CuartelData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla cuartel");
         }
         
     }

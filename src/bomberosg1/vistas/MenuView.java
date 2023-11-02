@@ -58,17 +58,22 @@ public class MenuView extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
+            .addGap(0, 757, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 399, Short.MAX_VALUE)
+            .addGap(0, 464, Short.MAX_VALUE)
         );
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bomberosg1/recursos/bombero.png"))); // NOI18N
         jMenu1.setText("Bomberos");
 
         jMenuItem1.setText("Form de Bomberos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem5.setText("Listado de Bomberos");
@@ -126,7 +131,17 @@ public class MenuView extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        FormBombero formBombero = new FormBombero();
+        formBombero.setVisible(true);
+        escritorio.add(formBombero);
+        escritorio.moveToFront(formBombero);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
