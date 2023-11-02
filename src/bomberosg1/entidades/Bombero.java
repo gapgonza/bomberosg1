@@ -6,8 +6,6 @@ package bomberosg1.entidades;
 
 import java.time.LocalDate;
 
-
-
 /**
  *
  * @author Gonza

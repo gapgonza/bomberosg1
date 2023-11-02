@@ -23,9 +23,9 @@ public class Bomberosg1 {
     public static void main(String[] args) {
 /*----------------BomberoData-------------------*/
 ///////////Alta Bombero
-//        Bombero b1 = new Bombero(35767572, "Alan Peñiñorey", LocalDate.of(1991, Month.MARCH, 25), "2664328916", 0);
-//        BomberoData bomberoData = new BomberoData();
-//        bomberoData.altaBombero(b1);
+        Bombero b1 = new Bombero(35767572, "Alan Peñiñorey", LocalDate.MIN, "2664328916", codBrigada, grupoSanguineo, true);
+        BomberoData bomberoData = new BomberoData();
+        bomberoData.altaBombero(b1);
 
 /*---------------BrigadaData----------------*/
 //        Brigada brigada = new Brigada("Brigada 1", "Especialidad 1", true, 0);
