@@ -4,10 +4,15 @@
  */
 package bomberosg1.accesoadatos;
 
+import bomberosg1.entidades.Cuartel;
+
 /**
  *
  * @author Gonza
  */
 public class CuartelData {
     
+    public void altaCuartel(Cuartel cuartel){
+        
+    }
 }
