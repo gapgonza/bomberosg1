@@ -58,7 +58,6 @@ public class FormBombero extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -80,7 +79,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
 
         jLabel5.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel5.setText("Fecha de Nacimiento");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel6.setText("Grupo Sanguineo:");
@@ -101,8 +100,8 @@ public class FormBombero extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 90, -1));
         jPanel1.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 110, -1));
-        jPanel1.add(jtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 120, -1));
-        jPanel1.add(jdFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, 130, -1));
+        jPanel1.add(jtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 140, -1));
+        jPanel1.add(jdFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, 130, -1));
 
         jLabel9.setText("------------------------------------------------------------------------------------------------------------------");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
@@ -110,14 +109,14 @@ public class FormBombero extends javax.swing.JInternalFrame {
 
         jPanel1.add(jcGrupoSang, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 110, -1));
 
-        jPanel1.add(jcBrigadaAsignar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 120, -1));
+        jPanel1.add(jcBrigadaAsignar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 190, -1));
 
         jLabel10.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel10.setText("Disponibilidad:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 110, -1, -1));
 
         jtDisponibilidad.setEditable(false);
-        jPanel1.add(jtDisponibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 40, -1));
+        jPanel1.add(jtDisponibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 40, -1));
 
         jbNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbNuevo.setText("Nuevo");
@@ -126,7 +125,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
                 jbNuevoActionPerformed(evt);
             }
         });
-        jPanel1.add(jbNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 70, -1));
+        jPanel1.add(jbNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 70, -1));
 
         TablaBombero.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -141,15 +140,15 @@ public class FormBombero extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(TablaBombero);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 570, 130));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 610, 130));
 
         jbModificar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbModificar.setText("Modificar");
-        jPanel1.add(jbModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, -1, -1));
+        jPanel1.add(jbModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, -1, -1));
 
         jbDarBaja.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbDarBaja.setText("Dar Baja");
-        jPanel1.add(jbDarBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, -1, -1));
+        jPanel1.add(jbDarBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 320, -1, -1));
 
         jbSalir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbSalir.setText("Salir");
@@ -158,16 +157,25 @@ public class FormBombero extends javax.swing.JInternalFrame {
                 jbSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, -1, -1));
+        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 320, -1, -1));
 
         jbGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbGuardar.setText("Guardar");
-        jPanel1.add(jbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, -1, -1));
+        jPanel1.add(jbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
 
         jLabel11.setText("Espacios Dispo");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(496, 133, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 370));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -62,7 +62,11 @@ public class BomberoData {
             ps.setInt(6, bombero.getCodBrigada().getCodBrigada());
             ps.setInt(7, bombero.getIdBombero());
             int filasModificadas=ps.executeUpdate();
-            if(filasModificadas>0)
+            if(filasModificadas>0){
+                JOptionPane.showMessageDialog(null, "se modificaron datos de Bombero");
+            }else{
+                JOptionPane.showMessageDialog(null, "No se encontro nada");
+            }
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "error al acceder a la tabla Bombero");
@@ -73,5 +77,7 @@ public class BomberoData {
     public void eliminarBombero(int idBombero){
         
     }
+    
+    public List<Bombero>
     
 }
