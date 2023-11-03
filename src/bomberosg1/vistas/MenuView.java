@@ -77,6 +77,11 @@ public class MenuView extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem5.setText("Listado de Bomberos");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem5);
 
         jMenuBar1.add(jMenu1);
@@ -85,6 +90,11 @@ public class MenuView extends javax.swing.JFrame {
         jMenu2.setText("Cuartel");
 
         jMenuItem2.setText("Form de Cuarteles");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem2);
 
         jMenuItem3.setText("Cuarteles cercanos");
@@ -142,6 +152,24 @@ public class MenuView extends javax.swing.JFrame {
         escritorio.add(formBombero);
         escritorio.moveToFront(formBombero);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        ListadoDeBomberos listadoDeBomberos = new ListadoDeBomberos();
+        listadoDeBomberos.setVisible(true);
+        escritorio.add(listadoDeBomberos);
+        escritorio.moveToFront(listadoDeBomberos);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        FormularioDeCuartel formularioDeCuartel = new FormularioDeCuartel();
+        formularioDeCuartel.setVisible(true);
+        escritorio.add(formularioDeCuartel);
+        escritorio.moveToFront(formularioDeCuartel);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments

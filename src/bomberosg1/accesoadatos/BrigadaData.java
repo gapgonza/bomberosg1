@@ -26,7 +26,7 @@ public class BrigadaData {
             ps.setString(1, brigada.getNombreBrigada());
             ps.setString(2, brigada.getEspecialidad());
             ps.setBoolean(3, brigada.isLibre());
-            ps.setInt(4, brigada.getNumeroCuartel());
+            ps.setInt(4, brigada.getNumeroCuartel().getCodigoCuartel());
             ps.executeUpdate();
             
             ResultSet rs = ps.getGeneratedKeys();

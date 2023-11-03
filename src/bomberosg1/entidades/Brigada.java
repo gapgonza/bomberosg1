@@ -6,13 +6,13 @@ public class Brigada {
     private String nombreBrigada;
     private String especialidad;
     private boolean libre;
-    private int numeroCuartel;
+    private Cuartel numeroCuartel;
     
 
     public Brigada() {
     }
     
-    public Brigada(int codBrigada, String nombreBrigada, String especialidad, boolean libre, int numeroCuartel) {
+    public Brigada(int codBrigada, String nombreBrigada, String especialidad, boolean libre, Cuartel numeroCuartel) {
         this.codBrigada = codBrigada;
         this.nombreBrigada = nombreBrigada;
         this.especialidad = especialidad;
@@ -20,7 +20,7 @@ public class Brigada {
         this.numeroCuartel = numeroCuartel;
     }
 
-    public Brigada(String nombreBrigada, String especialidad, boolean libre, int numeroCuartel) {
+    public Brigada(String nombreBrigada, String especialidad, boolean libre, Cuartel numeroCuartel) {
         this.nombreBrigada = nombreBrigada;
         this.especialidad = especialidad;
         this.libre = libre;
@@ -61,11 +61,11 @@ public class Brigada {
         this.libre = libre;
     }
 
-    public int getNumeroCuartel() {
+    public Cuartel getNumeroCuartel() {
         return numeroCuartel;
     }
 
-    public void setNumeroCuartel(int numeroCuartel) {
+    public void setNumeroCuartel(Cuartel numeroCuartel) {
         this.numeroCuartel = numeroCuartel;
     }
 
