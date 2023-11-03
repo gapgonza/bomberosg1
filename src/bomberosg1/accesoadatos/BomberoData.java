@@ -6,6 +6,7 @@ package bomberosg1.accesoadatos;
 
 import bomberosg1.entidades.Bombero;
 import java.sql.*;
+import java.time.Month;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -53,6 +54,15 @@ public class BomberoData {
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, bombero.getDni());
+            ps.setString(2, bombero.getNombreApellido());
+            ps.setDate(3,Date.valueOf(bombero.getFechaNac()));
+            ps.setString(4, bombero.getGrupoSanguineo());
+            ps.setString(5, bombero.getCelular());
+            ps.setInt(6, bombero.getCodBrigada().getCodBrigada());
+            ps.setInt(7, bombero.getIdBombero());
+            int filasModificadas=ps.executeUpdate();
+            if(filasModificadas>0)
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "error al acceder a la tabla Bombero");
