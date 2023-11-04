@@ -103,8 +103,8 @@ public class FormBombero extends javax.swing.JInternalFrame {
         jPanel1.add(jtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 140, -1));
         jPanel1.add(jdFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, 130, -1));
 
-        jLabel9.setText("------------------------------------------------------------------------------------------------------------------");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+        jLabel9.setText("-------------------------------------------------------------------------------------------------------------------------");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
         jPanel1.add(jtCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 90, -1));
 
         jPanel1.add(jcGrupoSang, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 110, -1));
@@ -140,7 +140,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(TablaBombero);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 610, 130));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 640, 130));
 
         jbModificar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbModificar.setText("Modificar");
