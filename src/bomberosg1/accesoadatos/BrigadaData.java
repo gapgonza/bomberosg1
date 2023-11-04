@@ -7,6 +7,8 @@ import bomberosg1.entidades.Brigada;
 import java.sql.Connection;
 import java.sql.*;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /**
  *
@@ -43,6 +45,23 @@ public class BrigadaData {
     
     public void modificarBrigada(Brigada brigada){
         String sql = "UPDATE brigada SET nombreBrigada= ?, especialidad= ?, libre= ?, numeroCuartel= ? WHERE codBrigada= ?"; 
+        try{
+            PreparedStatement ps= con.prepareStatement(sql);
+            ps.setString(1,brigada.getNombreBrigada());
+            ps.setString(2,brigada.getEspecialidad());
+            ps.setBoolean(3, brigada.isLibre());
+            ps.setInt(4,brigada.getNumeroCuartel().getCodigoCuartel());
+            int filasModificadas=ps.executeUpdate();
+            if(filasModificadas>0){
+                JOptionPane.showMessageDialog(null, "se modificaron datos de la Brigada");
+            }else{
+                JOptionPane.showMessageDialog(null, "No se encontro nada");
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "error al acceder a la tabla Bombero");
+        }
+        
     }
     
     public void eliminarBrigada(int codBrigada){

@@ -77,6 +77,7 @@ public class BomberoData {
     
     public void eliminarBombero(int idBombero){
         String sql = "UPDATE bombero SET activo=0, codBrigada=null WHERE idBombero=?";
+        
     }
     
     public List<Bombero> verBomberos(){
