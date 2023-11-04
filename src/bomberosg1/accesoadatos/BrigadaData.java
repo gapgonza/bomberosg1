@@ -6,6 +6,7 @@ package bomberosg1.accesoadatos;
 import bomberosg1.entidades.Brigada;
 import java.sql.Connection;
 import java.sql.*;
+import java.util.List;
 import javax.swing.JOptionPane;
 /**
  *
@@ -41,12 +42,16 @@ public class BrigadaData {
     }
     
     public void modificarBrigada(Brigada brigada){
-        
+        String sql = "UPDATE brigada SET nombreBrigada= ?, especialidad= ?, libre= ?, numeroCuartel= ? WHERE codBrigada= ?"; 
     }
     
     public void eliminarBrigada(int codBrigada){
         
     }
     
-    
+    public List<Brigada> verBrigadas(){
+        String sql = "SELECT * FROM brigada";
+        return null;
+        
+    }
 }

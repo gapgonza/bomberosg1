@@ -8,6 +8,7 @@ import bomberosg1.entidades.Cuartel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.*;
+import java.util.List;
 import javax.swing.JOptionPane;
 /**
  *
@@ -45,6 +46,22 @@ public class CuartelData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla cuartel");
         }
+        
+    }
+    
+    public void modificarCuartel(Cuartel cuartel){
+        String sql = "UPDATE cuartel SET nombreCuartel = ?, direccion = ?, coord_X = ?, coord_Y = ?, telefono = ?, correo = ?"
+                + " WHERE codCuartel = ?";
+        
+    }
+    
+    public void verCuarteles(int id){
+        String sql = "SELECT * FROM cuartel WHERE codCuartel = ";
+    }
+    
+    public List<Cuartel> verCuartel(){
+        String sql = "Select * FROM cuartel";
+        return null;
         
     }
 }

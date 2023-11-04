@@ -7,6 +7,7 @@ package bomberosg1.accesoadatos;
 import bomberosg1.entidades.Bombero;
 import java.sql.*;
 import java.time.Month;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -75,9 +76,19 @@ public class BomberoData {
     }
     
     public void eliminarBombero(int idBombero){
-        
+        String sql = "UPDATE bombero SET activo=0, codBrigada=null WHERE idBombero=?";
     }
     
-//    public List<Bombero>
+    public List<Bombero> verBomberos(){
+        String sql = "SELECT * FROM bombero WHERE activo = 1 ";
+        return null;
     
+  }
+    
+    public List<Bombero> bomberosInactivos(){
+        String sql = "SELECT * FROM bombero WHERE activo = 0 ";
+        
+        return null;
+        
+    }
 }

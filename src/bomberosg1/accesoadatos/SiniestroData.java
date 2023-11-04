@@ -4,10 +4,18 @@
  */
 package bomberosg1.accesoadatos;
 
+import java.sql.*;
+
 /**
  *
  * @author Gonza
  */
 public class SiniestroData {
+    private Connection con = null;
+
+    public SiniestroData() {
+        con = Conexion.getConexion();
+    }
+    
     
 }
