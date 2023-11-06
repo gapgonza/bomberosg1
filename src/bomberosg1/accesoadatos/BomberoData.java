@@ -7,6 +7,7 @@ package bomberosg1.accesoadatos;
 import bomberosg1.entidades.Bombero;
 import java.sql.*;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -95,10 +96,44 @@ public class BomberoData {
 
     
     public List<Bombero> verBomberos(){
-        String sql = "SELECT * FROM bombero WHERE activo = 1 ";
-        return null;
+        List<Bombero> listaBomberos = new ArrayList<>();
+        String query = "SELECT * FROM bombero WHERE activo = 1";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet resultSet = ps.executeQuery();
+            
+            while (resultSet.next()) {
+                int idBombero = resultSet.getInt("idBombero");
+                int dni = resultSet.getInt("dni");
+                String apellido = resultSet.getString("apellido");
+                String nombre = resultSet.getString("nombre");
+                java.sql.Date fechaNacimiento = resultSet.getDate("fechaNacimiento");
+                String grupoSanguineo= resultSet.getString("grupoSanguineo");
+                boolean activo = resultSet.getBoolean("activo");
+
+                Bombero bombero = new Bombero();
+                bombero.setIdBombero(idBombero);
+                bombero.setDni(dni);
+                bombero.setApellido(apellido);
+                bombero.setNombre(nombre);
+                bombero.setFechaNac(fechaNacimiento.toLocalDate());
+                bombero.setGrupoSanguineo(grupoSanguineo);
+                bombero.setActivo(activo);
+                
+                listaBomberos.add(bombero);
+            }
+            
+            resultSet.close();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return listaBomberos;
+    }
     
-  }
+  
     
     public List<Bombero> bomberosInactivos(){
         String sql = "SELECT * FROM bombero WHERE activo = 0 ";
