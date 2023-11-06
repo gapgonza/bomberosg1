@@ -50,8 +50,25 @@ public class CuartelData {
     }
     
     public void modificarCuartel(Cuartel cuartel){
-        String sql = "UPDATE cuartel SET nombreCuartel = ?, direccion = ?, coord_X = ?, coord_Y = ?, telefono = ?, correo = ?"
-                + " WHERE codCuartel = ?";
+        String sql = "UPDATE `cuartel` SET `nombreCuartel`=?,`domicilio`=?,`longitudX`=?,`latitudY`=?,`telefono`=?,`correoElectronico`=?"
+                + " WHERE idCuartel = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, cuartel.getNombreCuartel());
+            ps.setString(2, cuartel.getDomicilio());
+            ps.setInt(3, cuartel.getLongitudX());
+            ps.setInt(4, cuartel.getLatitudY());
+            ps.setString(5, cuartel.getTelefono());
+            ps.setString(6, cuartel.getCorreoElectronico());
+            ps.setInt(7, cuartel.getIdCuartel());
+            int filas = ps.executeUpdate();
+            if(filas>0){
+                JOptionPane.showMessageDialog(null, "Se ha modificado el Cuartel");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla cuartel");
+        }
+        
         
     }
     
@@ -83,4 +100,6 @@ public class CuartelData {
         return null;
         
     }
+    
+    
 }
