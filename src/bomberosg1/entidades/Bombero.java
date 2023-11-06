@@ -13,19 +13,21 @@ import java.time.LocalDate;
 public class Bombero {
     private int idBombero;
     private int dni;
-    private String nombreApellido;
+    private String nombre;
+    private String apellido;
     private LocalDate fechaNac;
+    private String grupoSanguineo;
     private String celular;
     private Brigada codBrigada;
-    private String grupoSanguineo;
     private boolean activo;
 
     public Bombero() {
     }
 
-    public Bombero(int dni, String nombreApellido, LocalDate fechaNac, String celular, Brigada codBrigada, String grupoSanguineo, boolean activo) {
+    public Bombero(int dni, String nombre, String apellido, LocalDate fechaNac, String celular, Brigada codBrigada, String grupoSanguineo, boolean activo) {
         this.dni = dni;
-        this.nombreApellido = nombreApellido;
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.fechaNac = fechaNac;
         this.celular = celular;
         this.codBrigada = codBrigada;
@@ -33,10 +35,11 @@ public class Bombero {
         this.activo = activo;
     }
 
-    public Bombero(int idBombero, int dni, String nombreApellido, LocalDate fechaNac, String celular, Brigada codBrigada, String grupoSanguineo, boolean activo) {
+    public Bombero(int idBombero, int dni, String nombre, String apellido, LocalDate fechaNac, String celular, Brigada codBrigada, String grupoSanguineo, boolean activo) {
         this.idBombero = idBombero;
         this.dni = dni;
-        this.nombreApellido = nombreApellido;
+        this.nombre = nombre;
+        this.nombre = apellido;
         this.fechaNac = fechaNac;
         this.celular = celular;
         this.codBrigada = codBrigada;
@@ -60,12 +63,20 @@ public class Bombero {
         this.dni = dni;
     }
 
-    public String getNombreApellido() {
-        return nombreApellido;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreApellido(String nombreApellido) {
-        this.nombreApellido = nombreApellido;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    public String getApellido(){
+        return apellido;
+    }
+    
+    public void setApellido(String apellido){
+        this.apellido = apellido;
     }
 
     public LocalDate getFechaNac() {
@@ -110,8 +121,10 @@ public class Bombero {
 
     @Override
     public String toString() {
-        return "Bombero{" + "dni=" + dni + ", nombreApellido=" + nombreApellido + ", codBrigada=" + codBrigada + ", grupoSanguineo=" + grupoSanguineo + ", activo=" + activo + '}';
+        return "Bombero{" + "idBombero=" + idBombero + ", dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNac=" + fechaNac + ", codBrigada=" + codBrigada + ", grupoSanguineo=" + grupoSanguineo + ", activo=" + activo + '}';
     }
+
+
 
     
 }

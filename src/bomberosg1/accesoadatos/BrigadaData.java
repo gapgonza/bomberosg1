@@ -22,19 +22,19 @@ public class BrigadaData {
     }
     
     public void darAltaBrigada(Brigada brigada){
-        String sql = "INSERT INTO brigada (nombreBrigada, especialidad, libre, numeroCuartel) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO `brigada`( `nombreBrigada`, `especialidad`, `libre`, `numeroCuartel`) VALUES (?, ?, ?, ?)";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, brigada.getNombreBrigada());
             ps.setString(2, brigada.getEspecialidad());
             ps.setBoolean(3, brigada.isLibre());
-            ps.setInt(4, brigada.getNumeroCuartel().getCodigoCuartel());
+            ps.setInt(4, brigada.getNumeroCuartel().getIdCuartel());
             ps.executeUpdate();
             
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){
-                brigada.setCodBrigada(rs.getInt(1));
+                brigada.setIdBrigada(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Se agrego la Brigada");
             }
             ps.close();
@@ -44,13 +44,13 @@ public class BrigadaData {
     }
     
     public void modificarBrigada(Brigada brigada){
-        String sql = "UPDATE brigada SET nombreBrigada= ?, especialidad= ?, libre= ?, numeroCuartel= ? WHERE codBrigada= ?"; 
+        String sql = "UPDATE `brigada` SET `nombreBrigada`=?,`especialidad`=?,`libre`=?,`numeroCuartel`=? WHERE `idBrigada`= ?"; 
         try{
             PreparedStatement ps= con.prepareStatement(sql);
             ps.setString(1,brigada.getNombreBrigada());
             ps.setString(2,brigada.getEspecialidad());
             ps.setBoolean(3, brigada.isLibre());
-            ps.setInt(4,brigada.getNumeroCuartel().getCodigoCuartel());
+            ps.setInt(4,brigada.getNumeroCuartel().getIdCuartel());
             int filasModificadas=ps.executeUpdate();
             if(filasModificadas>0){
                 JOptionPane.showMessageDialog(null, "se modificaron datos de la Brigada");

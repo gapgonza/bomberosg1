@@ -25,16 +25,17 @@ public class BomberoData {
     }
 
     public void altaBombero(Bombero bombero) {
-        String sql = "INSERT INTO bombero (dni, nombreApellido, fechaNac, celular, codBrigada, grupoSanguineo, activo)"
-                + " VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO `bombero`(`dni`, `nombre`, `apellido`, `fechaNacimiento`, `grupoSanguineo`, `celular`, `codBrigada`, `activo`)"
+                + " VALUES (?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, bombero.getDni());
-            ps.setString(2, bombero.getNombreApellido());
+            ps.setString(2, bombero.getNombre());
+            ps.setString(2, bombero.getApellido());
             ps.setDate(3, Date.valueOf(bombero.getFechaNac()));
             ps.setString(4, bombero.getGrupoSanguineo());
             ps.setString(5, bombero.getCelular());
-            ps.setInt(6, bombero.getCodBrigada().getCodBrigada());
+            ps.setInt(6, bombero.getCodBrigada().getIdBrigada());
             ps.setBoolean(7, true);
             ps.executeUpdate();
 
@@ -50,17 +51,18 @@ public class BomberoData {
     }
     
     public void modificarBombero(Bombero bombero){
-        String sql = "UPDATE bombero SET dni=?, apellido=?, nombre=?, fechaNacimiento=?, grupoSanguineo=?, celular=?, codBrigada=?"
+        String sql = "UPDATE `bombero` SET `dni`=?,`nombre`=?,`apellido`=?,`fechaNacimiento`=?,`grupoSanguineo`=?,`celular`=?,`codBrigada`=?"
                 + " WHERE idBombero=?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, bombero.getDni());
-            ps.setString(2, bombero.getNombreApellido());
+            ps.setString(2, bombero.getNombre());
+            ps.setString(2, bombero.getApellido());
             ps.setDate(3,Date.valueOf(bombero.getFechaNac()));
             ps.setString(4, bombero.getGrupoSanguineo());
             ps.setString(5, bombero.getCelular());
-            ps.setInt(6, bombero.getCodBrigada().getCodBrigada());
+            ps.setInt(6, bombero.getCodBrigada().getIdBrigada());
             ps.setInt(7, bombero.getIdBombero());
             int filasModificadas=ps.executeUpdate();
             if(filasModificadas>0){

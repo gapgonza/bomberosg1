@@ -7,11 +7,11 @@ import java.time.LocalTime;
 import java.util.Date;
 
 public class Siniestro {
-    private int codigo;
+    private int idSiniestro;
     private String tipo;
     private LocalDate fechaSiniestro;
-    private int coordenadaX;
-    private int coordenadaY;
+    private int longitudX;
+    private int latitudY;
     private String detalles;
     private LocalDate fechaResolucion;
     private int puntuacion;
@@ -22,12 +22,12 @@ public class Siniestro {
     public Siniestro() {
     }
 
-    public Siniestro(int codigo, String tipo, LocalDate fechaSiniestro, int coordenadaX, int coordenadaY, String detalles, LocalDate fechaResolucion, int puntuacion, Brigada codBrigada, Boolean activo, LocalTime horaSiniestro) {
-        this.codigo = codigo;
+    public Siniestro(int idSiniestro, String tipo, LocalDate fechaSiniestro, int longitudX, int latitudY, String detalles, LocalDate fechaResolucion, int puntuacion, Brigada codBrigada, Boolean activo, LocalTime horaSiniestro) {
+        this.idSiniestro = idSiniestro;
         this.tipo = tipo;
         this.fechaSiniestro = fechaSiniestro;
-        this.coordenadaX = coordenadaX;
-        this.coordenadaY = coordenadaY;
+        this.longitudX = longitudX;
+        this.latitudY = latitudY;
         this.detalles = detalles;
         this.fechaResolucion = fechaResolucion;
         this.puntuacion = puntuacion;
@@ -36,11 +36,11 @@ public class Siniestro {
         this.horaSiniestro = horaSiniestro;
     }
 
-    public Siniestro(String tipo, LocalDate fechaSiniestro, int coordenadaX, int coordenadaY, String detalles, LocalDate fechaResolucion, int puntuacion, Brigada codBrigada, Boolean activo, LocalTime horaSiniestro) {
+    public Siniestro(String tipo, LocalDate fechaSiniestro, int longitudX, int latitudY, String detalles, LocalDate fechaResolucion, int puntuacion, Brigada codBrigada, Boolean activo, LocalTime horaSiniestro) {
         this.tipo = tipo;
         this.fechaSiniestro = fechaSiniestro;
-        this.coordenadaX = coordenadaX;
-        this.coordenadaY = coordenadaY;
+        this.longitudX = longitudX;
+        this.latitudY = latitudY;
         this.detalles = detalles;
         this.fechaResolucion = fechaResolucion;
         this.puntuacion = puntuacion;
@@ -49,12 +49,12 @@ public class Siniestro {
         this.horaSiniestro = horaSiniestro;
     }
 
-    public int getCodigo() {
-        return codigo;
+    public int getIdSiniestro() {
+        return idSiniestro;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setIdSiniestro(int idSiniestro) {
+        this.idSiniestro = idSiniestro;
     }
 
     public String getTipo() {
@@ -73,20 +73,20 @@ public class Siniestro {
         this.fechaSiniestro = fechaSiniestro;
     }
 
-    public int getCoordenadaX() {
-        return coordenadaX;
+    public int getLongitudX() {
+        return longitudX;
     }
 
-    public void setCoordenadaX(int coordenadaX) {
-        this.coordenadaX = coordenadaX;
+    public void setLongitudX(int longitudX) {
+        this.longitudX = longitudX;
     }
 
-    public int getCoordenadaY() {
-        return coordenadaY;
+    public int getLatitudY() {
+        return latitudY;
     }
 
-    public void setCoordenadaY(int coordenadaY) {
-        this.coordenadaY = coordenadaY;
+    public void setLatitudY(int latitudY) {
+        this.latitudY = latitudY;
     }
 
     public String getDetalles() {
@@ -137,5 +137,6 @@ public class Siniestro {
         this.horaSiniestro = horaSiniestro;
     }
 
+    
     
 }

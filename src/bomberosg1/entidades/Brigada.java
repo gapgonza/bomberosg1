@@ -2,7 +2,7 @@ package bomberosg1.entidades;
 
 
 public class Brigada {
-    private int codBrigada;
+    private int idBrigada;
     private String nombreBrigada;
     private String especialidad;
     private boolean libre;
@@ -11,9 +11,9 @@ public class Brigada {
 
     public Brigada() {
     }
-    
-    public Brigada(int codBrigada, String nombreBrigada, String especialidad, boolean libre, Cuartel numeroCuartel) {
-        this.codBrigada = codBrigada;
+
+    public Brigada(int idBrigada, String nombreBrigada, String especialidad, boolean libre, Cuartel numeroCuartel) {
+        this.idBrigada = idBrigada;
         this.nombreBrigada = nombreBrigada;
         this.especialidad = especialidad;
         this.libre = libre;
@@ -26,15 +26,13 @@ public class Brigada {
         this.libre = libre;
         this.numeroCuartel = numeroCuartel;
     }
-    
-    
-        
-    public int getCodBrigada() {
-        return codBrigada;
+
+    public int getIdBrigada() {
+        return idBrigada;
     }
 
-    public void setCodBrigada(int codBrigada) {
-        this.codBrigada = codBrigada;
+    public void setIdBrigada(int idBrigada) {
+        this.idBrigada = idBrigada;
     }
 
     public String getNombreBrigada() {
@@ -68,10 +66,7 @@ public class Brigada {
     public void setNumeroCuartel(Cuartel numeroCuartel) {
         this.numeroCuartel = numeroCuartel;
     }
-
-    @Override
-    public String toString() {
-        return "Brigada{" + "codBrigada=" + codBrigada + ", nombreBrigada=" + nombreBrigada + ", especialidad=" + especialidad + ", libre=" + libre + ", numeroCuartel=" + numeroCuartel + '}';
-    }
-
+    
+    
+    
 }

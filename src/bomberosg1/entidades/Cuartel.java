@@ -1,42 +1,42 @@
 package bomberosg1.entidades;
 
 public class Cuartel {
-    private int codigoCuartel;
+    private int idCuartel;
     private String nombreCuartel;
     private String domicilio;
-    private int coordenadaX;
-    private int coordenadaY;
+    private int longitudX;
+    private int latitudY;
     private String telefono;
     private String correoElectronico;
 
     public Cuartel() {
     }
 
-    public Cuartel(String nombreCuartel, String domicilio, int coordenadaX, int coordenadaY, String telefono, String correoElectronico) {
+    public Cuartel(int idCuartel, String nombreCuartel, String domicilio, int longitudX, int latitudY, String telefono, String correoElectronico) {
+        this.idCuartel = idCuartel;
         this.nombreCuartel = nombreCuartel;
         this.domicilio = domicilio;
-        this.coordenadaX = coordenadaX;
-        this.coordenadaY = coordenadaY;
-        this.telefono = telefono;
-        this.correoElectronico = correoElectronico;
-    }
-    
-    public Cuartel(int codigoCuartel, String nombreCuartel, String domicilio, int coordenadaX, int coordenadaY, String telefono, String correoElectronico) {
-        this.codigoCuartel = codigoCuartel;
-        this.nombreCuartel = nombreCuartel;
-        this.domicilio = domicilio;
-        this.coordenadaX = coordenadaX;
-        this.coordenadaY = coordenadaY;
+        this.longitudX = longitudX;
+        this.latitudY = latitudY;
         this.telefono = telefono;
         this.correoElectronico = correoElectronico;
     }
 
-    public int getCodigoCuartel() {
-        return codigoCuartel;
+    public Cuartel(String nombreCuartel, String domicilio, int longitudX, int latitudY, String telefono, String correoElectronico) {
+        this.nombreCuartel = nombreCuartel;
+        this.domicilio = domicilio;
+        this.longitudX = longitudX;
+        this.latitudY = latitudY;
+        this.telefono = telefono;
+        this.correoElectronico = correoElectronico;
     }
 
-    public void setCodigoCuartel(int codigoCuartel) {
-        this.codigoCuartel = codigoCuartel;
+    public int getIdCuartel() {
+        return idCuartel;
+    }
+
+    public void setIdCuartel(int idCuartel) {
+        this.idCuartel = idCuartel;
     }
 
     public String getNombreCuartel() {
@@ -55,20 +55,20 @@ public class Cuartel {
         this.domicilio = domicilio;
     }
 
-    public int getCoordenadaX() {
-        return coordenadaX;
+    public int getLongitudX() {
+        return longitudX;
     }
 
-    public void setCoordenadaX(int coordenadaX) {
-        this.coordenadaX = coordenadaX;
+    public void setLongitudX(int longitudX) {
+        this.longitudX = longitudX;
     }
 
-    public int getCoordenadaY() {
-        return coordenadaY;
+    public int getLatitudY() {
+        return latitudY;
     }
 
-    public void setCoordenadaY(int coordenadaY) {
-        this.coordenadaY = coordenadaY;
+    public void setLatitudY(int latitudY) {
+        this.latitudY = latitudY;
     }
 
     public String getTelefono() {
@@ -86,11 +86,7 @@ public class Cuartel {
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
     }
-
-    @Override
-    public String toString() {
-        return "Cuartel{" + "nombreCuartel=" + nombreCuartel + '}';
-    }
+    
     
     
 }
