@@ -70,7 +70,7 @@ public class BrigadaData {
     }
     
     public List<Brigada> verBrigadas(){
-        List<Brigada> brigada= new ArrayList<>();
+        List<Brigada> listBrigada= new ArrayList<>();
         try {
             String sql = "SELECT * FROM brigada";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -82,13 +82,15 @@ public class BrigadaData {
                 brigada1.setNombreBrigada(rs.getString("nombreBrigada"));
                 brigada1.setEspecialidad(rs.getString("especialidad"));
                 brigada1.setLibre(rs.getBoolean("libre"));
-                brigada1
+                brigada1.setNumeroCuartel(cuartelData.verCuarteles(rs.getInt("numeroCuartel")));
+                listBrigada.add(brigada1);
             }
-            return null;
+            ps.close();
+            
         } catch (SQLException ex) {
-            Logger.getLogger(BrigadaData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla brigada");
         }
-        
+        return listBrigada;
     }
     
     public Brigada verBrigadasPorID(int id){

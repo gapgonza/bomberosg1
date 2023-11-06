@@ -78,7 +78,7 @@ public class BomberoData {
         
     }
     
-  public void eliminarBombero(int idBombero){
+    public void eliminarBombero(int idBombero){
     String sql = "UPDATE bombero SET activo=0, codBrigada=null WHERE idBombero=?";
     try {
         PreparedStatement ps = con.prepareStatement(sql);
@@ -93,7 +93,6 @@ public class BomberoData {
         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Bombero");
     }
 }
-
     
     public List<Bombero> verBomberos(){
         List<Bombero> listaBomberos = new ArrayList<>();
@@ -133,11 +132,9 @@ public class BomberoData {
         return listaBomberos;
     }
     
-  
-    
     public List<Bombero> bomberosInactivos(){
         String sql = "SELECT * FROM bombero WHERE activo = 0 ";
-        List<Bombero> bomberos = new ArrayList<>();
+        List<Bombero> listaBomberos = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -151,14 +148,16 @@ public class BomberoData {
                 bomberoI.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
                 bomberoI.setGrupoSanguineo(rs.getString("grupoSanguineo"));
                 bomberoI.setCelular(rs.getString("celular"));
-                bomberoI.setCodBrigada(bd.verBrigadas());
+                bomberoI.setCodBrigada(bd.verBrigadasPorID(rs.getInt("codBrigada")));
+                bomberoI.setActivo(rs.getBoolean("activo"));
+                listaBomberos.add(bomberoI);
             }
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla bombero ");
         }
         
         
-        return bomberos;
+        return listaBomberos;
         
     }
 }
