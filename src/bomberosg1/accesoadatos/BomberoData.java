@@ -77,10 +77,22 @@ public class BomberoData {
         
     }
     
-    public void eliminarBombero(int idBombero){
-        String sql = "UPDATE bombero SET activo=0, codBrigada=null WHERE idBombero=?";
-        
+  public void eliminarBombero(int idBombero){
+    String sql = "UPDATE bombero SET activo=0, codBrigada=null WHERE idBombero=?";
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idBombero);
+        int filasModificadas = ps.executeUpdate();
+        if(filasModificadas > 0){
+            JOptionPane.showMessageDialog(null, "Bombero eliminado exitosamente");
+        }else{
+            JOptionPane.showMessageDialog(null, "No se encontró el bombero");
+        }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Bombero");
     }
+}
+
     
     public List<Bombero> verBomberos(){
         String sql = "SELECT * FROM bombero WHERE activo = 1 ";
