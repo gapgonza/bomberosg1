@@ -55,8 +55,27 @@ public class CuartelData {
         
     }
     
-    public void verCuarteles(int id){
-        String sql = "SELECT * FROM cuartel WHERE codCuartel = ";
+    public Cuartel verCuarteles(int id){
+        
+        Cuartel cuartel = new Cuartel();
+        try {
+            String sql = "SELECT * FROM cuartel WHERE idCuartel = ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                cuartel.setIdCuartel(rs.getInt("idCuartel"));
+                cuartel.setNombreCuartel(rs.getString("nombreCuartel"));
+                cuartel.setDomicilio(rs.getString("domicilio"));
+                cuartel.setLongitudX(rs.getInt("longitudX"));
+                cuartel.setLatitudY(rs.getInt("idCuartel"));
+                cuartel.setTelefono(rs.getString("telefono"));
+                cuartel.setCorreoElectronico(rs.getString("correoElectronico"));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla cuartel");
+        }
+        return cuartel;
     }
     
     public List<Cuartel> verCuartel(){

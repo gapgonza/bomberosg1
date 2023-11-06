@@ -87,7 +87,7 @@ public class BomberoData {
         if(filasModificadas > 0){
             JOptionPane.showMessageDialog(null, "Bombero eliminado exitosamente");
         }else{
-            JOptionPane.showMessageDialog(null, "No se encontró el bombero");
+            JOptionPane.showMessageDialog(null, "No se encontro el bombero");
         }
     } catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Bombero");
@@ -137,8 +137,28 @@ public class BomberoData {
     
     public List<Bombero> bomberosInactivos(){
         String sql = "SELECT * FROM bombero WHERE activo = 0 ";
+        List<Bombero> bomberos = new ArrayList<>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Bombero bomberoI = new  Bombero();
+                BrigadaData bd = new BrigadaData();
+                bomberoI.setIdBombero(rs.getInt("idBombero"));
+                bomberoI.setDni(rs.getInt("dni"));
+                bomberoI.setNombre(rs.getString("nombre"));
+                bomberoI.setApellido(rs.getString("apellido"));
+                bomberoI.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
+                bomberoI.setGrupoSanguineo(rs.getString("grupoSanguineo"));
+                bomberoI.setCelular(rs.getString("celular"));
+                bomberoI.setCodBrigada(bd.verBrigadas());
+            }
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, " Error al acceder a la tabla bombero ");
+        }
         
-        return null;
+        
+        return bomberos;
         
     }
 }

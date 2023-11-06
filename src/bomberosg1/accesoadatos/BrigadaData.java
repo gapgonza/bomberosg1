@@ -6,6 +6,7 @@ package bomberosg1.accesoadatos;
 import bomberosg1.entidades.Brigada;
 import java.sql.Connection;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -69,8 +70,46 @@ public class BrigadaData {
     }
     
     public List<Brigada> verBrigadas(){
-        String sql = "SELECT * FROM brigada";
-        return null;
+        List<Brigada> brigada= new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM brigada";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Brigada brigada1 = new Brigada();
+                CuartelData cuartelData = new CuartelData();
+                brigada1.setIdBrigada(rs.getInt("idBrigada"));
+                brigada1.setNombreBrigada(rs.getString("nombreBrigada"));
+                brigada1.setEspecialidad(rs.getString("especialidad"));
+                brigada1.setLibre(rs.getBoolean("libre"));
+                brigada1
+            }
+            return null;
+        } catch (SQLException ex) {
+            Logger.getLogger(BrigadaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
+    }
+    
+    public Brigada verBrigadasPorID(int id){
+        Brigada brigada = null;
+        String sql = "SELECT * FROM brigada WHERE idBrigada= ";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                brigada = new Brigada();
+                CuartelData cuartlData = new CuartelData();
+                brigada.setIdBrigada(rs.getInt("idBrigada"));
+                brigada.setNombreBrigada(rs.getString("nombreBrigada"));
+                brigada.setEspecialidad(rs.getString("especialidad"));
+                brigada.setLibre(rs.getBoolean("libre"));
+                brigada.setNumeroCuartel(cuartlData.verCuarteles(rs.getInt("numeroCuartel")));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla cuartel ");
+        }
+        return brigada;
     }
 }
