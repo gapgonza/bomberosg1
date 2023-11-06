@@ -4,6 +4,7 @@
  */
 package bomberosg1.accesoadatos;
 
+import bomberosg1.entidades.Siniestro;
 import java.sql.*;
 
 /**
@@ -17,5 +18,8 @@ public class SiniestroData {
         con = Conexion.getConexion();
     }
     
-    
+    public void agregarSiniestro(Siniestro siniestro){
+        String sql = "INSERT INTO `siniestro`(`tipo`, `fechaSiniestro`, `longitudX`, `latitudY`, `detalles`, `activo`, `horaSiniestro`)" 
+                + "VALUES(?,?,?,?,?,?,?)";
+    }
 }
