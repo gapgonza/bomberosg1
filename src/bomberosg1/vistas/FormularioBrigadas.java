@@ -4,6 +4,8 @@
  */
 package bomberosg1.vistas;
 
+import bomberosg1.accesoadatos.BrigadaData;
+import bomberosg1.accesoadatos.CuartelData;
 import bomberosg1.entidades.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,6 +15,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FormularioBrigadas extends javax.swing.JInternalFrame {
     private DefaultTableModel modelo = new DefaultTableModel();
+    BrigadaData bd = new BrigadaData();
+    CuartelData cd = new CuartelData();
     
     /**
      * Creates new form FormularioBrigadas
@@ -20,6 +24,9 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
     public FormularioBrigadas() {
         initComponents();
         armarCabecera();
+        bd = new BrigadaData();
+        cd = new CuartelData();
+        cargaCCuartel();
     }
 
     /**
@@ -197,7 +204,13 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
         modelo.addColumn("Estado");
         jtFormBrigadas.setModel(modelo);
     }
-
+    
+    //REVISAR CARGADE CUARTELES Devuelve = entidades.etc
+    private void cargaCCuartel(){
+        for(Cuartel listCuartel: cd.verCuartel()){
+            jcCuarteles.addItem(listCuartel);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
