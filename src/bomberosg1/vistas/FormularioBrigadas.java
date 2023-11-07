@@ -72,7 +72,7 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Cuarteles");
 
-        jcEspecialidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1- Incendios en viviendas", "e industrias", "2- Salvamento en derrumbes", "3- Rescates en ámbito montaña", "4- Rescate de personas atrapadas en accidentes de tráfico", "5- Socorrer inundaciones", "6- Operativos de prevención" }));
+        jcEspecialidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1- Incendios en viviendas e industrias", "2- Salvamento en derrumbes", "3- Rescates en ámbito montaña", "4- Rescate de personas atrapadas en accidentes de tráfico", "5- Socorrer inundaciones", "6- Operativos de prevención" }));
         jcEspecialidad.setToolTipText("");
 
         jbNuevo.setText("Nuevo");
@@ -136,20 +136,19 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel4)
                                     .addComponent(jcCuarteles, 0, 174, Short.MAX_VALUE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(238, 238, 238)
-                        .addComponent(jLabel1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(81, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -171,7 +170,7 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
                     .addComponent(jbModificar)
                     .addComponent(jbSalir)
                     .addComponent(jbGuardar))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
