@@ -88,6 +88,11 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bomberosg1/recursos/Cuartel.png"))); // NOI18N
         jMenu2.setText("Cuartel");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
 
         jMenuItem2.setText("Form de Cuarteles");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -184,6 +189,15 @@ public class MenuView extends javax.swing.JFrame {
         escritorio.add(formularioBrigadas);
         escritorio.moveToFront(formularioBrigadas);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        FormularioBrigadas formularioBrigadas = new FormularioBrigadas();
+        formularioBrigadas.setVisible(true);
+        escritorio.add(formularioBrigadas);
+        escritorio.moveToFront(formularioBrigadas);
+    }//GEN-LAST:event_jMenu2ActionPerformed
 
     /**
      * @param args the command line arguments

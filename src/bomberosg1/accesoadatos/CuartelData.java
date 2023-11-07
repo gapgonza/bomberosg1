@@ -8,6 +8,7 @@ import bomberosg1.entidades.Cuartel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 /**
@@ -96,9 +97,27 @@ public class CuartelData {
     }
     
     public List<Cuartel> verCuartel(){
+        List<Cuartel> listaCuartel = new ArrayList<>();
         String sql = "Select * FROM cuartel";
-        return null;
-        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Cuartel cuartel = new Cuartel();
+                cuartel.setIdCuartel(rs.getInt("idCuartel"));
+                cuartel.setNombreCuartel(rs.getString("nombreCuartel"));
+                cuartel.setDomicilio(rs.getString("domicilio"));
+                cuartel.setLongitudX(rs.getInt("longitudX"));
+                cuartel.setLatitudY(rs.getInt("latitudY"));
+                cuartel.setTelefono(rs.getString("telefono"));
+                cuartel.setCorreoElectronico(rs.getString("correoElectronico"));
+                listaCuartel.add(cuartel);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla cuartel");
+        }
+        return listaCuartel;
     }
     
     
