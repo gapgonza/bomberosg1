@@ -86,6 +86,11 @@ public class Cuartel {
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
     }
+
+    @Override
+    public String toString() {
+        return idCuartel +", " +nombreCuartel;
+    }
     
     
     

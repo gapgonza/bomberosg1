@@ -74,7 +74,7 @@ public class BrigadaData {
         int filasActualizadas = ps.executeUpdate();
         
         if(filasActualizadas > 0){
-            JOptionPane.showMessageDialog(null, "Se desactivó la Brigada con código: " + codBrigada);
+            JOptionPane.showMessageDialog(null, "Brigada borrada exitosamente");
         } else {
             JOptionPane.showMessageDialog(null, "No se encontró ninguna Brigada con el código proporcionado: " + codBrigada);
         }
@@ -106,7 +106,7 @@ public class BrigadaData {
             ps.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla brigada");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla brigada" + ex.getMessage());
         }
         return listBrigada;
     }

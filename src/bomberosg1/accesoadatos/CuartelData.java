@@ -98,8 +98,9 @@ public class CuartelData {
     
     public List<Cuartel> verCuartel(){
         List<Cuartel> listaCuartel = new ArrayList<>();
-        String sql = "Select * FROM cuartel";
+        
         try {
+            String sql = "Select * FROM cuartel";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
