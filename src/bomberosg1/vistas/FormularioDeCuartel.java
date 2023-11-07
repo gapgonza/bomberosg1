@@ -264,7 +264,7 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
             jbNuevo.setEnabled(false);
             jbModificar.setEnabled(true);
             jbDarDeBaja.setEnabled(true);
-            String seleccionado = 
+//            String seleccionado = String.valueOf(tablaCuartel)
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jbSeleccionarActionPerformed
@@ -282,10 +282,10 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void armarCabecera(){
-        modelo.addColumn("Id");
-        modelo.addColumn("Apellido");
-        modelo.addColumn("Especialidad");
-        modelo.addColumn("Estado");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Domicilio");
+        modelo.addColumn("Telefono");
+        modelo.addColumn("Correo Electronico");
         tablaCuartel.setModel(modelo);
     }
     
