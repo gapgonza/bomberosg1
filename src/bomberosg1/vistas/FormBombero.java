@@ -109,6 +109,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
         jPanel1.add(jtCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 90, -1));
 
+        jcGrupoSang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" }));
         jPanel1.add(jcGrupoSang, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 110, -1));
 
         jPanel1.add(jcBrigadaAsignar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 190, -1));
