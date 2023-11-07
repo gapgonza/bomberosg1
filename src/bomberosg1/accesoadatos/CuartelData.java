@@ -120,5 +120,15 @@ public class CuartelData {
         return listaCuartel;
     }
     
-    
+    public void bajaCuartel(Cuartel cuartel){
+        String sql = "DELETE FROM `cuartel` WHERE `idCuartel` = ?";
+         try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, cuartel.getIdCuartel());
+        ps.executeUpdate();
+        ps.close();
+    } catch (SQLException ex) {
+        System.out.println("Error al eliminar el cuartel: " + ex.getMessage());
+    }
+    }
 }

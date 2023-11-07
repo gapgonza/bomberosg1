@@ -105,6 +105,18 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
             }
         });
 
+        jtNomCuartel.setEnabled(false);
+
+        jtDomicilio.setEnabled(false);
+
+        jtLongX.setEnabled(false);
+
+        jtLatY.setEnabled(false);
+
+        jtTelefono.setEnabled(false);
+
+        jtCorreo.setEnabled(false);
+
         tablaCuartel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -121,6 +133,11 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
         jLabel8.setText("--------------------------------------------------------------------------------------------------------------------------");
 
         jbDarDeBaja.setText("Dar de Baja");
+        jbDarDeBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDarDeBajaActionPerformed(evt);
+            }
+        });
 
         jbSeleccionar.setText("Seleccionar");
         jbSeleccionar.addActionListener(new java.awt.event.ActionListener() {
@@ -246,6 +263,7 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
             modelo.setRowCount(0);
             
             llenarTabla();
+            jbSeleccionar.setEnabled(true);
             }catch(NumberFormatException nfe){
             JOptionPane.showMessageDialog(null,"Ni idea");
             }
@@ -253,6 +271,7 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbguardarActionPerformed
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
+        enabled();
         jbguardar.setEnabled(true);
         jbModificar.setEnabled(false);
         jbDarDeBaja.setEnabled(false);
@@ -261,11 +280,22 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
 
     private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
         try {
-            jbNuevo.setEnabled(false);
+            jbNuevo.setEnabled(true);
             jbModificar.setEnabled(true);
             jbDarDeBaja.setEnabled(true);
-//            String seleccionado = String.valueOf(tablaCuartel)
-        } catch (Exception e) {
+            String seleccionado = String.valueOf(tablaCuartel.getValueAt(tablaCuartel.getSelectedRow(),0));
+            for(Cuartel lisCuartel: cd.verCuartel()){
+                if(seleccionado.contains(lisCuartel.getNombreCuartel())){
+                    jtNomCuartel.setText(lisCuartel.getNombreCuartel());
+                    jtDomicilio.setText(lisCuartel.getDomicilio());
+                    jtLongX.setText(lisCuartel.getLongitudX() + "");
+                    jtLatY.setText(lisCuartel.getLatitudY()+ "");
+                    jtTelefono.setText(lisCuartel.getTelefono());
+                    jtCorreo.setText(lisCuartel.getCorreoElectronico());
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Elija un cuartel");
         }
     }//GEN-LAST:event_jbSeleccionarActionPerformed
 
@@ -277,9 +307,37 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
             int laty = Integer.parseInt(jtLatY.getText());
             String telefono = jtTelefono.getText();
             String correoEle = jtCorreo.getText();
+            
+            Cuartel ncuartel = new Cuartel(cuartel, domicilio, longx, laty, telefono, correoEle);
+            cd.modificarCuartel(ncuartel);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jbModificarActionPerformed
+
+    private void jbDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDarDeBajaActionPerformed
+        
+        try {
+            String seleccionado = String.valueOf(tablaCuartel.getValueAt(tablaCuartel.getSelectedRow(), 0));
+            Cuartel cuartSeleleccionado = null;
+            for(Cuartel listCuartel: cd.verCuartel()){
+                if(seleccionado.contains(listCuartel.getNombreCuartel())){
+                    cuartSeleleccionado = listCuartel;
+                    break;
+                }
+            }
+            if(cuartSeleleccionado != null){
+                int confirmar = JOptionPane.showConfirmDialog(this,"Seguro quiero borrar definitivamente?");
+                if(confirmar == JOptionPane.YES_OPTION){
+                     cd.bajaCuartel(cuartSeleleccionado);
+                modelo.setRowCount(0);
+                llenarTabla();
+                }
+               
+            }
+        } catch (Exception e) {
+            
+        }
+    }//GEN-LAST:event_jbDarDeBajaActionPerformed
 
     private void armarCabecera(){
         modelo.addColumn("Nombre");
@@ -298,6 +356,15 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
                 cuartel.getCorreoElectronico()
             });
         }
+    }
+    
+    private void enabled(){
+        jtNomCuartel.setEnabled(true);
+        jtDomicilio.setEnabled(true);
+        jtLongX.setEnabled(true);
+        jtLatY.setEnabled(true);
+        jtTelefono.setEnabled(true);
+        jtCorreo.setEnabled(true);
     }
 
     private void limpiarCampos(){
