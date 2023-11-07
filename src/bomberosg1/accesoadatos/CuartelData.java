@@ -77,7 +77,7 @@ public class CuartelData {
         
         Cuartel cuartel = new Cuartel();
         try {
-            String sql = "SELECT * FROM cuartel WHERE idCuartel = ";
+            String sql = "SELECT * FROM cuartel WHERE idCuartel = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){

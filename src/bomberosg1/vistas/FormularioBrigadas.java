@@ -15,10 +15,11 @@ import javax.swing.table.DefaultTableModel;
  * @author Gonza
  */
 public class FormularioBrigadas extends javax.swing.JInternalFrame {
+
     private DefaultTableModel modelo = new DefaultTableModel();
     BrigadaData bd = new BrigadaData();
     CuartelData cd = new CuartelData();
-    
+
     /**
      * Creates new form FormularioBrigadas
      */
@@ -26,9 +27,9 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
         initComponents();
         bd = new BrigadaData();
         cd = new CuartelData();
-        cargaCCuartel();
         armarCabecera();
-//        cargaBrigada();
+        cargaCCuartel();
+        llenarTabla();
     }
 
     /**
@@ -205,6 +206,7 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
+        limpiarCampos();
         jtNombreBrigadas.setEnabled(true);
         jcEspecialidad.setEnabled(true);
         jcCuarteles.setEnabled(true);
@@ -218,32 +220,41 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSeleccionarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        String brigada = jtNombreBrigadas.getText();
-        String especialidad = (String)jcEspecialidad.getSelectedItem();
-        Cuartel seleccion = (Cuartel)jcCuarteles.getSelectedItem();
-        Brigada brigada1 = new Brigada(brigada, especialidad, false, seleccion);
-        bd.darAltaBrigada(brigada1);
-        
-        
+        if (jtNombreBrigadas.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese un nombre");
+        } else {
+            try {
+                String brigada = jtNombreBrigadas.getText();
+                String especialidad = (String) jcEspecialidad.getSelectedItem();
+                Cuartel seleccion = (Cuartel) jcCuarteles.getSelectedItem();
+                Brigada brigada1 = new Brigada(brigada, especialidad, false, seleccion);
+                bd.darAltaBrigada(brigada1);
+
+                modelo.setRowCount(0);
+                llenarTabla();
+            } catch (Exception e) {
+                }
+        }
+
     }//GEN-LAST:event_jbGuardarActionPerformed
 
-    private void armarCabecera(){
+    private void armarCabecera() {
         modelo.addColumn("Id");
         modelo.addColumn("Nombre Brigada");
         modelo.addColumn("Especialidad");
         modelo.addColumn("Estado");
         jtFormBrigadas.setModel(modelo);
     }
-    
+
     //REVISAR CARGADE CUARTELES Devuelve = entidades.etc
-    private void cargaCCuartel(){
-        for(Cuartel listCuartel: cd.verCuartel()){
+    private void cargaCCuartel() {
+        for (Cuartel listCuartel : cd.verCuartel()) {
             jcCuarteles.addItem(listCuartel);
         }
     }
-    
-    private void cargaBrigada(){
-        for(Brigada b: bd.verBrigadas()){
+
+    private void llenarTabla() {
+        for (Brigada b : bd.verBrigadas()) {
             modelo.addRow(new Object[]{
                 b.getIdBrigada(),
                 b.getNombreBrigada(),
@@ -251,6 +262,11 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
                 b.isLibre()
             });
         }
+    }
+
+    private void limpiarCampos() {
+        jtNombreBrigadas.setText("");
+        jcEspecialidad.setSelectedItem("Seleccione");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
