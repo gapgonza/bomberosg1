@@ -4,19 +4,27 @@
  */
 package bomberosg1.vistas;
 
-import bomberosg1.entidades.Brigada;
+import bomberosg1.accesoadatos.*;
+import bomberosg1.entidades.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Gonza
  */
 public class FormBombero extends javax.swing.JInternalFrame {
-
+    private DefaultTableModel modelo = new DefaultTableModel();
+    BrigadaData bd = null;
+    BomberoData bomData = null;
     /**
      * Creates new form FormBombero
      */
     public FormBombero() {
+        bd = new BrigadaData();
+        bomData = new BomberoData();
         initComponents();
+        armarCabecera();
+        cargarBomberos();
     }
 
     /**
@@ -92,12 +100,6 @@ public class FormBombero extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel8.setText("Asignar a Brigada:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, -1, -1));
-
-        jtDni.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jtDniKeyReleased(evt);
-            }
-        });
         jPanel1.add(jtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 90, -1));
         jPanel1.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 110, -1));
         jPanel1.add(jtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 140, -1));
@@ -116,6 +118,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 110, -1, -1));
 
         jtDisponibilidad.setEditable(false);
+        jtDisponibilidad.setEnabled(false);
         jPanel1.add(jtDisponibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 40, -1));
 
         jbNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -184,16 +187,30 @@ public class FormBombero extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
-    private void jtDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtDniKeyReleased
-
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
         // TODO add your handling code here:
         jbModificar.setEnabled(false);
         jbDarBaja.setEnabled(false);
     }//GEN-LAST:event_jbNuevoActionPerformed
 
+    private void armarCabecera(){
+        modelo.addColumn("Dni");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Brigada");
+        TablaBombero.setModel(modelo);
+    }
+    
+    private void cargarBomberos(){
+        for(Bombero bom: bomData.verBomberos()){
+            modelo.addRow(new Object[]{
+                bom.getDni(),
+                bom.getNombre(),
+                bom.getApellido(),
+                bom.getCodBrigada()
+            });
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaBombero;

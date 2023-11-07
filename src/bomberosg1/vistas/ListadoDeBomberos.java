@@ -38,7 +38,9 @@ public class ListadoDeBomberos extends javax.swing.JInternalFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
 
         setClosable(true);
+        setForeground(new java.awt.Color(0, 102, 102));
         setIconifiable(true);
+        setAutoscrolls(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

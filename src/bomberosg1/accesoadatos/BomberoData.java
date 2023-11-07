@@ -155,8 +155,7 @@ public class BomberoData {
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla bombero ");
         }
-        
-        
+
         return listaBomberos;
         
     }
