@@ -65,9 +65,27 @@ public class BrigadaData {
         
     }
     
-    public void eliminarBrigada(int codBrigada){
+  public void eliminarBrigada(int codBrigada) {
+    String sql = "UPDATE `brigada` SET `libre` = 0 WHERE `idBrigada` = ?";
+    
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, codBrigada);
+        int filasActualizadas = ps.executeUpdate();
         
+        if(filasActualizadas > 0){
+            JOptionPane.showMessageDialog(null, "Se desactivó la Brigada con código: " + codBrigada);
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró ninguna Brigada con el código proporcionado: " + codBrigada);
+        }
+        
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al desactivar la Brigada");
     }
+}
+
+
     
     public List<Brigada> verBrigadas(){
         List<Brigada> listBrigada= new ArrayList<>();
