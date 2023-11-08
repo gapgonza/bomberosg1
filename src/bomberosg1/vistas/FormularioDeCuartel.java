@@ -310,6 +310,9 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
             
             Cuartel ncuartel = new Cuartel(cuartel, domicilio, longx, laty, telefono, correoEle);
             cd.modificarCuartel(ncuartel);
+            
+            modelo.setRowCount(0);
+            llenarTabla();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jbModificarActionPerformed
