@@ -7,6 +7,7 @@ package bomberosg1.vistas;
 import bomberosg1.accesoadatos.*;
 import bomberosg1.entidades.*;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -240,16 +241,24 @@ public class FormBombero extends javax.swing.JInternalFrame {
                 int dni = Integer.parseInt(jtDni.getText());
                 String nombre = jtNombre.getText();
                 String apellido = jtApellido.getText();
-                java.util.Date sFecha = jdFechaNac.getDate();
+                Bombero bom = new Bombero();
+                LocalDate lc = bom.getFechaNac();
+                java.util.Date sFecha = java.util.Date.from(lc.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                jdFechaNac.setDate(sFecha);
+                //java.util.Date fechaNacDate = jDateChooser1.getDate();
+                //de Date a localdate
+                //LocalDate fechaNacLocalDate = fechaNacDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 String grupoSan = (String)jcGrupoSang.getSelectedItem();
                 String celular = jtCelular.getText();
                 Boolean activo = true;
                 Brigada brig = (Brigada)jcBrigadaAsignar.getSelectedItem();
                 
-                Bombero bo = new Bombero(dni, nombre, apellido, LocalDate.MIN, celular, brig, grupoSan, true);
+                Bombero bo = new Bombero();
                 bomData.altaBombero(bo);
-                cargarBomberos();
+                
+//                cargarBomberos();
             } catch (Exception e) {
+                 e.printStackTrace();
             }
         }
         
