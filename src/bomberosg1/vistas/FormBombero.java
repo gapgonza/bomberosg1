@@ -235,75 +235,29 @@ public class FormBombero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-         Bombero bo = new Bombero();
-                bomData.altaBombero(bo);
-        try {
-            Integer dni = Integer.parseInt(jtDni.getText());
-            String nombre = jtNombre.getText();
-            String apellido = jtApellido.getText();
-            if ( !nombre.isEmpty() && !apellido.isEmpty() ) {
-                //extracción de datos
-                java.util.Date fechaNacDate = jdFechaNac.getDate();
-                //de Date a localdate
-                LocalDate fechaNacLocalDate = fechaNacDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-               String grupoSan = (String)jcGrupoSang.getSelectedItem();
-//                String celular = jtCelular.getText();
-//                Boolean activo = true;
-//                Brigada brig = (Brigada)jcBrigadaAsignar.getSelectedItem();
-
-//----------------------------------------------------------
-                //chequeo de existencia de alumno
-                if(bo!=null){
-                   // se toma que el usuario desea modificar datos en caso de que haya alumno  cargado en DB
-                    bo.setDni(dni);
-                    bo.setApellido(apellido);
-                    bo.setNombre(nombre);
-                    bo.setFechaNac(fechaNacLocalDate);
-                   bomData.modificarBombero(bo);
-                }else {                    
-                     //se crea alumno y se guarda
-                    bo = new Bombero();
-                    bomData.altaBombero(bo);
-                }
-
-            }else {
-                JOptionPane.showMessageDialog(this, "No puede haber existir campos vacios");
-                return;
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Datos incorrectos, reintente nuevamente");
-            
-        }
- /*  codigo gonza          try {
-                if(jtDni.getText().isEmpty()|| jtNombre.getText().isEmpty()|| jtApellido.getText().isEmpty()||jtCelular.getText().isEmpty()){
+        if(jtDni.getText().isEmpty()|| jtNombre.getText().isEmpty()|| jtApellido.getText().isEmpty()||jtCelular.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Complete los campos, Todos son obligatorios");
-                }else{
+        }else{
+            try {
                 int dni = Integer.parseInt(jtDni.getText());
                 String nombre = jtNombre.getText();
                 String apellido = jtApellido.getText();
-                Bombero bom = new Bombero();
-                //otra manera
-                Date fechaNac = jdFechaNac.getDate();
-                LocalDate lc = fechaNac.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//                LocalDate lc = bom.getFechaNac();
-//                java.util.Date sFecha = java.util.Date.from(lc.atStartOfDay(ZoneId.systemDefault()).toInstant());
-//                jdFechaNac.setDate(sFecha);
+                java.util.Date sFecha = jdFechaNac.getDate();
                 String grupoSan = (String)jcGrupoSang.getSelectedItem();
                 String celular = jtCelular.getText();
                 Boolean activo = true;
                 Brigada brig = (Brigada)jcBrigadaAsignar.getSelectedItem();
                 
-                Bombero bo = new Bombero();
+                Bombero bo = new Bombero(dni, nombre, apellido, LocalDate.MIN, celular, brig, grupoSan, true);
                 bomData.altaBombero(bo);
-                
-//                cargarBomberos();
+                cargarBomberos();
             } catch (Exception e) {
-                 e.printStackTrace();
             }
-        }*/
+        }
         
         jbModificar.setEnabled(true);
-        jbDarBaja.setEnabled(true);```
+        jbDarBaja.setEnabled(true);
+    
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
