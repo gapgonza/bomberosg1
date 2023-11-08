@@ -79,6 +79,7 @@ public class CuartelData {
         try {
             String sql = "SELECT * FROM cuartel WHERE idCuartel = ?";
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 cuartel.setIdCuartel(rs.getInt("idCuartel"));
@@ -91,7 +92,7 @@ public class CuartelData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla cuartel");
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla cuartel");//encontre el error
         }
         return cuartel;
     }

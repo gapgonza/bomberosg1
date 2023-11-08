@@ -66,6 +66,12 @@ public class Brigada {
     public void setNumeroCuartel(Cuartel numeroCuartel) {
         this.numeroCuartel = numeroCuartel;
     }
+
+    @Override
+    public String toString() {
+        return idBrigada+", "+nombreBrigada+", "+numeroCuartel;
+    }
+    
     
     
     

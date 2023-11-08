@@ -6,6 +6,8 @@ package bomberosg1.vistas;
 
 import bomberosg1.accesoadatos.*;
 import bomberosg1.entidades.*;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,6 +27,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
         initComponents();
         armarCabecera();
         cargarBomberos();
+        cargarBrigada();
     }
 
     /**
@@ -59,6 +62,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
         TablaBombero = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jbSeleccionar = new javax.swing.JButton();
         jbNuevo = new javax.swing.JButton();
         jbGuardar = new javax.swing.JButton();
         jbModificar = new javax.swing.JButton();
@@ -136,13 +140,21 @@ public class FormBombero extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(TablaBombero);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 640, 130));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 640, 130));
 
         jLabel11.setText("Espacios Dispo");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, -1, -1));
 
         jLabel12.setText("---------------------------------------------------------------------------------------------------------------------------");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+
+        jbSeleccionar.setText("Seleccionar");
+        jbSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSeleccionarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jbSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
 
         jbNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbNuevo.setText("Nuevo");
@@ -217,12 +229,37 @@ public class FormBombero extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         jbModificar.setEnabled(false);
         jbDarBaja.setEnabled(false);
+        limpiar();
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+        if(jtDni.getText().isEmpty()|| jtNombre.getText().isEmpty()|| jtApellido.getText().isEmpty()||jtCelular.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Complete los campos, Todos son obligatorios");
+        }else{
+            try {
+                int dni = Integer.parseInt(jtDni.getText());
+                String nombre = jtNombre.getText();
+                String apellido = jtApellido.getText();
+                java.util.Date sFecha = jdFechaNac.getDate();
+                String grupoSan = (String)jcGrupoSang.getSelectedItem();
+                String celular = jtCelular.getText();
+                Boolean activo = true;
+                Brigada brig = (Brigada)jcBrigadaAsignar.getSelectedItem();
+                
+                Bombero bo = new Bombero(dni, nombre, apellido, LocalDate.MIN, celular, brig, grupoSan, true);
+                bomData.altaBombero(bo);
+                
+            } catch (Exception e) {
+            }
+        }
+        
         jbModificar.setEnabled(true);
         jbDarBaja.setEnabled(true);
     }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbSeleccionarActionPerformed
 
     private void armarCabecera(){
         modelo.addColumn("Dni");
@@ -241,6 +278,20 @@ public class FormBombero extends javax.swing.JInternalFrame {
                 bom.getCodBrigada()
             });
         }
+    }
+    
+    private void cargarBrigada(){
+        for(Brigada b:bd.verBrigadas()){
+            jcBrigadaAsignar.addItem(b);
+        }
+    }
+    
+    private void limpiar(){
+        jtDni.setText("");
+        jtNombre.setText("");
+        jtApellido.setText("");
+        jtCelular.setText("");
+        jcGrupoSang.setSelectedItem("Seleccione");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -264,6 +315,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbNuevo;
     private javax.swing.JButton jbSalir;
+    private javax.swing.JButton jbSeleccionar;
     private javax.swing.JComboBox<Brigada> jcBrigadaAsignar;
     private javax.swing.JComboBox<String> jcGrupoSang;
     private com.toedter.calendar.JDateChooser jdFechaNac;
