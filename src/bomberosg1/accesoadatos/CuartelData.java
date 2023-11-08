@@ -86,7 +86,7 @@ public class CuartelData {
                 cuartel.setNombreCuartel(rs.getString("nombreCuartel"));
                 cuartel.setDomicilio(rs.getString("domicilio"));
                 cuartel.setLongitudX(rs.getInt("longitudX"));
-                cuartel.setLatitudY(rs.getInt("idCuartel"));
+                cuartel.setLatitudY(rs.getInt("latitudY"));
                 cuartel.setTelefono(rs.getString("telefono"));
                 cuartel.setCorreoElectronico(rs.getString("correoElectronico"));
             }
@@ -132,5 +132,22 @@ public class CuartelData {
     } catch (SQLException ex) {
         System.out.println("Error al eliminar el cuartel: " + ex.getMessage());
     }
+    }
+    
+    //Metodo agregado para poder validar el duplicado
+    public boolean existeCuartel(String nombreCuartel){
+        try {
+        String sql = "SELECT * FROM cuartel WHERE nombreCuartel = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, nombreCuartel);
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()){
+            return true;
+        }
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla cuartel");
+    }
+    return false;
     }
 }

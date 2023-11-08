@@ -160,4 +160,25 @@ public class BomberoData {
         return listaBomberos;
         
     }
+    
+    public int cantBomberosEnBrigada(int idBombero){
+        String query = "SELECT COUNT(*) FROM brigada WHERE idBombero = ?";
+        int contador = 0;
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, idBombero);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()){
+                contador = rs.getInt(1);
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+         return contador;
+    }
+   //cantidad de bomberos para ver el tema de 5 integrantes unicamente
+    //por brigada
 }

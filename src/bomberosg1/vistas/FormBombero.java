@@ -249,6 +249,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
                 String grupoSan = (String) jcGrupoSang.getSelectedItem();
                 String celular = jtCelular.getText();
                 Boolean activo = true;
+                
                 Brigada brig = (Brigada) jcBrigadaAsignar.getSelectedItem();
 
                 Bombero bo = new Bombero(dni, nombre, apellido, feDate, celular, brig, grupoSan, true);

@@ -7,6 +7,8 @@ package bomberosg1.vistas;
 import bomberosg1.accesoadatos.BrigadaData;
 import bomberosg1.accesoadatos.CuartelData;
 import bomberosg1.entidades.*;
+import java.sql.SQLException;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -222,12 +224,37 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
-        jtNombreBrigadas.setEnabled(false);
-        jcCuarteles.setEnabled(false);
-        jcEspecialidad.setEnabled(false);
-        jbModificar.setEnabled(true);
-        jbDardeBaja.setEnabled(true);
-        jbGuardar.setEnabled(false);
+          int filaSeleccionada = jtFormBrigadas.getSelectedRow();
+    if(filaSeleccionada == -1){
+        JOptionPane.showMessageDialog(null, "No se seleccionó ninguna fila");
+        return;
+    }
+    
+    Object nombreBrigada = jtFormBrigadas.getValueAt(filaSeleccionada, 1);
+    Object especialidad = jtFormBrigadas.getValueAt(filaSeleccionada, 2);
+    Object cuartel = jtFormBrigadas.getValueAt(filaSeleccionada, 3);
+    
+    // Verificar si los valores no son nulos antes de convertirlos a String
+    if(nombreBrigada != null && !nombreBrigada.toString().isEmpty()){
+        // Verificar si la brigada ya existe
+        if(!jtNombreBrigadas.getText().contains(nombreBrigada.toString())){
+            jtNombreBrigadas.setText(nombreBrigada.toString());
+        } else {
+            JOptionPane.showMessageDialog(null, "La brigada ya existe");
+            return;
+        }
+    }
+    if(especialidad != null){
+        jcEspecialidad.setSelectedItem(especialidad.toString());
+    }
+    if(cuartel != null){
+        jcCuarteles.setSelectedItem(cuartel.toString());
+    }
+    
+    jtNombreBrigadas.setEnabled(true);
+    jcEspecialidad.setEnabled(true);
+    jcCuarteles.setEnabled(true);
+    jbModificar.setEnabled(true);
     }//GEN-LAST:event_jbSeleccionarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
@@ -294,6 +321,16 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
         jtNombreBrigadas.setText("");
         jcEspecialidad.setSelectedItem("Seleccione");
     }
+    
+    private int getComboBoxIndex(JComboBox<Brigada> comboBox, String value) {
+    for (int i = 0; i < comboBox.getItemCount(); i++) {
+        Brigada brigada = comboBox.getItemAt(i);
+        if (brigada.getNombreBrigada().contains(value)) {
+            return i;
+        }
+    }
+    return -1;
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

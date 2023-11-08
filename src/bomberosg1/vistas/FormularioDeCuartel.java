@@ -43,7 +43,6 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jbNuevo = new javax.swing.JButton();
-        jbModificar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
         jbguardar = new javax.swing.JButton();
         jtNomCuartel = new javax.swing.JTextField();
@@ -80,13 +79,6 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
         jbNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbNuevoActionPerformed(evt);
-            }
-        });
-
-        jbModificar.setText("Modificar");
-        jbModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbModificarActionPerformed(evt);
             }
         });
 
@@ -185,13 +177,11 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel7)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jbNuevo)
-                                .addGap(39, 39, 39)
+                                .addGap(94, 94, 94)
                                 .addComponent(jbguardar)
-                                .addGap(60, 60, 60)
-                                .addComponent(jbDarDeBaja)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jbModificar)
-                                .addGap(99, 99, 99)
+                                .addComponent(jbDarDeBaja)
+                                .addGap(88, 88, 88)
                                 .addComponent(jbSalir)))
                         .addGap(21, 21, 21))
                     .addGroup(layout.createSequentialGroup()
@@ -232,7 +222,6 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
                 .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbNuevo)
-                    .addComponent(jbModificar)
                     .addComponent(jbguardar)
                     .addComponent(jbSalir)
                     .addComponent(jbDarDeBaja))
@@ -257,6 +246,11 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
             int latitudY = Integer.parseInt(jtLatY.getText());
             String telefono = jtTelefono.getText();
             String correoElectronico = jtCorreo.getText();
+            
+            //modificacion
+            if(cd.existeCuartel(cuartel)){
+                JOptionPane.showMessageDialog(null, "El cuartel ya existe");
+            }else{
             Cuartel agregarCuartel = new Cuartel(cuartel, domicilio, longitudX, latitudY, telefono, correoElectronico);
             cd.altaCuartel(agregarCuartel);
             
@@ -264,6 +258,7 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
             
             llenarTabla();
             jbSeleccionar.setEnabled(true);
+            }
             }catch(NumberFormatException nfe){
             JOptionPane.showMessageDialog(null,"Coordenadas no especificadas");
             }
@@ -273,15 +268,15 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
         enabled();
         jbguardar.setEnabled(true);
-        jbModificar.setEnabled(false);
         jbDarDeBaja.setEnabled(false);
         limpiarCampos();
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
         try {
+            enabled();
+            jbguardar.setEnabled(false);
             jbNuevo.setEnabled(true);
-            jbModificar.setEnabled(true);
             jbDarDeBaja.setEnabled(true);
             String seleccionado = String.valueOf(tablaCuartel.getValueAt(tablaCuartel.getSelectedRow(),0));
             for(Cuartel lisCuartel: cd.verCuartel()){
@@ -298,24 +293,6 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Elija un cuartel");
         }
     }//GEN-LAST:event_jbSeleccionarActionPerformed
-
-    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-        try {
-            String cuartel = jtNomCuartel.getText();
-            String domicilio = jtDomicilio.getText();
-            int longx = Integer.parseInt(jtLongX.getText());
-            int laty = Integer.parseInt(jtLatY.getText());
-            String telefono = jtTelefono.getText();
-            String correoEle = jtCorreo.getText();
-            
-            Cuartel ncuartel = new Cuartel(cuartel, domicilio, longx, laty, telefono, correoEle);
-            cd.modificarCuartel(ncuartel);
-            
-            modelo.setRowCount(0);
-            llenarTabla();
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jbDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDarDeBajaActionPerformed
         
@@ -389,7 +366,6 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbDarDeBaja;
-    private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbNuevo;
     private javax.swing.JButton jbSalir;
     private javax.swing.JButton jbSeleccionar;
