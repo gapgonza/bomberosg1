@@ -247,6 +247,12 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
             String telefono = jtTelefono.getText();
             String correoElectronico = jtCorreo.getText();
             
+//          Veirificamos que el string telefono sean numeros
+            if(!telefono.matches("\\d+")){
+                JOptionPane.showMessageDialog(null,"El número de teléfono debe ser numérico");
+                return;
+            }
+            
             //modificacion
             if(cd.existeCuartel(cuartel)){
                 JOptionPane.showMessageDialog(null, "El cuartel ya existe");
