@@ -6,6 +6,7 @@ package bomberosg1.accesoadatos;
 
 import bomberosg1.entidades.Bombero;
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
@@ -105,9 +106,9 @@ public class BomberoData {
             while (resultSet.next()) {
                 int idBombero = resultSet.getInt("idBombero");
                 int dni = resultSet.getInt("dni");
-                String apellido = resultSet.getString("apellido");
                 String nombre = resultSet.getString("nombre");
-                java.sql.Date fechaNacimiento = resultSet.getDate("fechaNacimiento");
+                String apellido = resultSet.getString("apellido");
+                LocalDate fechaNacimiento = resultSet.getDate("fechaNacimiento").toLocalDate();
                 String grupoSanguineo= resultSet.getString("grupoSanguineo");
                 boolean activo = resultSet.getBoolean("activo");
 
@@ -116,7 +117,7 @@ public class BomberoData {
                 bombero.setDni(dni);
                 bombero.setApellido(apellido);
                 bombero.setNombre(nombre);
-                bombero.setFechaNac(fechaNacimiento.toLocalDate());
+                bombero.setFechaNac(fechaNacimiento);
                 bombero.setGrupoSanguineo(grupoSanguineo);
                 bombero.setActivo(activo);
                 

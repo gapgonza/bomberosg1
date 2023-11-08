@@ -17,9 +17,11 @@ import javax.swing.table.DefaultTableModel;
  * @author Gonza
  */
 public class FormBombero extends javax.swing.JInternalFrame {
+
     private DefaultTableModel modelo = new DefaultTableModel();
     BrigadaData bd = null;
     BomberoData bomData = null;
+
     /**
      * Creates new form FormBombero
      */
@@ -53,7 +55,6 @@ public class FormBombero extends javax.swing.JInternalFrame {
         jtDni = new javax.swing.JTextField();
         jtNombre = new javax.swing.JTextField();
         jtApellido = new javax.swing.JTextField();
-        jdFechaNac = new com.toedter.calendar.JDateChooser();
         jLabel9 = new javax.swing.JLabel();
         jtCelular = new javax.swing.JTextField();
         jcGrupoSang = new javax.swing.JComboBox<>();
@@ -65,6 +66,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jbSeleccionar = new javax.swing.JButton();
+        jdFechaNac = new com.toedter.calendar.JDateChooser();
         jbNuevo = new javax.swing.JButton();
         jbGuardar = new javax.swing.JButton();
         jbModificar = new javax.swing.JButton();
@@ -110,7 +112,6 @@ public class FormBombero extends javax.swing.JInternalFrame {
         jPanel1.add(jtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 90, -1));
         jPanel1.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 110, -1));
         jPanel1.add(jtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 140, -1));
-        jPanel1.add(jdFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, 130, -1));
 
         jLabel9.setText("-------------------------------------------------------------------------------------------------------------------------");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
@@ -157,6 +158,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jbSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
+        jPanel1.add(jdFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, 130, -1));
 
         jbNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbNuevo.setText("Nuevo");
@@ -235,29 +237,51 @@ public class FormBombero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        if(jtDni.getText().isEmpty()|| jtNombre.getText().isEmpty()|| jtApellido.getText().isEmpty()||jtCelular.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Complete los campos, Todos son obligatorios");
-        }else{
-            try {
+        try {
+            if (jtDni.getText().isEmpty() || jtNombre.getText().isEmpty() || jtApellido.getText().isEmpty() || jtCelular.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Complete los campos, Todos son obligatorios");
+            } else {
                 int dni = Integer.parseInt(jtDni.getText());
                 String nombre = jtNombre.getText();
                 String apellido = jtApellido.getText();
-                java.util.Date sFecha = jdFechaNac.getDate();
-                String grupoSan = (String)jcGrupoSang.getSelectedItem();
+                Date fnac = jdFechaNac.getDate();
+                LocalDate feDate = fnac.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                String grupoSan = (String) jcGrupoSang.getSelectedItem();
                 String celular = jtCelular.getText();
                 Boolean activo = true;
-                Brigada brig = (Brigada)jcBrigadaAsignar.getSelectedItem();
-                
-                Bombero bo = new Bombero(dni, nombre, apellido, LocalDate.MIN, celular, brig, grupoSan, true);
+                Brigada brig = (Brigada) jcBrigadaAsignar.getSelectedItem();
+
+                Bombero bo = new Bombero(dni, nombre, apellido, feDate, celular, brig, grupoSan, true);
                 bomData.altaBombero(bo);
                 cargarBomberos();
-            } catch (Exception e) {
             }
+        } catch (Exception e) {
         }
-        
+
+//          if(jtDni.getText().isEmpty()|| jtNombre.getText().isEmpty()|| jtApellido.getText().isEmpty()||jtCelular.getText().isEmpty()){
+//            JOptionPane.showMessageDialog(null, "Complete los campos, Todos son obligatorios");
+//        }else{
+//            try {
+//                int dni = Integer.parseInt(jtDni.getText());
+//                String nombre = jtNombre.getText();
+//                String apellido = jtApellido.getText();
+//                Date fnac = jdFechaNac.getDate();
+//                LocalDate feDate = fnac.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//                String grupoSan = (String)jcGrupoSang.getSelectedItem();
+//                String celular = jtCelular.getText();
+//                Boolean activo = true;
+//                Brigada brig = (Brigada)jcBrigadaAsignar.getSelectedItem();
+//                
+//                Bombero bo = new Bombero(dni, nombre, apellido, feDate, celular, brig, grupoSan, true);
+//                bomData.altaBombero(bo);
+//                cargarBomberos();
+//            } catch (Exception e) {
+//            }
+//        }
+//        
         jbModificar.setEnabled(true);
         jbDarBaja.setEnabled(true);
-    
+
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
@@ -266,16 +290,16 @@ public class FormBombero extends javax.swing.JInternalFrame {
         jbDarBaja.setEnabled(true);
     }//GEN-LAST:event_jbSeleccionarActionPerformed
 
-    private void armarCabecera(){
+    private void armarCabecera() {
         modelo.addColumn("Dni");
         modelo.addColumn("Nombre");
         modelo.addColumn("Apellido");
         modelo.addColumn("Brigada");
         TablaBombero.setModel(modelo);
     }
-    
-    private void cargarBomberos(){
-        for(Bombero bom: bomData.verBomberos()){
+
+    private void cargarBomberos() {
+        for (Bombero bom : bomData.verBomberos()) {
             modelo.addRow(new Object[]{
                 bom.getDni(),
                 bom.getNombre(),
@@ -284,14 +308,14 @@ public class FormBombero extends javax.swing.JInternalFrame {
             });
         }
     }
-    
-    private void cargarBrigada(){
-        for(Brigada b:bd.verBrigadas()){
+
+    private void cargarBrigada() {
+        for (Brigada b : bd.verBrigadas()) {
             jcBrigadaAsignar.addItem(b);
         }
     }
-    
-    private void limpiar(){
+
+    private void limpiar() {
         jtDni.setText("");
         jtNombre.setText("");
         jtApellido.setText("");
