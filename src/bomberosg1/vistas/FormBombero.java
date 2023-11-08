@@ -257,6 +257,9 @@ public class FormBombero extends javax.swing.JInternalFrame {
             }
         } catch (Exception e) {
         }
+        
+        jbModificar.setEnabled(true);
+        jbDarBaja.setEnabled(true);
 
 //          if(jtDni.getText().isEmpty()|| jtNombre.getText().isEmpty()|| jtApellido.getText().isEmpty()||jtCelular.getText().isEmpty()){
 //            JOptionPane.showMessageDialog(null, "Complete los campos, Todos son obligatorios");
@@ -279,8 +282,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
 //            }
 //        }
 //        
-        jbModificar.setEnabled(true);
-        jbDarBaja.setEnabled(true);
+
 
     }//GEN-LAST:event_jbGuardarActionPerformed
 
