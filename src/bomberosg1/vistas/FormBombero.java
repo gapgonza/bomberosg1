@@ -8,6 +8,7 @@ import bomberosg1.accesoadatos.*;
 import bomberosg1.entidades.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -234,20 +235,21 @@ public class FormBombero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        if(jtDni.getText().isEmpty()|| jtNombre.getText().isEmpty()|| jtApellido.getText().isEmpty()||jtCelular.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Complete los campos, Todos son obligatorios");
-        }else{
+        
             try {
+                if(jtDni.getText().isEmpty()|| jtNombre.getText().isEmpty()|| jtApellido.getText().isEmpty()||jtCelular.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Complete los campos, Todos son obligatorios");
+                }else{
                 int dni = Integer.parseInt(jtDni.getText());
                 String nombre = jtNombre.getText();
                 String apellido = jtApellido.getText();
                 Bombero bom = new Bombero();
-                LocalDate lc = bom.getFechaNac();
-                java.util.Date sFecha = java.util.Date.from(lc.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                jdFechaNac.setDate(sFecha);
-                //java.util.Date fechaNacDate = jDateChooser1.getDate();
-                //de Date a localdate
-                //LocalDate fechaNacLocalDate = fechaNacDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                //otra manera
+                Date fechaNac = jdFechaNac.getDate();
+                LocalDate lc = fechaNac.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//                LocalDate lc = bom.getFechaNac();
+//                java.util.Date sFecha = java.util.Date.from(lc.atStartOfDay(ZoneId.systemDefault()).toInstant());
+//                jdFechaNac.setDate(sFecha);
                 String grupoSan = (String)jcGrupoSang.getSelectedItem();
                 String celular = jtCelular.getText();
                 Boolean activo = true;
