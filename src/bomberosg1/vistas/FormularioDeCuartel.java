@@ -265,7 +265,7 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
             llenarTabla();
             jbSeleccionar.setEnabled(true);
             }catch(NumberFormatException nfe){
-            JOptionPane.showMessageDialog(null,"Ni idea");
+            JOptionPane.showMessageDialog(null,"Coordenadas no especificadas");
             }
         }
     }//GEN-LAST:event_jbguardarActionPerformed

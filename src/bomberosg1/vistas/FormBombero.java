@@ -248,7 +248,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
                 
                 Bombero bo = new Bombero(dni, nombre, apellido, LocalDate.MIN, celular, brig, grupoSan, true);
                 bomData.altaBombero(bo);
-                
+                cargarBomberos();
             } catch (Exception e) {
             }
         }
@@ -258,7 +258,9 @@ public class FormBombero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
-        // TODO add your handling code here:
+        jbGuardar.setEnabled(false);
+        jbModificar.setEnabled(true);
+        jbDarBaja.setEnabled(true);
     }//GEN-LAST:event_jbSeleccionarActionPerformed
 
     private void armarCabecera(){

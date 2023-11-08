@@ -32,12 +32,12 @@ public class BomberoData {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, bombero.getDni());
             ps.setString(2, bombero.getNombre());
-            ps.setString(2, bombero.getApellido());
-            ps.setDate(3, Date.valueOf(bombero.getFechaNac()));
-            ps.setString(4, bombero.getGrupoSanguineo());
-            ps.setString(5, bombero.getCelular());
-            ps.setInt(6, bombero.getCodBrigada().getIdBrigada());
-            ps.setBoolean(7, true);
+            ps.setString(3, bombero.getApellido());
+            ps.setDate(4, Date.valueOf(bombero.getFechaNac()));
+            ps.setString(5, bombero.getGrupoSanguineo());
+            ps.setString(6, bombero.getCelular());
+            ps.setInt(7, bombero.getCodBrigada().getIdBrigada());
+            ps.setBoolean(8, true);
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -59,12 +59,12 @@ public class BomberoData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, bombero.getDni());
             ps.setString(2, bombero.getNombre());
-            ps.setString(2, bombero.getApellido());
-            ps.setDate(3,Date.valueOf(bombero.getFechaNac()));
-            ps.setString(4, bombero.getGrupoSanguineo());
-            ps.setString(5, bombero.getCelular());
-            ps.setInt(6, bombero.getCodBrigada().getIdBrigada());
-            ps.setInt(7, bombero.getIdBombero());
+            ps.setString(3, bombero.getApellido());
+            ps.setDate(4,Date.valueOf(bombero.getFechaNac()));
+            ps.setString(5, bombero.getGrupoSanguineo());
+            ps.setString(6, bombero.getCelular());
+            ps.setInt(7, bombero.getCodBrigada().getIdBrigada());
+            ps.setInt(8, bombero.getIdBombero());
             int filasModificadas=ps.executeUpdate();
             if(filasModificadas>0){
                 JOptionPane.showMessageDialog(null, "se modificaron datos de Bombero");

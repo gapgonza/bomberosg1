@@ -126,6 +126,11 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
         });
 
         jbDardeBaja.setText("Dar de Baja");
+        jbDardeBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDardeBajaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,12 +216,18 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
         jcEspecialidad.setEnabled(true);
         jcCuarteles.setEnabled(true);
         jbModificar.setEnabled(false);
-        jbSeleccionar.setEnabled(false);
+        jbSeleccionar.setEnabled(true);
         jbGuardar.setEnabled(true);
+        jbDardeBaja.setEnabled(false);
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
-
+        jtNombreBrigadas.setEnabled(false);
+        jcCuarteles.setEnabled(false);
+        jcEspecialidad.setEnabled(false);
+        jbModificar.setEnabled(true);
+        jbDardeBaja.setEnabled(true);
+        jbGuardar.setEnabled(false);
     }//GEN-LAST:event_jbSeleccionarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
@@ -237,6 +248,21 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jbDardeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDardeBajaActionPerformed
+        try {
+            String seleccionado = String.valueOf(jtFormBrigadas.getValueAt(jtFormBrigadas.getSelectedRow(), 0));
+            Brigada brigadaSelec = null;
+            for(Brigada listBrigada: bd.verBrigadas()){
+                if(seleccionado.contains(listBrigada.getNombreBrigada())){
+                    brigadaSelec = listBrigada;
+                    break;
+                }
+            }
+            
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jbDardeBajaActionPerformed
 
     private void armarCabecera() {
         modelo.addColumn("Id");
