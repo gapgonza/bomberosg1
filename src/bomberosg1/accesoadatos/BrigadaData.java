@@ -85,8 +85,6 @@ public class BrigadaData {
     }
 }
 
-
-    
     public List<Brigada> verBrigadas(){
         List<Brigada> listBrigada= new ArrayList<>();
         try {
@@ -132,4 +130,20 @@ public class BrigadaData {
         }
         return brigada;
     }
+    
+    public boolean existeBrigadaConNombre(String nombreBrigada) {
+    String sql = "SELECT COUNT(*) FROM brigada WHERE nombreBrigada = ?";
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, nombreBrigada);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            int count = rs.getInt(1);
+            return count > 0;
+        }
+    } catch (SQLException ex) {
+        // Manejar excepciones, si es necesario
+    }
+    return false;
+}
 }

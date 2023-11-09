@@ -258,22 +258,29 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSeleccionarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        if (jtNombreBrigadas.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese un nombre");
-        } else {
+            String nombreBrigada = jtNombreBrigadas.getText();
+            // Verificar si el campo de nombre está vacío
+            if (nombreBrigada.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Ingrese un nombre");
+                return;
+            }
+            // Verificar si ya existe una brigada con el mismo nombre en la base de datos
+            if (bd.existeBrigadaConNombre(nombreBrigada)) {
+                JOptionPane.showMessageDialog(this, "La brigada ya existe. Intente con otro nombre.");
+                return;
+            }
+            // Si no existe una brigada con el mismo nombre, la agregamos
             try {
-                String brigada = jtNombreBrigadas.getText();
                 String especialidad = (String) jcEspecialidad.getSelectedItem();
                 Cuartel seleccion = (Cuartel) jcCuarteles.getSelectedItem();
-                Brigada brigada1 = new Brigada(brigada, especialidad, false, seleccion);
+                Brigada brigada1 = new Brigada(nombreBrigada, especialidad, false, seleccion);
                 bd.darAltaBrigada(brigada1);
 
                 modelo.setRowCount(0);
                 llenarTabla();
             } catch (Exception e) {
-                }
-        }
-
+           
+            }
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbDardeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDardeBajaActionPerformed
@@ -289,16 +296,16 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
         if (brigadaSelec != null) {
             int confirmar = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar esta Brigada?");
             if (confirmar == JOptionPane.YES_OPTION) {
-                // Call your eliminarBrigada method to physically delete the Brigada
+               
                 bd.eliminarBrigada(brigadaSelec.getIdBrigada());
 
-                // After deletion, refresh the table
+               
                 modelo.setRowCount(0);
                 llenarTabla();
             }
         }
     } catch (Exception e) {
-        // Handle any exceptions that may occur
+        
     }
     }//GEN-LAST:event_jbDardeBajaActionPerformed
 
@@ -333,15 +340,6 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
         jcEspecialidad.setSelectedItem("Seleccione");
     }
     
-    private int getComboBoxIndex(JComboBox<Brigada> comboBox, String value) {
-    for (int i = 0; i < comboBox.getItemCount(); i++) {
-        Brigada brigada = comboBox.getItemAt(i);
-        if (brigada.getNombreBrigada().contains(value)) {
-            return i;
-        }
-    }
-    return -1;
-}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
