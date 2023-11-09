@@ -31,6 +31,10 @@ public class Cuartel {
         this.correoElectronico = correoElectronico;
     }
 
+    public Cuartel(int idCuartel, String nombreCuartel) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public int getIdCuartel() {
         return idCuartel;
     }

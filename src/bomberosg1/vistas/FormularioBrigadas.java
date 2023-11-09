@@ -102,6 +102,11 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
 
         jbModificar.setText("Modificar");
         jbModificar.setEnabled(false);
+        jbModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificarActionPerformed(evt);
+            }
+        });
 
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -224,65 +229,132 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
-        jbModificar.setEnabled(true);
-        jbDardeBaja.setEnabled(true);
+//        jbModificar.setEnabled(true);
+//        jbDardeBaja.setEnabled(true);
+//        int filaSeleccionada = jtFormBrigadas.getSelectedRow();
+//        if (filaSeleccionada == -1) {
+//            JOptionPane.showMessageDialog(null, "No se seleccionó ninguna fila");
+//            return;
+//        }
+//
+//        Object nombreBrigada = jtFormBrigadas.getValueAt(filaSeleccionada, 1);
+//        Object especialidad = jtFormBrigadas.getValueAt(filaSeleccionada, 2);
+//        Object cuartel = jtFormBrigadas.getValueAt(filaSeleccionada, 3);
+
+        // Verificar si los valores no son nulos antes de convertirlos a String
+//        if (nombreBrigada != null && !nombreBrigada.toString().isEmpty()) {
+//            // Verificar si la brigada ya existe
+//            if (!jtNombreBrigadas.getText().contains(nombreBrigada.toString())) {
+//                jtNombreBrigadas.setText(nombreBrigada.toString());
+//            } else {
+//                JOptionPane.showMessageDialog(null, "La brigada ya existe");
+//                return;
+//            }
+//        }
+//        if (especialidad != null) {
+//            jcEspecialidad.setSelectedItem(especialidad.toString());
+//        }
+//        if (cuartel != null) {
+//            jcCuarteles.setSelectedItem(cuartel.toString());
+//        }
+/////////////////////////////
+        jtNombreBrigadas.setEnabled(true);
+        jcEspecialidad.setEnabled(true);
+        jcCuarteles.setEnabled(true);
+
         int filaSeleccionada = jtFormBrigadas.getSelectedRow();
-    if(filaSeleccionada == -1){
-        JOptionPane.showMessageDialog(null, "No se seleccionó ninguna fila");
-        return;
-    }
-    
-    Object nombreBrigada = jtFormBrigadas.getValueAt(filaSeleccionada, 1);
-    Object especialidad = jtFormBrigadas.getValueAt(filaSeleccionada, 2);
-    Object cuartel = jtFormBrigadas.getValueAt(filaSeleccionada, 3);
-    
-    // Verificar si los valores no son nulos antes de convertirlos a String
-    if(nombreBrigada != null && !nombreBrigada.toString().isEmpty()){
-        // Verificar si la brigada ya existe
-        if(!jtNombreBrigadas.getText().contains(nombreBrigada.toString())){
-            jtNombreBrigadas.setText(nombreBrigada.toString());
-        } else {
-            JOptionPane.showMessageDialog(null, "La brigada ya existe");
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(null, "No se seleccionó ninguna fila");
             return;
         }
-    }
-    if(especialidad != null){
-        jcEspecialidad.setSelectedItem(especialidad.toString());
-    }
-    if(cuartel != null){
-        jcCuarteles.setSelectedItem(cuartel.toString());
-    }
-    
-    jtNombreBrigadas.setEnabled(true);
-    jcEspecialidad.setEnabled(true);
-    jcCuarteles.setEnabled(true);
-    
+
+        Object nombreBrigada = jtFormBrigadas.getValueAt(filaSeleccionada, 1);
+        Object especialidad = jtFormBrigadas.getValueAt(filaSeleccionada, 2);
+        Object cuartel = jtFormBrigadas.getValueAt(filaSeleccionada, 3);
+
+        jtNombreBrigadas.setText(nombreBrigada != null ? nombreBrigada.toString() : "");
+        jcEspecialidad.setSelectedItem(especialidad != null ? especialidad.toString() : "");
+        jcCuarteles.setSelectedItem(cuartel != null ? cuartel.toString() : "");
+/////////////////////////////////
+//        int filaSeleccionada = jtFormBrigadas.getSelectedRow();
+//        if (filaSeleccionada == -1) {
+//            JOptionPane.showMessageDialog(null, "No se seleccionó ninguna fila");
+//            return;
+//        }
+//
+//        Object nombreBrigada = jtFormBrigadas.getValueAt(filaSeleccionada, 1);
+//        Object especialidad = jtFormBrigadas.getValueAt(filaSeleccionada, 2);
+//
+//        // Verificar si los valores no son nulos antes de convertirlos a String
+//        if (nombreBrigada != null && !nombreBrigada.toString().isEmpty()) {
+//            // Verificar si la brigada ya existe
+//            if (!jtNombreBrigadas.getText().contains(nombreBrigada.toString())) {
+//                jtNombreBrigadas.setText(nombreBrigada.toString());
+//            } else {
+//                JOptionPane.showMessageDialog(null, "La brigada ya existe");
+//                return;
+//            }
+//        }
+//        if (especialidad != null) {
+//            jcEspecialidad.setSelectedItem(especialidad.toString());
+//        }
+//
+//        // Obtener el cuartel desde la fila seleccionada y actualizar el JComboBox
+//        Object cuartel = jtFormBrigadas.getValueAt(filaSeleccionada, 3);
+//        if (cuartel != null) {
+//            jcCuarteles.setSelectedItem(cuartel.toString());
+//        }
+//
+//        jtNombreBrigadas.setEnabled(true);
+//        jcEspecialidad.setEnabled(true);
+//        jcCuarteles.setEnabled(true);
+
     }//GEN-LAST:event_jbSeleccionarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+//        String nombreBrigada = jtNombreBrigadas.getText();
+//        // Verificar si el campo de nombre está vacío
+//        if (nombreBrigada.isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Ingrese un nombre");
+//            return;
+//        }
+//        // Verificar si ya existe una brigada con el mismo nombre en la base de datos
+//        if (bd.existeBrigadaConNombre(nombreBrigada)) {
+//            JOptionPane.showMessageDialog(this, "La brigada ya existe. Intente con otro nombre.");
+//            return;
+//        }
+//        // Si no existe una brigada con el mismo nombre, la agregamos
+//        try {
+//            String especialidad = (String) jcEspecialidad.getSelectedItem();
+//            Cuartel seleccion = (Cuartel) jcCuarteles.getSelectedItem();
+//            Brigada brigada1 = new Brigada(nombreBrigada, especialidad, false, seleccion);
+//            bd.darAltaBrigada(brigada1);
+//
+//            modelo.setRowCount(0);
+//            llenarTabla();
+//        } catch (Exception e) {
+//
+//        }
+        if (jtNombreBrigadas.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese un nombre");
+        } else {
             String nombreBrigada = jtNombreBrigadas.getText();
-            // Verificar si el campo de nombre está vacío
-            if (nombreBrigada.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Ingrese un nombre");
-                return;
-            }
-            // Verificar si ya existe una brigada con el mismo nombre en la base de datos
             if (bd.existeBrigadaConNombre(nombreBrigada)) {
-                JOptionPane.showMessageDialog(this, "La brigada ya existe. Intente con otro nombre.");
-                return;
-            }
-            // Si no existe una brigada con el mismo nombre, la agregamos
-            try {
-                String especialidad = (String) jcEspecialidad.getSelectedItem();
-                Cuartel seleccion = (Cuartel) jcCuarteles.getSelectedItem();
-                Brigada brigada1 = new Brigada(nombreBrigada, especialidad, false, seleccion);
-                bd.darAltaBrigada(brigada1);
+                JOptionPane.showMessageDialog(this, "La brigada ya existe");
+            } else {
+                try {
+                    String especialidad = (String) jcEspecialidad.getSelectedItem();
+                    Cuartel seleccion = (Cuartel) jcCuarteles.getSelectedItem();
+                    Brigada brigada1 = new Brigada(nombreBrigada, especialidad, false, seleccion);
+                    bd.darAltaBrigada(brigada1);
 
-                modelo.setRowCount(0);
-                llenarTabla();
-            } catch (Exception e) {
-           
+                    modelo.setRowCount(0);
+                    llenarTabla();
+                } catch (Exception e) {
+                    // Manejar cualquier excepción que pueda ocurrir
+                }
             }
+        }
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbDardeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDardeBajaActionPerformed
@@ -310,11 +382,56 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jbDardeBajaActionPerformed
 
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+        // Obtén la brigada seleccionada en la tabla
+        int filaSeleccionada = jtFormBrigadas.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(null, "No se seleccionó ninguna fila");
+            return;
+        }
+
+        // Obtén el nombre de la brigada seleccionada
+        String nombreBrigadaSeleccionada = jtFormBrigadas.getValueAt(filaSeleccionada, 1).toString();
+
+        // Obtén los valores modificados desde los campos de texto
+        String nuevoNombre = jtNombreBrigadas.getText();
+        String nuevaEspecialidad = jcEspecialidad.getSelectedItem().toString();
+        Cuartel nuevoCuartel = (Cuartel) jcCuarteles.getSelectedItem();
+
+        // Encuentra la brigada seleccionada en la lista de brigadas
+        Brigada brigadaSeleccionada = null;
+        for (Brigada brigada : bd.verBrigadas()) {
+            if (nombreBrigadaSeleccionada.equals(brigada.getNombreBrigada())) {
+                brigadaSeleccionada = brigada;
+                break;
+            }
+        }
+
+        if (brigadaSeleccionada != null) {
+            // Actualiza los datos de la brigada con los nuevos valores
+            brigadaSeleccionada.setNombreBrigada(nuevoNombre);
+            brigadaSeleccionada.setEspecialidad(nuevaEspecialidad);
+            brigadaSeleccionada.setNumeroCuartel(nuevoCuartel);
+
+            // Llama al método para modificar la brigada en la base de datos
+            bd.modificarBrigada(brigadaSeleccionada);
+
+            // Actualiza la tabla después de la modificación
+            modelo.setRowCount(0);
+            llenarTabla();
+
+            // Limpia los campos de texto y deshabilita el botón "Modificar"
+            limpiarCampos();
+            jbModificar.setEnabled(false);
+        }
+    }//GEN-LAST:event_jbModificarActionPerformed
+
     private void armarCabecera() {
         modelo.addColumn("Id");
         modelo.addColumn("Nombre Brigada");
         modelo.addColumn("Especialidad");
-        modelo.addColumn("Estado");
+        modelo.addColumn("Cuartel");
+
         jtFormBrigadas.setModel(modelo);
     }
 
@@ -331,7 +448,8 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
                 b.getIdBrigada(),
                 b.getNombreBrigada(),
                 b.getEspecialidad(),
-                b.isLibre()
+                b.getNumeroCuartel().getNombreCuartel(),
+//                b.isLibre()
             });
         }
     }
@@ -340,7 +458,7 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
         jtNombreBrigadas.setText("");
         jcEspecialidad.setSelectedItem("Seleccione");
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

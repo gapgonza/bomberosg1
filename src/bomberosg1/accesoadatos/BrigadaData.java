@@ -60,11 +60,11 @@ public class BrigadaData {
             }
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error al acceder a la tabla Bombero");
+            JOptionPane.showMessageDialog(null, "error al acceder a la tabla Brigada");
         }
         
     }
-    //mmmmmmmmmmmmmmmmmmmmmm
+    
     public void eliminarBrigada(int idBrigada) {
         String sql = "DELETE FROM brigada WHERE idBrigada = ?";
 
@@ -142,7 +142,6 @@ public class BrigadaData {
             return count > 0;
         }
     } catch (SQLException ex) {
-        // Manejar excepciones, si es necesario
     }
     return false;
 }
