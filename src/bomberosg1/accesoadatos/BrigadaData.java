@@ -66,24 +66,24 @@ public class BrigadaData {
     }
     //mmmmmmmmmmmmmmmmmmmmmm
     public void eliminarBrigada(int idBrigada) {
-    String sql = "DELETE FROM brigada WHERE idBrigada = ?";
+        String sql = "DELETE FROM brigada WHERE idBrigada = ?";
 
-    try {
-        PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, idBrigada);
-        int rowsDeleted = ps.executeUpdate();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idBrigada);
+            int rowsDeleted = ps.executeUpdate();
 
-        if (rowsDeleted > 0) {
-            JOptionPane.showMessageDialog(null, "Brigada eliminada exitosamente");
-        } else {
-            JOptionPane.showMessageDialog(null, "No se encontró ninguna Brigada con el código proporcionado: " + idBrigada);
+            if (rowsDeleted > 0) {
+                JOptionPane.showMessageDialog(null, "Brigada eliminada exitosamente");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró ninguna Brigada con el código proporcionado: " + idBrigada);
+            }
+
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al eliminar la Brigada: " + ex.getMessage());
         }
-
-        ps.close();
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al eliminar la Brigada: " + ex.getMessage());
     }
-}
 
     public List<Brigada> verBrigadas(){
         List<Brigada> listBrigada= new ArrayList<>();

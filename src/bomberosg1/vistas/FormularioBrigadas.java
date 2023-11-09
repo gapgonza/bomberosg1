@@ -224,7 +224,9 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
-          int filaSeleccionada = jtFormBrigadas.getSelectedRow();
+        jbModificar.setEnabled(true);
+        jbDardeBaja.setEnabled(true);
+        int filaSeleccionada = jtFormBrigadas.getSelectedRow();
     if(filaSeleccionada == -1){
         JOptionPane.showMessageDialog(null, "No se seleccionó ninguna fila");
         return;
@@ -254,7 +256,7 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
     jtNombreBrigadas.setEnabled(true);
     jcEspecialidad.setEnabled(true);
     jcCuarteles.setEnabled(true);
-    jbModificar.setEnabled(true);
+    
     }//GEN-LAST:event_jbSeleccionarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
@@ -285,28 +287,27 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
 
     private void jbDardeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDardeBajaActionPerformed
         try {
-        String seleccionado = String.valueOf(jtFormBrigadas.getValueAt(jtFormBrigadas.getSelectedRow(), 0));
-        Brigada brigadaSelec = null;
-        for (Brigada listBrigada : bd.verBrigadas()) {
-            if (seleccionado.contains(listBrigada.getNombreBrigada())) {
-                brigadaSelec = listBrigada;
-                break;
-            }
-        }
-        if (brigadaSelec != null) {
-            int confirmar = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar esta Brigada?");
-            if (confirmar == JOptionPane.YES_OPTION) {
-               
-                bd.eliminarBrigada(brigadaSelec.getIdBrigada());
 
-               
-                modelo.setRowCount(0);
-                llenarTabla();
+            String seleccionado = jtFormBrigadas.getValueAt(jtFormBrigadas.getSelectedRow(), 1).toString();
+            Brigada brigadaSelec = null;
+            for (Brigada listBrigada : bd.verBrigadas()) {
+                if (seleccionado.contains(listBrigada.getNombreBrigada())) {
+                    brigadaSelec = listBrigada;
+                    break;
+                }
             }
+
+            if (brigadaSelec != null) {
+                int confirmar = JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar esta Brigada?");
+                if (confirmar == JOptionPane.YES_OPTION) {
+                    bd.eliminarBrigada(brigadaSelec.getIdBrigada());
+
+                    modelo.setRowCount(0);
+                    llenarTabla();
+                }
+            }
+        } catch (Exception e) {
         }
-    } catch (Exception e) {
-        
-    }
     }//GEN-LAST:event_jbDardeBajaActionPerformed
 
     private void armarCabecera() {
