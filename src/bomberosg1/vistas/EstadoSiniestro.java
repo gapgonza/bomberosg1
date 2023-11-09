@@ -8,12 +8,12 @@ package bomberosg1.vistas;
  *
  * @author Gonza
  */
-public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
+public class EstadoSiniestro extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ResolucionDeSiniestros
      */
-    public ResolucionDeSiniestros() {
+    public EstadoSiniestro() {
         initComponents();
     }
 

@@ -260,12 +260,14 @@ public class FormBombero extends javax.swing.JInternalFrame {
                 Bombero bo = new Bombero(dni, nombre, apellido, feDate, celular, brig, grupoSan, true);
                 bomData.altaBombero(bo);
                 cargarBomberos();
+                
+                jbModificar.setEnabled(true);
+                jbDarBaja.setEnabled(true);
             }
         } catch (Exception e) {
         }
         
-        jbModificar.setEnabled(true);
-        jbDarBaja.setEnabled(true);
+        //////////////////////////////////////////////////////////
 
 //          if(jtDni.getText().isEmpty()|| jtNombre.getText().isEmpty()|| jtApellido.getText().isEmpty()||jtCelular.getText().isEmpty()){
 //            JOptionPane.showMessageDialog(null, "Complete los campos, Todos son obligatorios");

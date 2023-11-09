@@ -152,7 +152,7 @@ public class MenuView extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem8);
 
-        jMenuItem9.setText("Resolucion Siniestro");
+        jMenuItem9.setText("Estado del siniestro");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem9ActionPerformed(evt);
@@ -233,15 +233,30 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        IngresoEmergencia ingresoEmergencia = new IngresoEmergencia();
+        ingresoEmergencia.setVisible(true);
+        escritorio.add(ingresoEmergencia);
+        escritorio.moveToFront(ingresoEmergencia);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        AsignarBrigada asignarBrigada = new AsignarBrigada();
+        asignarBrigada.setVisible(true);
+        escritorio.add(asignarBrigada);
+        escritorio.moveToFront(asignarBrigada);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        EstadoSiniestro estadoSiniestro = new EstadoSiniestro();
+        estadoSiniestro.setVisible(true);
+        escritorio.add(estadoSiniestro);
+        escritorio.moveToFront(estadoSiniestro);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     /**
