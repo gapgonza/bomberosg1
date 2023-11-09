@@ -261,6 +261,9 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
         jtNombreBrigadas.setEnabled(true);
         jcEspecialidad.setEnabled(true);
         jcCuarteles.setEnabled(true);
+        jbModificar.setEnabled(true);
+        jbDardeBaja.setEnabled(true);
+        jbGuardar.setEnabled(false);
 
         int filaSeleccionada = jtFormBrigadas.getSelectedRow();
         if (filaSeleccionada == -1) {

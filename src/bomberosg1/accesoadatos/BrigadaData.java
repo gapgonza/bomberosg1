@@ -52,17 +52,17 @@ public class BrigadaData {
             ps.setString(2,brigada.getEspecialidad());
             ps.setBoolean(3, brigada.isLibre());
             ps.setInt(4,brigada.getNumeroCuartel().getIdCuartel());
+            ps.setInt(5, brigada.getIdBrigada());
             int filasModificadas=ps.executeUpdate();
-            if(filasModificadas>0){
+            //modificar para prueba >0 a ==1
+            if(filasModificadas==1){
                 JOptionPane.showMessageDialog(null, "se modificaron datos de la Brigada");
             }else{
                 JOptionPane.showMessageDialog(null, "No se encontro nada");
             }
-            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "error al acceder a la tabla Brigada");
-        }
-        
+        } 
     }
     
     public void eliminarBrigada(int idBrigada) {
