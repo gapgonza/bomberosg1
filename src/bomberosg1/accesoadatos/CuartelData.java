@@ -63,7 +63,7 @@ public class CuartelData {
             ps.setString(6, cuartel.getCorreoElectronico());
             ps.setInt(7, cuartel.getIdCuartel());
             int filas = ps.executeUpdate();
-            if(filas>0){
+            if(filas==1){
                 JOptionPane.showMessageDialog(null, "Se ha modificado el Cuartel");
             }
         } catch (SQLException ex) {

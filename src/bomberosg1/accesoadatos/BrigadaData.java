@@ -64,24 +64,24 @@ public class BrigadaData {
         }
         
     }
-    
-  public void eliminarBrigada(int codBrigada) {
-    String sql = "UPDATE `brigada` SET `libre` = 0 WHERE `idBrigada` = ?";
-    
+    //mmmmmmmmmmmmmmmmmmmmmm
+    public void eliminarBrigada(int idBrigada) {
+    String sql = "DELETE FROM brigada WHERE idBrigada = ?";
+
     try {
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, codBrigada);
-        int filasActualizadas = ps.executeUpdate();
-        
-        if(filasActualizadas > 0){
-            JOptionPane.showMessageDialog(null, "Brigada borrada exitosamente");
+        ps.setInt(1, idBrigada);
+        int rowsDeleted = ps.executeUpdate();
+
+        if (rowsDeleted > 0) {
+            JOptionPane.showMessageDialog(null, "Brigada eliminada exitosamente");
         } else {
-            JOptionPane.showMessageDialog(null, "No se encontrÃ³ ninguna Brigada con el cÃ³digo proporcionado: " + codBrigada);
+            JOptionPane.showMessageDialog(null, "No se encontró ninguna Brigada con el código proporcionado: " + idBrigada);
         }
-        
+
         ps.close();
     } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al desactivar la Brigada");
+        JOptionPane.showMessageDialog(null, "Error al eliminar la Brigada: " + ex.getMessage());
     }
 }
 

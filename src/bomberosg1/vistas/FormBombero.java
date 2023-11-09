@@ -181,6 +181,11 @@ public class FormBombero extends javax.swing.JInternalFrame {
 
         jbDarBaja.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbDarBaja.setText("Dar Baja");
+        jbDarBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDarBajaActionPerformed(evt);
+            }
+        });
 
         jbSalir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbSalir.setText("Salir");
@@ -292,6 +297,10 @@ public class FormBombero extends javax.swing.JInternalFrame {
         jbModificar.setEnabled(true);
         jbDarBaja.setEnabled(true);
     }//GEN-LAST:event_jbSeleccionarActionPerformed
+
+    private void jbDarBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDarBajaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbDarBajaActionPerformed
 
     private void armarCabecera() {
         modelo.addColumn("Dni");

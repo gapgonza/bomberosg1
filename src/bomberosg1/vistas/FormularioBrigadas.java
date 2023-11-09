@@ -278,17 +278,28 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
 
     private void jbDardeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDardeBajaActionPerformed
         try {
-            String seleccionado = String.valueOf(jtFormBrigadas.getValueAt(jtFormBrigadas.getSelectedRow(), 0));
-            Brigada brigadaSelec = null;
-            for(Brigada listBrigada: bd.verBrigadas()){
-                if(seleccionado.contains(listBrigada.getNombreBrigada())){
-                    brigadaSelec = listBrigada;
-                    break;
-                }
+        String seleccionado = String.valueOf(jtFormBrigadas.getValueAt(jtFormBrigadas.getSelectedRow(), 0));
+        Brigada brigadaSelec = null;
+        for (Brigada listBrigada : bd.verBrigadas()) {
+            if (seleccionado.contains(listBrigada.getNombreBrigada())) {
+                brigadaSelec = listBrigada;
+                break;
             }
-            
-        } catch (Exception e) {
         }
+        if (brigadaSelec != null) {
+            int confirmar = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar esta Brigada?");
+            if (confirmar == JOptionPane.YES_OPTION) {
+                // Call your eliminarBrigada method to physically delete the Brigada
+                bd.eliminarBrigada(brigadaSelec.getIdBrigada());
+
+                // After deletion, refresh the table
+                modelo.setRowCount(0);
+                llenarTabla();
+            }
+        }
+    } catch (Exception e) {
+        // Handle any exceptions that may occur
+    }
     }//GEN-LAST:event_jbDardeBajaActionPerformed
 
     private void armarCabecera() {

@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 public class FormularioDeCuartel extends javax.swing.JInternalFrame {
     private DefaultTableModel modelo = new DefaultTableModel();
     CuartelData cd = null;
+    int numViejo;
     /**
      * Creates new form FormularioDeCuartel
      */
@@ -56,6 +57,7 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jbDarDeBaja = new javax.swing.JButton();
         jbSeleccionar = new javax.swing.JButton();
+        jbModificar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -138,6 +140,13 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
             }
         });
 
+        jbModificar.setText("Modificar");
+        jbModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -179,6 +188,8 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
                                 .addComponent(jbNuevo)
                                 .addGap(94, 94, 94)
                                 .addComponent(jbguardar)
+                                .addGap(37, 37, 37)
+                                .addComponent(jbModificar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jbDarDeBaja)
                                 .addGap(88, 88, 88)
@@ -224,7 +235,8 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
                     .addComponent(jbNuevo)
                     .addComponent(jbguardar)
                     .addComponent(jbSalir)
-                    .addComponent(jbDarDeBaja))
+                    .addComponent(jbDarDeBaja)
+                    .addComponent(jbModificar))
                 .addGap(30, 30, 30))
         );
 
@@ -325,6 +337,41 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jbDarDeBajaActionPerformed
 
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+        try {
+        String nombreCuartel = jtNomCuartel.getText();
+        String direccion = jtDomicilio.getText();
+        String telefono = jtTelefono.getText();
+
+        // Find the selected cuartel or obtain its ID through another method
+        String seleccionado = String.valueOf(tablaCuartel.getValueAt(tablaCuartel.getSelectedRow(), 0));
+        Cuartel cuartSeleccionado = null;
+        
+        for (Cuartel listCuartel : cd.verCuartel()) {
+            if (seleccionado.contains(listCuartel.getNombreCuartel())) {
+                cuartSeleccionado = listCuartel;
+                break;
+            }
+        }
+
+        if (cuartSeleccionado != null) {
+            cuartSeleccionado.setNombreCuartel(nombreCuartel);
+            cuartSeleccionado.setDomicilio(direccion);
+            cuartSeleccionado.setTelefono(telefono);
+
+            // Call the method to modify the selected cuartel with the updated data
+            cd.modificarCuartel(cuartSeleccionado);
+
+            // Refresh the table
+            modelo.setRowCount(0);
+            llenarTabla();
+        }
+    } catch (NumberFormatException a) {
+        JOptionPane.showConfirmDialog(null, "Datos inválidos, intente de nuevo");
+    }
+        
+    }//GEN-LAST:event_jbModificarActionPerformed
+
     private void armarCabecera(){
         modelo.addColumn("Nombre");
         modelo.addColumn("Domicilio");
@@ -372,6 +419,7 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbDarDeBaja;
+    private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbNuevo;
     private javax.swing.JButton jbSalir;
     private javax.swing.JButton jbSeleccionar;

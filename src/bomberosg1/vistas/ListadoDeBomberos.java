@@ -45,7 +45,7 @@ public class ListadoDeBomberos extends javax.swing.JInternalFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Lista de Brigadas: ");
+        jLabel1.setText("Lista de Bomberos: ");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(422, 6, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
