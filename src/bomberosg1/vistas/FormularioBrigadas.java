@@ -66,6 +66,7 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         jLabel1.setText("FORMULARIO BRIGADAS");
 
+        jLabel2.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         jLabel2.setText("Brigadas");
 
         jtFormBrigadas.setModel(new javax.swing.table.DefaultTableModel(
@@ -81,8 +82,10 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jtFormBrigadas);
 
+        jLabel3.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         jLabel3.setText("Especialidad");
 
+        jLabel4.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         jLabel4.setText("Cuarteles");
 
         jtNombreBrigadas.setEnabled(false);
@@ -207,7 +210,7 @@ public class FormularioBrigadas extends javax.swing.JInternalFrame {
                     .addComponent(jbSalir)
                     .addComponent(jbGuardar)
                     .addComponent(jbDardeBaja))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
