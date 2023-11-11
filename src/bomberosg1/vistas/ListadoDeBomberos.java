@@ -79,18 +79,19 @@ private DefaultTableModel modelo;
     }
     
     
-         private void bomberosInactivos(){         
-         Brigada brigada=(Brigada)comboBoxBrigada.getSelectedItem();
-         listaBomberos=bomberoData.bomberosInactivos();
-         for(Bombero aux: listaBomberos){
-            modelo.addRow(new  Object[]{aux.getIdBombero(), aux.getNombre(), aux.getApellido(),
-            aux.getCodBrigada(), aux.isActivo()});
-         }}
+         
+    private void bomberosInactivos() {
+    Brigada brigada = (Brigada) comboBoxBrigada.getSelectedItem();
+    if (brigada != null) {
+        listaBomberos = bomberoData.bomberosInactivos();
+        for (Bombero aux : listaBomberos) {
+            modelo.addRow(new Object[]{aux.getIdBombero(), aux.getNombre(), aux.getApellido(),
+                aux.getCodBrigada(), aux.isActivo()});
+        }
+    }
     
     
-    
-    
-    
+    }
 
     
     @SuppressWarnings("unchecked")
