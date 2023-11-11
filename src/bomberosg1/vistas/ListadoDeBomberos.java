@@ -79,7 +79,8 @@ private DefaultTableModel modelo;
     }
     
     
-     private void bomberosInactivos(){
+         private void bomberosInactivos(){         
+         Brigada brigada=(Brigada)comboBoxBrigada.getSelectedItem();
          listaBomberos=bomberoData.bomberosInactivos();
          for(Bombero aux: listaBomberos){
             modelo.addRow(new  Object[]{aux.getIdBombero(), aux.getNombre(), aux.getApellido(),
