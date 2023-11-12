@@ -180,6 +180,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
 
         jbGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbGuardar.setText("Guardar");
+        jbGuardar.setEnabled(false);
         jbGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbGuardarActionPerformed(evt);
@@ -350,7 +351,8 @@ public class FormBombero extends javax.swing.JInternalFrame {
                     jtNombre.setText(String.valueOf(bombero.getNombre()));
                     jtApellido.setText(String.valueOf(bombero.getApellido()));
                     jdFechaNac.setDate(java.util.Date.from(bombero.getFechaNac().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-
+                    jtCelular.setText(String.valueOf(bombero.getCelular()));
+                    jrEstado.setSelected(bombero.isActivo());
                     for (int i = 0; i < jcGrupoSang.getItemCount(); i++) {
                         if (bombero.getGrupoSanguineo().contains(jcGrupoSang.getItemAt(i))) {
                             jcGrupoSang.setSelectedIndex(i);
@@ -431,6 +433,56 @@ public class FormBombero extends javax.swing.JInternalFrame {
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
         // TODO add your handling code here:
+        if (TablaBombero.getSelectedRow() != -1) {
+        // Obtener el objeto Bombero seleccionado
+        int dniSeleccionado = Integer.parseInt(String.valueOf(TablaBombero.getValueAt(TablaBombero.getSelectedRow(), 0)));
+        Bombero bomberoSeleccionado = null;
+
+        for (Bombero bombero : bomData.verBomberos()) {
+            if (dniSeleccionado == bombero.getDni()) {
+                bomberoSeleccionado = bombero;
+                break;
+            }
+        }
+
+        if (bomberoSeleccionado != null) {
+            // Obtener la información actualizada de los campos de texto
+            int dni = Integer.parseInt(jtDni.getText());
+            String nombre = jtNombre.getText();
+            String apellido = jtApellido.getText();
+            Date fechaNac = jdFechaNac.getDate();
+            LocalDate fechaNacimiento = fechaNac.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            String celular = jtCelular.getText();
+            String grupoSan = (String) jcGrupoSang.getSelectedItem();
+            Brigada brigada = (Brigada) jcBrigadaAsignar.getSelectedItem();
+            boolean activo = jrEstado.isSelected();
+
+            // Actualizar los atributos del bombero seleccionado
+            bomberoSeleccionado.setDni(dni);
+            bomberoSeleccionado.setNombre(nombre);
+            bomberoSeleccionado.setApellido(apellido);
+            bomberoSeleccionado.setFechaNac(fechaNacimiento);
+            bomberoSeleccionado.setCelular(celular);
+            bomberoSeleccionado.setGrupoSanguineo(grupoSan);
+            bomberoSeleccionado.setCodBrigada(brigada);
+            bomberoSeleccionado.setActivo(activo);
+
+            // Llamar al método modificarBombero de BomberoData
+            bomData.modificarBombero(bomberoSeleccionado);
+
+            // Actualizar la tabla
+            modelo.setRowCount(0);
+            cargarBomberos();
+
+            // Limpiar los campos después de modificar
+            limpiar();
+
+            // Deshabilitar botones de modificar y dar de baja
+            jbModificar.setEnabled(false);
+            jbDarBaja.setEnabled(false);
+            jbGuardar.setEnabled(true);
+        }
+    }
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void armarCabecera() {

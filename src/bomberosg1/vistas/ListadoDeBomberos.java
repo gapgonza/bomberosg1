@@ -52,6 +52,7 @@ public class ListadoDeBomberos extends javax.swing.JInternalFrame {
         JtoInactivos = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
 
+        setBackground(new java.awt.Color(153, 0, 255));
         setClosable(true);
         setForeground(new java.awt.Color(0, 102, 102));
         setIconifiable(true);

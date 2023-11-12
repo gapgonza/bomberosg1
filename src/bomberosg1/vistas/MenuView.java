@@ -228,6 +228,12 @@ public class MenuView extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        ListadoDeBrigadas listadoDeBrigadas = new ListadoDeBrigadas();
+        listadoDeBrigadas.setVisible(true);
+        escritorio.add(listadoDeBrigadas);
+        escritorio.moveToFront(listadoDeBrigadas);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
