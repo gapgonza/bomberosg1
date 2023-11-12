@@ -166,7 +166,7 @@ public class ListadoDeBomberos extends javax.swing.JInternalFrame {
                             bomber.getApellido(),
                             bomber.getFechaNac(),
                             bomber.getGrupoSanguineo(),
-                            bomber.getClass()
+                            bomber.isActivo()
                         });
                     }
                 }
