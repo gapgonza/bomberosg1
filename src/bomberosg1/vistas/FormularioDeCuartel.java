@@ -356,6 +356,9 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
 
 
         String seleccionado = String.valueOf(tablaCuartel.getValueAt(tablaCuartel.getSelectedRow(), 0));
+        if(seleccionado.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "No debe dejar campos vacios");
+        }
         Cuartel cuartSeleccionado = null;
         
         for (Cuartel listCuartel : cd.verCuartel()) {
