@@ -147,21 +147,17 @@ public class ListadoDeBrigadas extends javax.swing.JInternalFrame {
 //                    //                    });
 //            //        }
 //        //        }
-//        limpiarTabla();
-//        Brigada brigadaSel = (Brigada) jcCuarteles.getSelectedItem();
-//        int brigadaID = brigadaSel.getIdBrigada();
-//        for (Bombero aux : bomData.verBomberos()) {
-//            if (aux.getCodBrigada().getIdBrigada() == brigadaID) {
-//                modelo.addRow(new Object[]{
-//                    aux.getDni(),
-//                    aux.getNombre(),
-//                    aux.getApellido(),
-//                    aux.getFechaNac(),
-//                    aux.getGrupoSanguineo(),
-//                    aux.isActivo()
-//                });
-//            }
-//        }
+        limpiarTabla();
+        Cuartel cuartelSel = (Cuartel) jcCuarteles.getSelectedItem();
+        int cuartelID = cuartelSel.getIdCuartel();
+        for (Brigada aux : briData.verBrigadas()) {
+            if (aux.getNumeroCuartel().getIdCuartel()== cuartelID) {
+                modelo.addRow(new Object[]{
+                    aux.getNombreBrigada(),
+                    aux.getEspecialidad(),
+                });
+            }
+        }
     }//GEN-LAST:event_jcCuartelesActionPerformed
 
     private void JtoInactivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtoInactivosActionPerformed
