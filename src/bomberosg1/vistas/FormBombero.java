@@ -31,7 +31,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
         bomData = new BomberoData();
         initComponents();
         armarCabecera();
-        cargarBomberos();
+        cargarBomberos();//debe tener un error
         cargarBrigada();
     }
 
@@ -328,21 +328,22 @@ public class FormBombero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
-        jbGuardar.setEnabled(false);
-        jbModificar.setEnabled(true);
-        jbDarBaja.setEnabled(true);
-        if (TablaBombero.getSelectedRow() != -1) {
-        int dni = Integer.parseInt(String.valueOf(TablaBombero.getValueAt(TablaBombero.getSelectedRow(), 0)));
-        for(Bombero bombero : bomData.verBomberos()){
-            if(dni == bombero.getDni()){
-                variableDePrueba = bombero.getIdBombero();
-                jtDni.setText(String.valueOf(bombero.getDni()));
-                jtNombre.setText(String.valueOf(bombero.getNombre()));
-                jtApellido.setText(String.valueOf(bombero.getApellido()));
-                jdFechaNac.setDate(java.sql.Date.valueOf(bombero.getFechaNac()));
-                jtCelular.setText(bombero.getCelular());
-            }
-        }
+//        jbGuardar.setEnabled(false);
+//        jbModificar.setEnabled(true);
+//        jbDarBaja.setEnabled(true);
+//        if (TablaBombero.getSelectedRow() != -1) {
+//        int dni = Integer.parseInt(String.valueOf(TablaBombero.getValueAt(TablaBombero.getSelectedRow(), 0)));
+//        for(Bombero bombero : bomData.verBomberos()){
+//            if(dni == bombero.getDni()){
+//                variableDePrueba = bombero.getIdBombero();
+//                jtDni.setText(String.valueOf(bombero.getDni()));
+//                jtNombre.setText(String.valueOf(bombero.getNombre()));
+//                jtApellido.setText(String.valueOf(bombero.getApellido()));
+//                Date date = (java.sql.Date.valueOf(bombero.getFechaNac()));
+//                jdFechaNac.setDate(date);
+//                jtCelular.setText(bombero.getCelular());
+//            }
+//        }
         
         
         
@@ -357,17 +358,18 @@ public class FormBombero extends javax.swing.JInternalFrame {
 //        Object dni = TablaBombero.getValueAt(filaSeleccionada, 0);
 //        Object nombre = TablaBombero.getValueAt(filaSeleccionada, 1);
 //        Object apellido = TablaBombero.getValueAt(filaSeleccionada, 2);
-////        Object fechaNac = TablaBombero.getValueAt(filaSeleccionada, 3);
+//        Object fechaNac = TablaBombero.getValueAt(filaSeleccionada, 3);
 //        Object brigada = TablaBombero.getValueAt(filaSeleccionada, 3);
+//        Object especialidad = TablaBombero.getValueAt(filaSeleccionada, 4);
 //        
 //        jtDni.setText(dni != null ? dni.toString() : "");
 //        jtNombre.setText(nombre != null ? nombre.toString() : "");
 //        jtApellido.setText(apellido != null ? nombre.toString() : "");
-////        jdFechaNac.setDate(fechaNac != null ? fechaNac.toString() : "");
-////        jcGrupoSang.setSelectedItem(especialidad != null ? especialidad.toString() : "");
-//////////brigada a asignar no funciona
+//        jdFechaNac.setDate(fechaNac != null ? fechaNac.toString() : "");
+//        jcGrupoSang.setSelectedItem(especialidad != null ? especialidad.toString() : "");
+//////brigada a asignar no funciona
 //        jcBrigadaAsignar.setSelectedItem(brigada != null ? brigada.toString() : "");
-        }
+        
     }//GEN-LAST:event_jbSeleccionarActionPerformed
 
     private void jbDarBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDarBajaActionPerformed

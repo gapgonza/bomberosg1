@@ -45,7 +45,7 @@ public class CuartelData {
             ps.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla cuartel");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla cuartelALTA");
         }
         
     }
@@ -67,7 +67,7 @@ public class CuartelData {
                 JOptionPane.showMessageDialog(null, "Se ha modificado el Cuartel");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla cuartel");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla cuartelMODIf");
         }
         
         
@@ -117,7 +117,7 @@ public class CuartelData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla cuartel");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla cuartelLIST");
         }
         return listaCuartel;
     }
@@ -146,7 +146,7 @@ public class CuartelData {
         }
         ps.close();
     } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla cuartel");
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla cuartelEXISYTRE");
     }
     return false;
     }

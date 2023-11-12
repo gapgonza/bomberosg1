@@ -111,9 +111,10 @@ public class BrigadaData {
     
     public Brigada verBrigadasPorID(int id){
         Brigada brigada = null;
-        String sql = "SELECT * FROM brigada WHERE idBrigada= ";
+        String sql = "SELECT * FROM brigada WHERE idBrigada= ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 brigada = new Brigada();
@@ -126,7 +127,7 @@ public class BrigadaData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla cuartel ");
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla cuarteIDl ");
         }
         return brigada;
     }
