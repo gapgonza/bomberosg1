@@ -191,7 +191,7 @@ public class MenuView extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        ListadoBomberos listadoDeBomberos = new ListadoBomberos();
+        ListadoDeBomberos listadoDeBomberos = new ListadoDeBomberos();
         listadoDeBomberos.setVisible(true);
         escritorio.add(listadoDeBomberos);
         escritorio.moveToFront(listadoDeBomberos);

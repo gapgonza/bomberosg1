@@ -4,17 +4,31 @@
  */
 package bomberosg1.vistas;
 
+import bomberosg1.accesoadatos.*;
+import bomberosg1.entidades.Bombero;
+import bomberosg1.entidades.Brigada;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Gonza
  */
 public class ListadoDeBomberos extends javax.swing.JInternalFrame {
 
+    private DefaultTableModel modelo = new DefaultTableModel();
+    BrigadaData briData = null;
+    BomberoData bomData = null;
+
     /**
      * Creates new form ListadoDeBomberos
      */
     public ListadoDeBomberos() {
         initComponents();
+        briData = new BrigadaData();
+        bomData = new BomberoData();
+        armarCabecera();
+        cargaBrigadas();
     }
 
     /**
@@ -29,10 +43,10 @@ public class ListadoDeBomberos extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaListBomb = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jcBrigadas = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -40,15 +54,16 @@ public class ListadoDeBomberos extends javax.swing.JInternalFrame {
         setClosable(true);
         setForeground(new java.awt.Color(0, 102, 102));
         setIconifiable(true);
+        setResizable(true);
         setAutoscrolls(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Lista de Brigadas: ");
+        jLabel1.setText("Lista de Bomberos: ");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(422, 6, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaListBomb.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -59,7 +74,7 @@ public class ListadoDeBomberos extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TablaListBomb);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 430, 240));
 
@@ -69,8 +84,12 @@ public class ListadoDeBomberos extends javax.swing.JInternalFrame {
         jLabel3.setText("Seleccione una Brigada para ver la Lista:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 210, -1));
+        jcBrigadas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcBrigadasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jcBrigadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 210, -1));
 
         jLabel4.setText("Marque para ver aquellos Inactivos:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
@@ -95,9 +114,58 @@ public class ListadoDeBomberos extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jcBrigadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcBrigadasActionPerformed
+        // TODO add your handling code here:
+//        limpiarTabla();
+//        Brigada brigada=(Brigada)jcBrigadas.getSelectedItem();        
+//        
+//        if (brigada != null) {
+//            List<Bombero> listaBomberos = bomData.verBomberos();
+//        for(Bombero aux: listaBomberos){
+//            modelo.addRow(new  Object[]{aux.getDni(), aux.getNombre(), aux.getApellido(),
+//            aux.getFechaNac(),aux.getGrupoSanguineo(),aux.isActivo()
+//                    }); 
+//        }
+//        }
+        limpiarTabla();
+        Brigada brigadaSel = (Brigada) jcBrigadas.getSelectedItem();
+        int brigadaID = brigadaSel.getIdBrigada();
+        for (Bombero aux : bomData.verBomberos()) {
+            if (aux.getCodBrigada().getIdBrigada() == brigadaID) {
+                modelo.addRow(new Object[]{
+                    aux.getDni(),
+                    aux.getNombre(),
+                    aux.getApellido(),
+                    aux.getFechaNac(),
+                    aux.getGrupoSanguineo(),
+                    aux.isActivo()
+                });
+            }
+        }
+    }//GEN-LAST:event_jcBrigadasActionPerformed
+
+private void armarCabecera() {
+        modelo.addColumn("Dni");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("FechaNac");
+        modelo.addColumn("GrupSangui");
+        modelo.addColumn("Activo");
+        TablaListBomb.setModel(modelo);
+    }
+
+    private void cargaBrigadas() {
+        for (Brigada listaBrigadas : briData.verBrigadas()) {
+            jcBrigadas.addItem(listaBrigadas);
+        }
+    }
+
+    private void limpiarTabla() {
+        modelo.setRowCount(0);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTable TablaListBomb;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -105,7 +173,7 @@ public class ListadoDeBomberos extends javax.swing.JInternalFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JComboBox<Brigada> jcBrigadas;
     // End of variables declaration//GEN-END:variables
 }

@@ -22,6 +22,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
     BrigadaData bd = null;
     BomberoData bomData = null;
     int variableDePrueba;
+    String var2;
 
     /**
      * Creates new form FormBombero
@@ -244,14 +245,14 @@ public class FormBombero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-       
-        if(jtDni.getText().isEmpty() || jtNombre.getText().isEmpty() || jtApellido.getText().isEmpty() || jtCelular.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Complete los campos, Todos son obligatorios");
-        }else{
+
+        if (jtDni.getText().isEmpty() || jtNombre.getText().isEmpty() || jtApellido.getText().isEmpty() || jtCelular.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Complete los campos, Todos son obligatorios");
+        } else {
             int dni = Integer.parseInt(jtDni.getText());
-            if(bomData.existeBomberoConDni(dni)){
+            if (bomData.existeBomberoConDni(dni)) {
                 JOptionPane.showMessageDialog(this, "El bombero existe");
-            }else{
+            } else {
                 try {
                     String nombre = jtNombre.getText();
                     String apellido = jtApellido.getText();
@@ -260,17 +261,17 @@ public class FormBombero extends javax.swing.JInternalFrame {
                     String celular = jtCelular.getText();
                     String grupoSan = (String) jcGrupoSang.getSelectedItem();
                     Brigada brig = (Brigada) jcBrigadaAsignar.getSelectedItem();
-                    
+
                     Bombero bombero = new Bombero(dni, nombre, apellido, feDate, celular, brig, grupoSan, isIcon);
                     bomData.altaBombero(bombero);
-                    
+
                     modelo.setRowCount(0);
-                  cargarBomberos();
+                    cargarBomberos();
 //                    limpiar();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                
+
             }
         }
         ///////////////////////////////////////////////
@@ -298,9 +299,8 @@ public class FormBombero extends javax.swing.JInternalFrame {
 //            }
 //        } catch (Exception e) {
 //        }
-        
-        //////////////////////////////////////////////////////////
 
+        //////////////////////////////////////////////////////////
 //          if(jtDni.getText().isEmpty()|| jtNombre.getText().isEmpty()|| jtApellido.getText().isEmpty()||jtCelular.getText().isEmpty()){
 //            JOptionPane.showMessageDialog(null, "Complete los campos, Todos son obligatorios");
 //        }else{
@@ -324,32 +324,44 @@ public class FormBombero extends javax.swing.JInternalFrame {
 //        }
 //        
 
-
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
-//        jbGuardar.setEnabled(false);
-//        jbModificar.setEnabled(true);
-//        jbDarBaja.setEnabled(true);
-//        if (TablaBombero.getSelectedRow() != -1) {
-//        int dni = Integer.parseInt(String.valueOf(TablaBombero.getValueAt(TablaBombero.getSelectedRow(), 0)));
-//        for(Bombero bombero : bomData.verBomberos()){
-//            if(dni == bombero.getDni()){
-//                variableDePrueba = bombero.getIdBombero();
-//                jtDni.setText(String.valueOf(bombero.getDni()));
-//                jtNombre.setText(String.valueOf(bombero.getNombre()));
-//                jtApellido.setText(String.valueOf(bombero.getApellido()));
-//                Date date = (java.sql.Date.valueOf(bombero.getFechaNac()));
-//                jdFechaNac.setDate(date);
-//                jtCelular.setText(bombero.getCelular());
-//            }
-//        }
-        
-        
-        
-        
-        
-        
+
+        if (TablaBombero.getSelectedRow() != -1) {
+            int dni = Integer.parseInt(String.valueOf(TablaBombero.getValueAt(TablaBombero.getSelectedRow(), 0)));
+            for (Bombero bombero : bomData.verBomberos()) {
+                if (dni == bombero.getDni()) {
+                    variableDePrueba = bombero.getIdBombero();
+                    jtDni.setText(String.valueOf(bombero.getDni()));
+                    jtNombre.setText(String.valueOf(bombero.getNombre()));
+                    jtApellido.setText(String.valueOf(bombero.getApellido()));
+                    jdFechaNac.setDate(java.util.Date.from(bombero.getFechaNac().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+
+                    for (int i = 0; i < jcGrupoSang.getItemCount(); i++) {
+                        if (bombero.getGrupoSanguineo().contains(jcGrupoSang.getItemAt(i))) {
+                            jcGrupoSang.setSelectedIndex(i);
+                            break;
+                        }
+                    }
+                    var2 = bombero.getCodBrigada().getNombreBrigada();
+                    for (int i = 0; i < jcBrigadaAsignar.getItemCount(); i++) {
+                        if (var2.contains(jcBrigadaAsignar.getItemAt(i).getNombreBrigada())) {
+                            jcBrigadaAsignar.setSelectedIndex(i);
+                            break;
+                        }
+
+                    }
+                    jbGuardar.setEnabled(false);
+                    jbModificar.setEnabled(true);
+                    jbDarBaja.setEnabled(true);
+
+                    break;
+                }
+            }
+
+        }
+
 //        int filaSeleccionada = TablaBombero.getSelectedRow();
 //        if(filaSeleccionada == -1){
 //            JOptionPane.showMessageDialog(null, "No se seleccionó ninguna fila");
@@ -358,34 +370,34 @@ public class FormBombero extends javax.swing.JInternalFrame {
 //        Object dni = TablaBombero.getValueAt(filaSeleccionada, 0);
 //        Object nombre = TablaBombero.getValueAt(filaSeleccionada, 1);
 //        Object apellido = TablaBombero.getValueAt(filaSeleccionada, 2);
-//        Object fechaNac = TablaBombero.getValueAt(filaSeleccionada, 3);
+////        Object fechaNac = TablaBombero.getValueAt(filaSeleccionada, 3);
 //        Object brigada = TablaBombero.getValueAt(filaSeleccionada, 3);
-//        Object especialidad = TablaBombero.getValueAt(filaSeleccionada, 4);
+////        Object especialidad = TablaBombero.getValueAt(filaSeleccionada, 4);
 //        
 //        jtDni.setText(dni != null ? dni.toString() : "");
 //        jtNombre.setText(nombre != null ? nombre.toString() : "");
 //        jtApellido.setText(apellido != null ? nombre.toString() : "");
-//        jdFechaNac.setDate(fechaNac != null ? fechaNac.toString() : "");
-//        jcGrupoSang.setSelectedItem(especialidad != null ? especialidad.toString() : "");
-//////brigada a asignar no funciona
+////        jdFechaNac.setDate(fechaNac != null ? fechaNac.toString() : "");
+////        jcGrupoSang.setSelectedItem(especialidad != null ? especialidad.toString() : "");
+////////brigada a asignar no funciona
 //        jcBrigadaAsignar.setSelectedItem(brigada != null ? brigada.toString() : "");
-        
+//        
     }//GEN-LAST:event_jbSeleccionarActionPerformed
 
     private void jbDarBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDarBajaActionPerformed
-          try {
+        try {
             String seleccionado = TablaBombero.getValueAt(TablaBombero.getSelectedRow(), 1).toString();
             Bombero bomberoSelec = null;
-            for(Bombero listBombero : bomData.verBomberos()){
-                if(seleccionado.contains(listBombero.getNombre())){
+            for (Bombero listBombero : bomData.verBomberos()) {
+                if (seleccionado.contains(listBombero.getNombre())) {
                     bomberoSelec = listBombero;
                     break;
                 }
             }
-            
-            if(bomberoSelec !=null){
+
+            if (bomberoSelec != null) {
                 int confirmar = JOptionPane.showConfirmDialog(null, "¿Seguro desea eliminar el bombero?");
-                if(confirmar == JOptionPane.YES_OPTION){
+                if (confirmar == JOptionPane.YES_OPTION) {
                     bomData.eliminarBombero(bomberoSelec.getIdBombero());
                     modelo.setRowCount(0);
                     cargarBomberos();
