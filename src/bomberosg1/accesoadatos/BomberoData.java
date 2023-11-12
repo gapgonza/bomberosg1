@@ -108,7 +108,7 @@ public class BomberoData {
             bombero.setDni(resultSet.getInt("dni"));
             bombero.setNombre(resultSet.getString("nombre"));
             bombero.setApellido(resultSet.getString("apellido"));
-            LocalDate fechaNacimiento = resultSet.getDate("fechaNacimiento").toLocalDate();
+            bombero.setFechaNac(resultSet.getDate("fechaNacimiento").toLocalDate());            
             bombero.setGrupoSanguineo(resultSet.getString("grupoSanguineo"));
             bombero.setCelular(resultSet.getString("celular"));
             bombero.setCodBrigada(brigadaData.verBrigadasPorID(resultSet.getInt("codBrigada")));

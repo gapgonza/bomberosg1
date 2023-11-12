@@ -30,6 +30,7 @@ public class ListadoDeBomberos extends javax.swing.JInternalFrame {
         armarCabecera();
         cargaBrigadas();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -74,6 +75,7 @@ public class ListadoDeBomberos extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        TablaListBomb.setEnabled(false);
         jScrollPane1.setViewportView(TablaListBomb);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 430, 240));
@@ -96,6 +98,11 @@ public class ListadoDeBomberos extends javax.swing.JInternalFrame {
 
         JtoInactivos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         JtoInactivos.setText("Inactivos");
+        JtoInactivos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtoInactivosActionPerformed(evt);
+            }
+        });
         jPanel1.add(JtoInactivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
 
         setJMenuBar(jMenuBar1);
@@ -143,6 +150,32 @@ public class ListadoDeBomberos extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_jcBrigadasActionPerformed
+
+    private void JtoInactivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtoInactivosActionPerformed
+        // TODO add your handling code here:
+        try {
+            if(JtoInactivos.isSelected()){
+                jcBrigadas.setEnabled(false);
+                limpiarTabla();
+                for(Bombero bomber : bomData.bomberosInactivos()){
+                    if(bomber.isActivo() == false){
+                        modelo.addRow(new Object[]{
+                            bomber.getDni(),
+                            bomber.getNombre(),
+                            bomber.getApellido(),
+                            bomber.getFechaNac(),
+                            bomber.getGrupoSanguineo(),
+                            bomber.getClass()
+                        });
+                    }
+                }
+            }else{
+                        jcBrigadas.setEnabled(true);
+                        limpiarTabla();
+                        }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_JtoInactivosActionPerformed
 
 private void armarCabecera() {
         modelo.addColumn("Dni");

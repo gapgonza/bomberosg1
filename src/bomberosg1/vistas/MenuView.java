@@ -65,6 +65,8 @@ public class MenuView extends javax.swing.JFrame {
             .addGap(0, 464, Short.MAX_VALUE)
         );
 
+        jMenuBar1.setBackground(new java.awt.Color(255, 51, 51));
+
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bomberosg1/recursos/bombero.png"))); // NOI18N
         jMenu1.setText("Bomberos");
 
