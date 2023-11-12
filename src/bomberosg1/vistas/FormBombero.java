@@ -416,7 +416,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
                 bom.getDni(),
                 bom.getNombre(),
                 bom.getApellido(),
-                bom.getCodBrigada().
+                bom.getCodBrigada()
             });
         }
     }
