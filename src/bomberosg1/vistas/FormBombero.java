@@ -123,6 +123,11 @@ public class FormBombero extends javax.swing.JInternalFrame {
         jcGrupoSang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" }));
         jPanel1.add(jcGrupoSang, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 110, -1));
 
+        jcBrigadaAsignar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcBrigadaAsignarActionPerformed(evt);
+            }
+        });
         jPanel1.add(jcBrigadaAsignar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 190, -1));
 
         jLabel10.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
@@ -433,57 +438,74 @@ public class FormBombero extends javax.swing.JInternalFrame {
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
         // TODO add your handling code here:
-        if (TablaBombero.getSelectedRow() != -1) {
-        // Obtener el objeto Bombero seleccionado
-        int dniSeleccionado = Integer.parseInt(String.valueOf(TablaBombero.getValueAt(TablaBombero.getSelectedRow(), 0)));
-        Bombero bomberoSeleccionado = null;
+        try {
+            if (TablaBombero.getSelectedRow() != -1) {
+                // Obtener el objeto Bombero seleccionado
+                int dniSeleccionado = Integer.parseInt(String.valueOf(TablaBombero.getValueAt(TablaBombero.getSelectedRow(), 0)));
+                Bombero bomberoSeleccionado = null;
 
-        for (Bombero bombero : bomData.verBomberos()) {
-            if (dniSeleccionado == bombero.getDni()) {
-                bomberoSeleccionado = bombero;
-                break;
+                for (Bombero bombero : bomData.verBomberos()) {
+                    if (dniSeleccionado == bombero.getDni()) {
+                        bomberoSeleccionado = bombero;
+                        break;
+                    }
+                }
+
+                if (bomberoSeleccionado != null) {
+                    // Obtener la información actualizada de los campos de texto
+                    int dni = Integer.parseInt(jtDni.getText());
+                    String nombre = jtNombre.getText();
+                    String apellido = jtApellido.getText();
+                    Date fechaNac = jdFechaNac.getDate();
+                    LocalDate fechaNacimiento = fechaNac.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    String celular = jtCelular.getText();
+                    String grupoSan = (String) jcGrupoSang.getSelectedItem();
+                    Brigada brigada = (Brigada) jcBrigadaAsignar.getSelectedItem();
+                    boolean activo = jrEstado.isSelected();
+
+                    // Actualizar los atributos del bombero seleccionado
+                    bomberoSeleccionado.setDni(dni);
+                    bomberoSeleccionado.setNombre(nombre);
+                    bomberoSeleccionado.setApellido(apellido);
+                    bomberoSeleccionado.setFechaNac(fechaNacimiento);
+                    bomberoSeleccionado.setCelular(celular);
+                    bomberoSeleccionado.setGrupoSanguineo(grupoSan);
+                    bomberoSeleccionado.setCodBrigada(brigada);
+                    bomberoSeleccionado.setActivo(activo);
+
+                    // Llamar al método modificarBombero de BomberoData
+                    bomData.modificarBombero(bomberoSeleccionado);
+
+                    // Actualizar la tabla
+                    modelo.setRowCount(0);
+                    cargarBomberos();
+
+                    // Limpiar los campos después de modificar
+                    limpiar();
+
+                    // Deshabilitar botones de modificar y dar de baja
+                    jbModificar.setEnabled(false);
+                    jbDarBaja.setEnabled(false);
+                    jbGuardar.setEnabled(true);
+                }
             }
+        }catch(Exception e){
+            e.printStackTrace();
         }
-
-        if (bomberoSeleccionado != null) {
-            // Obtener la información actualizada de los campos de texto
-            int dni = Integer.parseInt(jtDni.getText());
-            String nombre = jtNombre.getText();
-            String apellido = jtApellido.getText();
-            Date fechaNac = jdFechaNac.getDate();
-            LocalDate fechaNacimiento = fechaNac.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            String celular = jtCelular.getText();
-            String grupoSan = (String) jcGrupoSang.getSelectedItem();
-            Brigada brigada = (Brigada) jcBrigadaAsignar.getSelectedItem();
-            boolean activo = jrEstado.isSelected();
-
-            // Actualizar los atributos del bombero seleccionado
-            bomberoSeleccionado.setDni(dni);
-            bomberoSeleccionado.setNombre(nombre);
-            bomberoSeleccionado.setApellido(apellido);
-            bomberoSeleccionado.setFechaNac(fechaNacimiento);
-            bomberoSeleccionado.setCelular(celular);
-            bomberoSeleccionado.setGrupoSanguineo(grupoSan);
-            bomberoSeleccionado.setCodBrigada(brigada);
-            bomberoSeleccionado.setActivo(activo);
-
-            // Llamar al método modificarBombero de BomberoData
-            bomData.modificarBombero(bomberoSeleccionado);
-
-            // Actualizar la tabla
-            modelo.setRowCount(0);
-            cargarBomberos();
-
-            // Limpiar los campos después de modificar
-            limpiar();
-
-            // Deshabilitar botones de modificar y dar de baja
-            jbModificar.setEnabled(false);
-            jbDarBaja.setEnabled(false);
-            jbGuardar.setEnabled(true);
-        }
-    }
     }//GEN-LAST:event_jbModificarActionPerformed
+
+    private void jcBrigadaAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcBrigadaAsignarActionPerformed
+        // TODO add your handling code here:
+        Brigada brigadaSelec = (Brigada) jcBrigadaAsignar.getSelectedItem();
+
+        if (brigadaSelec != null) {
+            int idBrigada = brigadaSelec.getIdBrigada();
+            int cantidadBomberos = bomData.cantBomberosEnBrigada(idBrigada);
+            int cantidadFaltante = Math.max(0, 5 - cantidadBomberos); // para evitar los valores negativos
+
+            jtDisponibilidad.setText(String.valueOf(cantidadFaltante));
+        }
+    }//GEN-LAST:event_jcBrigadaAsignarActionPerformed
 
     private void armarCabecera() {
         modelo.addColumn("Dni");

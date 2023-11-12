@@ -146,4 +146,24 @@ public class BrigadaData {
     }
     return false;
 }
+    
+    public List<Brigada> brigadasInactivas() {
+        String sql = "SELECT DISTINCT codBrigada FROM bombero WHERE activo = 0";
+        List<Brigada> listaBrigadas = new ArrayList<>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Brigada brigadaI = new Brigada();
+                int idBrigada = rs.getInt("codBrigada");
+                Brigada
+                listaBrigadas.add(brigadaI);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla brigada ");
+        }
+
+        return listaBrigadas;
+
+    }
 }

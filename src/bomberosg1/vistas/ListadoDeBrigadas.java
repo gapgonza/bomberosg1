@@ -162,28 +162,28 @@ public class ListadoDeBrigadas extends javax.swing.JInternalFrame {
 
     private void JtoInactivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtoInactivosActionPerformed
         // TODO add your handling code here:
-//        try {
-//            if(JtoInactivos.isSelected()){
-//                jcCuarteles.setEnabled(false);
-//                limpiarTabla();
-//                for(Bombero bomber : bomData.bomberosInactivos()){
-//                    if(bomber.isActivo() == false){
-//                        modelo.addRow(new Object[]{
-//                            bomber.getDni(),
-//                            bomber.getNombre(),
-//                            bomber.getApellido(),
-//                            bomber.getFechaNac(),
-//                            bomber.getGrupoSanguineo(),
-//                            bomber.getClass()
-//                        });
-//                    }
-//                }
-//            }else{
-//                jcCuarteles.setEnabled(true);
-//                limpiarTabla();
-//            }
-//        } catch (Exception e) {
-//        }
+        try {
+            if(JtoInactivos.isSelected()){
+                jcCuarteles.setEnabled(false);
+                limpiarTabla();
+                for(Bombero bomber : cuartelData.){
+                    if(bomber.isActivo() == false){
+                        modelo.addRow(new Object[]{
+                            bomber.getDni(),
+                            bomber.getNombre(),
+                            bomber.getApellido(),
+                            bomber.getFechaNac(),
+                            bomber.getGrupoSanguineo(),
+                            bomber.getClass()
+                        });
+                    }
+                }
+            }else{
+                jcCuarteles.setEnabled(true);
+                limpiarTabla();
+            }
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_JtoInactivosActionPerformed
 
     private void cargaCuarteles() {

@@ -97,7 +97,7 @@ public class BomberoData {
     public List<Bombero> verBomberos() {
         List<Bombero> listaBomberos = new ArrayList<>();
     try {
-        String query = "SELECT * FROM bombero WHERE activo = 1";
+        String query = "SELECT * FROM bombero ";
         PreparedStatement ps = con.prepareStatement(query);
         ResultSet resultSet = ps.executeQuery();
         
@@ -190,12 +190,12 @@ public class BomberoData {
 
     }
 
-    public int cantBomberosEnBrigada(int idBombero) {
-        String query = "SELECT COUNT(*) FROM brigada WHERE idBombero = ?";
+    public int cantBomberosEnBrigada(int idBrigada) {
+        String query = "SELECT COUNT(*) FROM bombero WHERE codBrigada = ?";
         int contador = 0;
         try {
             PreparedStatement ps = con.prepareStatement(query);
-            ps.setInt(1, idBombero);
+            ps.setInt(1, idBrigada);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
