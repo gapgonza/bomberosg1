@@ -48,7 +48,7 @@ public class ListadoDeBomberos extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jcBrigadas = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        JtoInactivos = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         setClosable(true);
@@ -94,9 +94,9 @@ public class ListadoDeBomberos extends javax.swing.JInternalFrame {
         jLabel4.setText("Marque para ver aquellos Inactivos:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
 
-        jToggleButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jToggleButton1.setText("Inactivos");
-        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
+        JtoInactivos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        JtoInactivos.setText("Inactivos");
+        jPanel1.add(JtoInactivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
 
         setJMenuBar(jMenuBar1);
 
@@ -165,6 +165,7 @@ private void armarCabecera() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton JtoInactivos;
     private javax.swing.JTable TablaListBomb;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -173,7 +174,6 @@ private void armarCabecera() {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JComboBox<Brigada> jcBrigadas;
     // End of variables declaration//GEN-END:variables
 }

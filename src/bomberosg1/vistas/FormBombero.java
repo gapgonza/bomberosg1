@@ -21,8 +21,6 @@ public class FormBombero extends javax.swing.JInternalFrame {
     private DefaultTableModel modelo = new DefaultTableModel();
     BrigadaData bd = null;
     BomberoData bomData = null;
-    int variableDePrueba;
-    String var2;
 
     /**
      * Creates new form FormBombero
@@ -45,6 +43,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        javax.swing.ButtonGroup buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -69,6 +68,8 @@ public class FormBombero extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         jbSeleccionar = new javax.swing.JButton();
         jdFechaNac = new com.toedter.calendar.JDateChooser();
+        jrEstado = new javax.swing.JRadioButton();
+        jLabel13 = new javax.swing.JLabel();
         jbNuevo = new javax.swing.JButton();
         jbGuardar = new javax.swing.JButton();
         jbModificar = new javax.swing.JButton();
@@ -160,7 +161,14 @@ public class FormBombero extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jbSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
-        jPanel1.add(jdFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, 130, -1));
+        jPanel1.add(jdFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, 130, -1));
+
+        jrEstado.setText("Activo");
+        jPanel1.add(jrEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel13.setText("Estado:");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, -1, -1));
 
         jbNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbNuevo.setText("Nuevo");
@@ -180,6 +188,11 @@ public class FormBombero extends javax.swing.JInternalFrame {
 
         jbModificar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbModificar.setText("Modificar");
+        jbModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificarActionPerformed(evt);
+            }
+        });
 
         jbDarBaja.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbDarBaja.setText("Dar Baja");
@@ -261,8 +274,8 @@ public class FormBombero extends javax.swing.JInternalFrame {
                     String celular = jtCelular.getText();
                     String grupoSan = (String) jcGrupoSang.getSelectedItem();
                     Brigada brig = (Brigada) jcBrigadaAsignar.getSelectedItem();
-
-                    Bombero bombero = new Bombero(dni, nombre, apellido, feDate, celular, brig, grupoSan, isIcon);
+                    boolean activo = jrEstado.isSelected(); // Obtener el estado del RadioButton
+                    Bombero bombero = new Bombero(dni, nombre, apellido, feDate, celular, brig, grupoSan, activo);
                     bomData.altaBombero(bombero);
 
                     modelo.setRowCount(0);
@@ -332,7 +345,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
             int dni = Integer.parseInt(String.valueOf(TablaBombero.getValueAt(TablaBombero.getSelectedRow(), 0)));
             for (Bombero bombero : bomData.verBomberos()) {
                 if (dni == bombero.getDni()) {
-                    variableDePrueba = bombero.getIdBombero();
+                    int dniseleccionad = bombero.getIdBombero();
                     jtDni.setText(String.valueOf(bombero.getDni()));
                     jtNombre.setText(String.valueOf(bombero.getNombre()));
                     jtApellido.setText(String.valueOf(bombero.getApellido()));
@@ -344,7 +357,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
                             break;
                         }
                     }
-                    var2 = bombero.getCodBrigada().getNombreBrigada();
+                    String var2 = bombero.getCodBrigada().getNombreBrigada();
                     for (int i = 0; i < jcBrigadaAsignar.getItemCount(); i++) {
                         if (var2.contains(jcBrigadaAsignar.getItemAt(i).getNombreBrigada())) {
                             jcBrigadaAsignar.setSelectedIndex(i);
@@ -416,6 +429,10 @@ public class FormBombero extends javax.swing.JInternalFrame {
 //        }
     }//GEN-LAST:event_jbDarBajaActionPerformed
 
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbModificarActionPerformed
+
     private void armarCabecera() {
         modelo.addColumn("Dni");
         modelo.addColumn("Nombre");
@@ -455,6 +472,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -474,6 +492,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<Brigada> jcBrigadaAsignar;
     private javax.swing.JComboBox<String> jcGrupoSang;
     private com.toedter.calendar.JDateChooser jdFechaNac;
+    private javax.swing.JRadioButton jrEstado;
     private javax.swing.JTextField jtApellido;
     private javax.swing.JTextField jtCelular;
     private javax.swing.JTextField jtDisponibilidad;

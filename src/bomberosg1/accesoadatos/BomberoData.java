@@ -37,7 +37,7 @@ public class BomberoData {
             ps.setString(5, bombero.getGrupoSanguineo());
             ps.setString(6, bombero.getCelular());
             ps.setInt(7, bombero.getCodBrigada().getIdBrigada());
-            ps.setBoolean(8, true);
+            ps.setBoolean(8, bombero.isActivo());
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -112,7 +112,7 @@ public class BomberoData {
             bombero.setGrupoSanguineo(resultSet.getString("grupoSanguineo"));
             bombero.setCelular(resultSet.getString("celular"));
             bombero.setCodBrigada(brigadaData.verBrigadasPorID(resultSet.getInt("codBrigada")));
-            bombero.isActivo();
+            bombero.setActivo(resultSet.getBoolean("activo"));
             listaBomberos.add(bombero); // Agregar bombero a la lista
         }
         resultSet.close(); // Cerrar ResultSet
