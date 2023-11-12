@@ -4,9 +4,6 @@
  */
 package bomberosg1.vistas;
 
-import javax.swing.JSpinner;
-import javax.swing.JTextField;
-
 /**
  *
  * @author Gonza
@@ -88,8 +85,6 @@ public class IngresoEmergencia extends javax.swing.JInternalFrame {
         jsHora.setModel(new javax.swing.SpinnerDateModel());
         jsHora.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(jsHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 217, 247, -1));
-        JSpinner.DefaultEditor editor = (JSpinner.DefaultEditor)jsHora.getEditor();
-        editor.getTextField().setHorizontalAlignment(JTextField.CENTER);
 
         jLabel9.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         jLabel9.setText("Detalles del Siniestro: ");
