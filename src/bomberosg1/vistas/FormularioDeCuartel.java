@@ -302,6 +302,8 @@ public class FormularioDeCuartel extends javax.swing.JInternalFrame {
             jbguardar.setEnabled(false);
             jbNuevo.setEnabled(true);
             jbDarDeBaja.setEnabled(true);
+            
+            
             String seleccionado = String.valueOf(tablaCuartel.getValueAt(tablaCuartel.getSelectedRow(),0));
             for(Cuartel lisCuartel: cd.verCuartel()){
                 if(seleccionado.contains(lisCuartel.getNombreCuartel())){
