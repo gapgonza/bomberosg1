@@ -257,7 +257,7 @@ public class MenuView extends javax.swing.JFrame {
     private void EstadoSiniestroMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstadoSiniestroMenuActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        EstadoSiniestro estadoSiniestro = new EstadoSiniestro();
+        ResolucionDeSiniestros estadoSiniestro = new ResolucionDeSiniestros();
         estadoSiniestro.setVisible(true);
         escritorio.add(estadoSiniestro);
         escritorio.moveToFront(estadoSiniestro);
