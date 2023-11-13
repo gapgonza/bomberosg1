@@ -31,7 +31,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
       private void armarCabecera() {
         modelo.addColumn("Fecha Resolucion");
         modelo.addColumn("Puntuacion Asignada");  
-        jTable1.setModel(modelo);
+        TablaSiniestro.setModel(modelo);
     }
     
      private void limpiarCampos() {
@@ -63,41 +63,49 @@ private void llenarTabla(LocalDate fechaResolucion, Integer puntuacion) {
     private void initComponents() {
 
         Subtitulo = new javax.swing.JLabel();
-        jButton_Salir = new javax.swing.JButton();
-        jButton_guardar = new javax.swing.JButton();
+        jbSalir = new javax.swing.JButton();
+        jbGuardar = new javax.swing.JButton();
         Titulo = new javax.swing.JLabel();
         jLabel_fechaResolucion = new javax.swing.JLabel();
         jLabel_puntuacion = new javax.swing.JLabel();
-        jTextField_puntuacion = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaSiniestro = new javax.swing.JTable();
         jdFechaResolucion = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
+        jcPuntuacion = new javax.swing.JComboBox<>();
+
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Subtitulo.setText("Formulario de Resolucion del Siniestro Afectado");
+        getContentPane().add(Subtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 79, 279, -1));
 
-        jButton_Salir.setText("Salir");
-        jButton_Salir.addActionListener(new java.awt.event.ActionListener() {
+        jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_SalirActionPerformed(evt);
+                jbSalirActionPerformed(evt);
             }
         });
+        getContentPane().add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 390, 57, -1));
 
-        jButton_guardar.setText("Guardar");
-        jButton_guardar.addActionListener(new java.awt.event.ActionListener() {
+        jbGuardar.setText("Guardar");
+        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_guardarActionPerformed(evt);
+                jbGuardarActionPerformed(evt);
             }
         });
+        getContentPane().add(jbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 391, -1, -1));
 
         Titulo.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         Titulo.setText("Siniestro");
+        getContentPane().add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 96, -1));
 
         jLabel_fechaResolucion.setText("Fecha de Resolucion:");
+        getContentPane().add(jLabel_fechaResolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 79, -1, -1));
 
         jLabel_puntuacion.setText("Escriba su puntuacion:");
+        getContentPane().add(jLabel_puntuacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 181, 132, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaSiniestro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -108,80 +116,25 @@ private void llenarTabla(LocalDate fechaResolucion, Integer puntuacion) {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TablaSiniestro);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 109, 349, 305));
+        getContentPane().add(jdFechaResolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 109, 220, -1));
 
         jLabel1.setText("--------------------------------------------------------------------------------------------------------------------------------");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 51, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(311, 311, 311)
-                        .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(Subtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel_fechaResolucion)
-                                    .addComponent(jLabel_puntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jdFechaResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField_puntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(136, 136, 136))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(jButton_guardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(61, 61, 61))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Titulo)
-                        .addGap(54, 54, 54))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Subtitulo)
-                            .addComponent(jLabel_fechaResolucion))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jdFechaResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel_puntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_puntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton_guardar)
-                            .addComponent(jButton_Salir)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
-        );
+        jcPuntuacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        getContentPane().add(jcPuntuacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 210, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SalirActionPerformed
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
-    }//GEN-LAST:event_jButton_SalirActionPerformed
+    }//GEN-LAST:event_jbSalirActionPerformed
 
-    private void jButton_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_guardarActionPerformed
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         enabled();
         if (jdFechaResolucion.getDate() == null || jTextField_puntuacion.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Complete los campos, Todos son obligatorios");
@@ -198,20 +151,20 @@ private void llenarTabla(LocalDate fechaResolucion, Integer puntuacion) {
             }
         }
 
-    }//GEN-LAST:event_jButton_guardarActionPerformed
+    }//GEN-LAST:event_jbGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Subtitulo;
+    private javax.swing.JTable TablaSiniestro;
     private javax.swing.JLabel Titulo;
-    private javax.swing.JButton jButton_Salir;
-    private javax.swing.JButton jButton_guardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel_fechaResolucion;
     private javax.swing.JLabel jLabel_puntuacion;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField_puntuacion;
+    private javax.swing.JButton jbGuardar;
+    private javax.swing.JButton jbSalir;
+    private javax.swing.JComboBox<String> jcPuntuacion;
     private com.toedter.calendar.JDateChooser jdFechaResolucion;
     // End of variables declaration//GEN-END:variables
 }
