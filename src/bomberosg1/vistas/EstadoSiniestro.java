@@ -179,14 +179,7 @@ public class EstadoSiniestro extends javax.swing.JInternalFrame {
     }        
                                          
     }//GEN-LAST:event_jButton_guardarActionPerformed
-   
-    
-   
-    
-        
-        
-    
-    
+
 private void llenarTabla(LocalDate fechaResolucion, Integer puntuacion) {
     Object[] rowData = {fechaResolucion, puntuacion};
     modelo.addRow(rowData);
