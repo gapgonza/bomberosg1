@@ -156,7 +156,7 @@ public class BrigadaData {
             while (rs.next()) {
                 Brigada brigadaI = new Brigada();
                 int idBrigada = rs.getInt("codBrigada");
-                Brigada
+                brigadaI.setIdBrigada(idBrigada);
                 listaBrigadas.add(brigadaI);
             }
         } catch (SQLException ex) {
