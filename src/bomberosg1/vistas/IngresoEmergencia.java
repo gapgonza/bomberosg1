@@ -53,8 +53,6 @@ public class IngresoEmergencia extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jbSalir = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(0, 51, 51));
-
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         jLabel1.setText("Ingresos de Emergencias");
 
