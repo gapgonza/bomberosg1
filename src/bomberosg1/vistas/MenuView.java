@@ -272,7 +272,6 @@ public class MenuView extends javax.swing.JFrame {
 
     private void menu_asignarBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_asignarBrigadaActionPerformed
         // TODO add your handling code here:
-        System.out.println("Menu Asignar Brigada clicked");
         escritorio.removeAll();
         escritorio.repaint();
         AsignarBrigada asignarBrigada = new AsignarBrigada();
