@@ -52,7 +52,7 @@ public class BomberoData {
     }
 
     public void modificarBombero(Bombero bombero) {
-        String sql = "UPDATE `bombero` SET `dni`=?,`nombre`=?,`apellido`=?,`fechaNacimiento`=?,`grupoSanguineo`=?,`celular`=?,`codBrigada`=?"
+        String sql = "UPDATE `bombero` SET `dni`=?,`nombre`=?,`apellido`=?,`fechaNacimiento`=?,`grupoSanguineo`=?,`celular`=?,`codBrigada`=?, `activo`=?"
                 + " WHERE idBombero=?";
 
         try {
@@ -64,7 +64,8 @@ public class BomberoData {
             ps.setString(5, bombero.getGrupoSanguineo());
             ps.setString(6, bombero.getCelular());
             ps.setInt(7, bombero.getCodBrigada().getIdBrigada());
-            ps.setInt(8, bombero.getIdBombero());
+            ps.setBoolean(8, bombero.isActivo());
+            ps.setInt(9, bombero.getIdBombero());
             int filasModificadas = ps.executeUpdate();
             if (filasModificadas > 0) {
                 JOptionPane.showMessageDialog(null, "se modificaron datos de Bombero");

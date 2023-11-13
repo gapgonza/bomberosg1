@@ -78,7 +78,6 @@ public class ListadoDeBomberos extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        TablaListBomb.setEnabled(false);
         jScrollPane1.setViewportView(TablaListBomb);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 430, 240));

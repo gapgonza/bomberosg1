@@ -406,10 +406,14 @@ public class FormBombero extends javax.swing.JInternalFrame {
     private void jbDarBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDarBajaActionPerformed
         for (Bombero listaBombero : bomData.verBomberos()) {
             int cambio = Integer.parseInt(jtDni.getText());
-            if (cambio==listaBombero.getDni()) {
-                bomData.bajaBombero(listaBombero.getIdBombero());
+            if (cambio == listaBombero.getDni()) {
+                if (!listaBombero.isActivo()) {
+                    JOptionPane.showMessageDialog(null, "El bombero seleccionado se encuentra Inactivo");
+                } else {
+                    bomData.bajaBombero(listaBombero.getIdBombero());
 //                limpiar();
 //                cargarBomberos();
+                }
             }
         }
 //        try {
@@ -496,7 +500,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
                     jbGuardar.setEnabled(true);
                 }
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jbModificarActionPerformed
