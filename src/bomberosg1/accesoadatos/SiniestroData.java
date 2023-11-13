@@ -6,6 +6,8 @@ package bomberosg1.accesoadatos;
 
 import bomberosg1.entidades.Siniestro;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 
@@ -43,6 +45,28 @@ public class SiniestroData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Siniestro");
         }
-
+    }
+     public List<Siniestro> obtenerSiniestros(){
+        List<Siniestro> siniestros = new ArrayList<>();
+        String sql = "SELECT * FROM `siniestro` WHERE `codBrigada` IS NULL";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs= ps.executeQuery();
+            while(rs.next()){
+                Siniestro siniestro = new Siniestro();
+                siniestro.setIdSiniestro(rs.getInt("idSiniestro"));
+                siniestro.setTipo(rs.getString("tipo"));
+                siniestro.setFechaSiniestro(rs.getDate("fechaSiniestro").toLocalDate());
+                siniestro.setLongitudX(rs.getInt("longitudX"));
+                siniestro.setLatitudY(rs.getInt("latitudX"));
+                siniestro.setDetalles(rs.getString("detalles"));
+                
+                siniestros.add(siniestro);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Siniestro");
+        }
+        return siniestros;
     }
 }

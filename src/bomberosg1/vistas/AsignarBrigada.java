@@ -27,6 +27,7 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
         siniestroData = new SiniestroData();
         cuartelData = new CuartelData();
         armarCabecera();
+        cargarSiniestros();
     }
 
     /**
@@ -170,7 +171,20 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
     }
     
     private void cargarSiniestros(){
-        for(Siniestro siniestro: siniestroData.)
+        for(Siniestro siniestro: siniestroData.obtenerSiniestros()){
+            modelo.addRow(new Object[]{
+                siniestro.getIdSiniestro(),
+                siniestro.getTipo(),
+                siniestro.getFechaSiniestro(),
+                siniestro.getLongitudX(),
+                siniestro.getLatitudY(),
+                siniestro.getDetalles()
+            });
+        }
+    }
+    
+    private void comboCuartel(){
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
