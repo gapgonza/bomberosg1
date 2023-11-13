@@ -70,7 +70,7 @@ public class ListadoDeBrigadas extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        TablaListBrigadas.setEnabled(false);
+        TablaListBrigadas.setCellSelectionEnabled(true);
         jScrollPane1.setViewportView(TablaListBrigadas);
 
         jLabel4.setText("Marque para ver aquellos Inactivos:");

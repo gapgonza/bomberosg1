@@ -225,4 +225,18 @@ public class BomberoData {
         }
         return false;
     }
+    
+    public void bajaBombero(int id) {
+        String sql = "UPDATE `bombero` SET `activo`= 0 WHERE `idBombero`=?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int filas = ps.executeUpdate();
+            if (filas == 1) {
+                JOptionPane.showMessageDialog(null, "Bombero dado de Baja");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla bombero");
+        }
+    }
 }

@@ -404,26 +404,34 @@ public class FormBombero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSeleccionarActionPerformed
 
     private void jbDarBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDarBajaActionPerformed
-        try {
-            String seleccionado = TablaBombero.getValueAt(TablaBombero.getSelectedRow(), 1).toString();
-            Bombero bomberoSelec = null;
-            for (Bombero listBombero : bomData.verBomberos()) {
-                if (seleccionado.contains(listBombero.getNombre())) {
-                    bomberoSelec = listBombero;
-                    break;
-                }
+        for (Bombero listaBombero : bomData.verBomberos()) {
+            int cambio = Integer.parseInt(jtDni.getText());
+            if (cambio==listaBombero.getDni()) {
+                bomData.bajaBombero(listaBombero.getIdBombero());
+//                limpiar();
+//                cargarBomberos();
             }
-
-            if (bomberoSelec != null) {
-                int confirmar = JOptionPane.showConfirmDialog(null, "¿Seguro desea eliminar el bombero?");
-                if (confirmar == JOptionPane.YES_OPTION) {
-                    bomData.eliminarBombero(bomberoSelec.getIdBombero());
-                    modelo.setRowCount(0);
-                    cargarBomberos();
-                }
-            }
-        } catch (Exception e) {
         }
+//        try {
+//            String seleccionado = TablaBombero.getValueAt(TablaBombero.getSelectedRow(), 1).toString();
+//            Bombero bomberoSelec = null;
+//            for (Bombero listBombero : bomData.verBomberos()) {
+//                if (seleccionado.contains(listBombero.getNombre())) {
+//                    bomberoSelec = listBombero;
+//                    break;
+//                }
+//            }
+//
+//            if (bomberoSelec != null) {
+//                int confirmar = JOptionPane.showConfirmDialog(null, "¿Seguro desea eliminar el bombero?");
+//                if (confirmar == JOptionPane.YES_OPTION) {
+//                    bomData.eliminarBombero(bomberoSelec.getIdBombero());
+//                    modelo.setRowCount(0);
+//                    cargarBomberos();
+//                }
+//            }
+//        } catch (Exception e) {
+//        }
 //        int filaSeleccionada = TablaBombero.getSelectedRow();
 //        if(filaSeleccionada != -1){
 //            int idBombero = (int)TablaBombero.getValueAt(filaSeleccionada, 0);
