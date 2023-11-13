@@ -166,15 +166,12 @@ public class ListadoDeBrigadas extends javax.swing.JInternalFrame {
             if(JtoInactivos.isSelected()){
                 jcCuarteles.setEnabled(false);
                 limpiarTabla();
-                for(Bombero bomber : cuartelData.){
-                    if(bomber.isActivo() == false){
+                for(Brigada bri : briData.brigadasInactivas()){
+                    if(bri.isLibre() == false){
                         modelo.addRow(new Object[]{
-                            bomber.getDni(),
-                            bomber.getNombre(),
-                            bomber.getApellido(),
-                            bomber.getFechaNac(),
-                            bomber.getGrupoSanguineo(),
-                            bomber.getClass()
+                            bri.getIdBrigada(),
+                            bri.getEspecialidad(),
+                            bri.getNumeroCuartel()
                         });
                     }
                 }
