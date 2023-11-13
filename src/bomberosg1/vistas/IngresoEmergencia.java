@@ -175,12 +175,21 @@ public class IngresoEmergencia extends javax.swing.JInternalFrame {
 
     // Agrega el nuevo siniestro a la base de datos
     siniestroData.agregarSiniestro(siniestro);
+    limpiarCampos();
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
+    private void limpiarCampos(){
+        jcTipoSiniestro.setSelectedIndex(0);
+        jtLongX.setText("");
+        jtLatY.setText("");
+        jTextArea1.setText("");
+        
+        jsFechaHora.setValue(new Date());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
