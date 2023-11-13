@@ -4,17 +4,33 @@
  */
 package bomberosg1.vistas;
 
+import bomberosg1.accesoadatos.BrigadaData;
+import bomberosg1.accesoadatos.CuartelData;
+import bomberosg1.accesoadatos.SiniestroData;
+import bomberosg1.entidades.Brigada;
+import bomberosg1.entidades.Cuartel;
+import bomberosg1.entidades.Siniestro;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Gonza
  */
 public class AsignarBrigada extends javax.swing.JInternalFrame {
-
+    DefaultTableModel modelo = new DefaultTableModel();
+    BrigadaData brigadaData = null;
+    SiniestroData siniestroData = null;
+    CuartelData cuartelData = null;
     /**
      * Creates new form AsignarBrigada
      */
-    public AsignarBrigada() {
+    public void AsignarBrigada() {
         initComponents();
+        brigadaData = new BrigadaData();
+        siniestroData = new SiniestroData();
+        cuartelData = new CuartelData();
+        armarCabecera();
+        cargarSiniestros();
     }
 
     /**
@@ -26,21 +42,166 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jbSalir = new javax.swing.JButton();
+        jcBrigada = new javax.swing.JComboBox<>();
+        jcCuartel = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaSiniestro = new javax.swing.JTable();
+        jbAsignar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
+        jLabel1.setText("Siniestros");
+
+        jLabel2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel2.setText("Asignar brigadas:");
+
+        jLabel3.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel3.setText("Cuartel:");
+
+        jLabel4.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel4.setText("Brigada");
+
+        jLabel5.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel5.setText("Calcular distancia:");
+
+        jbSalir.setText("Salir");
+
+        jcBrigada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcBrigadaActionPerformed(evt);
+            }
+        });
+
+        tablaSiniestro.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaSiniestro);
+
+        jbAsignar.setText("Asignar");
+
+        jLabel6.setText("----------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(363, 363, 363)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jbAsignar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                                        .addComponent(jbSalir))
+                                    .addComponent(jcBrigada, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jcCuartel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(153, 153, 153))))
+                    .addComponent(jLabel6)))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1)
+                .addGap(9, 9, 9)
+                .addComponent(jLabel6)
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jcCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jcBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel5)
+                        .addGap(71, 71, 71)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbAsignar)
+                            .addComponent(jbSalir)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 430));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jcBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcBrigadaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcBrigadaActionPerformed
 
+    private void armarCabecera(){
+        modelo.addColumn("identificacion");
+        modelo.addColumn("Tipo");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("LongX");
+        modelo.addColumn("LatiX");
+        modelo.addColumn("Detalles");
+        tablaSiniestro.setModel(modelo);
+    }
+
+    public void cargarSiniestros(){
+        for(Siniestro siniestro: siniestroData.obtenerSiniestros()){
+            modelo.addRow(new Object[]{
+                siniestro.getIdSiniestro(),
+                siniestro.getTipo(),
+                siniestro.getFechaSiniestro(),
+                siniestro.getLongitudX(),
+                siniestro.getLatitudY(),
+                siniestro.getDetalles()
+            });
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbAsignar;
+    private javax.swing.JButton jbSalir;
+    private javax.swing.JComboBox<Brigada> jcBrigada;
+    private javax.swing.JComboBox<Cuartel> jcCuartel;
+    private javax.swing.JTable tablaSiniestro;
     // End of variables declaration//GEN-END:variables
 }

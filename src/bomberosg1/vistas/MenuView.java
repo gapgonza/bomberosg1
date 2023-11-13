@@ -254,15 +254,6 @@ public class MenuView extends javax.swing.JFrame {
         escritorio.moveToFront(ingresoEmergencia);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void menu_asignarBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_asignarBrigadaActionPerformed
-        escritorio.removeAll();
-        escritorio.repaint();
-        AsignarBrigada asignarBrigada = new AsignarBrigada();
-        asignarBrigada.setVisible(true);
-        escritorio.add(asignarBrigada);
-        escritorio.moveToFront(asignarBrigada);
-    }//GEN-LAST:event_menu_asignarBrigadaActionPerformed
-
     private void EstadoSiniestroMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstadoSiniestroMenuActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
@@ -278,6 +269,17 @@ public class MenuView extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu4ActionPerformed
+
+    private void menu_asignarBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_asignarBrigadaActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Menu Asignar Brigada clicked");
+        escritorio.removeAll();
+        escritorio.repaint();
+        AsignarBrigada asignarBrigada = new AsignarBrigada();
+        asignarBrigada.setVisible(true);
+        escritorio.add(asignarBrigada);
+        escritorio.moveToFront(asignarBrigada);
+    }//GEN-LAST:event_menu_asignarBrigadaActionPerformed
 
     /**
      * @param args the command line arguments
