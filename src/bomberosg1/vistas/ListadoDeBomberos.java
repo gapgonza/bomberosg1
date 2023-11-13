@@ -29,6 +29,7 @@ public class ListadoDeBomberos extends javax.swing.JInternalFrame {
         bomData = new BomberoData();
         armarCabecera();
         cargaBrigadas();
+        //asdasdasda
     }
     
 

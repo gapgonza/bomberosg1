@@ -16,14 +16,13 @@ public class Siniestro {
     private LocalDate fechaResolucion;
     private int puntuacion;
     private Brigada codBrigada;
-    private Boolean activo;
+    private boolean activo;
     private LocalTime horaSiniestro;
 
     public Siniestro() {
     }
 
-    public Siniestro(int idSiniestro, String tipo, LocalDate fechaSiniestro, int longitudX, int latitudY, String detalles, LocalDate fechaResolucion, int puntuacion, Brigada codBrigada, Boolean activo, LocalTime horaSiniestro) {
-        this.idSiniestro = idSiniestro;
+    public Siniestro(String tipo, LocalDate fechaSiniestro, int longitudX, int latitudY, String detalles, LocalDate fechaResolucion, int puntuacion, Brigada codBrigada, boolean activo, LocalTime horaSiniestro) {
         this.tipo = tipo;
         this.fechaSiniestro = fechaSiniestro;
         this.longitudX = longitudX;
@@ -36,7 +35,8 @@ public class Siniestro {
         this.horaSiniestro = horaSiniestro;
     }
 
-    public Siniestro(String tipo, LocalDate fechaSiniestro, int longitudX, int latitudY, String detalles, LocalDate fechaResolucion, int puntuacion, Brigada codBrigada, Boolean activo, LocalTime horaSiniestro) {
+    public Siniestro(int idSiniestro, String tipo, LocalDate fechaSiniestro, int longitudX, int latitudY, String detalles, LocalDate fechaResolucion, int puntuacion, Brigada codBrigada, boolean activo, LocalTime horaSiniestro) {
+        this.idSiniestro = idSiniestro;
         this.tipo = tipo;
         this.fechaSiniestro = fechaSiniestro;
         this.longitudX = longitudX;
@@ -121,11 +121,11 @@ public class Siniestro {
         this.codBrigada = codBrigada;
     }
 
-    public Boolean getActivo() {
+    public boolean isActivo() {
         return activo;
     }
 
-    public void setActivo(Boolean activo) {
+    public void setActivo(boolean activo) {
         this.activo = activo;
     }
 
@@ -136,6 +136,8 @@ public class Siniestro {
     public void setHoraSiniestro(LocalTime horaSiniestro) {
         this.horaSiniestro = horaSiniestro;
     }
+
+    
 
     
     
