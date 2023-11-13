@@ -46,24 +46,18 @@ public class ListadoDeBrigadas extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         JtoInactivos = new javax.swing.JToggleButton();
 
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Lista de Brigadas: ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 23, -1, -1));
 
         jLabel2.setText("--------------------------------------------------------------------------------------");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 57, 440, -1));
 
         jcCuarteles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcCuartelesActionPerformed(evt);
             }
         });
-        getContentPane().add(jcCuarteles, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 103, 210, -1));
 
         jLabel3.setText("Seleccione un Cuartel para ver la Lista:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 75, -1, -1));
 
         TablaListBrigadas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -79,10 +73,7 @@ public class ListadoDeBrigadas extends javax.swing.JInternalFrame {
         TablaListBrigadas.setEnabled(false);
         jScrollPane1.setViewportView(TablaListBrigadas);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 75, 430, 240));
-
         jLabel4.setText("Marque para ver aquellos Inactivos:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 251, -1, -1));
 
         JtoInactivos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         JtoInactivos.setText("Inactivos");
@@ -91,7 +82,50 @@ public class ListadoDeBrigadas extends javax.swing.JInternalFrame {
                 JtoInactivosActionPerformed(evt);
             }
         });
-        getContentPane().add(JtoInactivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 279, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(425, 425, 425)
+                .addComponent(jLabel1))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(243, 243, 243)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jcCuarteles, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(JtoInactivos)))
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1)
+                .addGap(9, 9, 9)
+                .addComponent(jLabel2)
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(12, 12, 12)
+                        .addComponent(jcCuarteles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(126, 126, 126)
+                        .addComponent(jLabel4)
+                        .addGap(12, 12, 12)
+                        .addComponent(JtoInactivos))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

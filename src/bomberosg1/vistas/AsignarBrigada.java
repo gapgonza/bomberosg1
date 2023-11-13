@@ -28,6 +28,8 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
         cuartelData = new CuartelData();
         armarCabecera();
         cargarSiniestros();
+        comboCuartel();
+        cargarBrigada();
     }
 
     /**
@@ -184,7 +186,15 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
     }
     
     private void comboCuartel(){
-        
+        for (Cuartel listCuartel : cuartelData.verCuartel()) {
+            jcCuarteles.addItem(listCuartel);
+        }
+    }
+    
+    private void cargarBrigada() {
+        for (Brigada b : brigadaData.verBrigadas()) {
+            jcBrigadas.addItem(b);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

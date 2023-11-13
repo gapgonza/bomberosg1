@@ -43,6 +43,7 @@ public class SiniestroData {
             }
             ps.close();
         } catch (SQLException ex) {
+            ex.printStackTrace(); 
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Siniestro");
         }
     }
@@ -58,13 +59,14 @@ public class SiniestroData {
                 siniestro.setTipo(rs.getString("tipo"));
                 siniestro.setFechaSiniestro(rs.getDate("fechaSiniestro").toLocalDate());
                 siniestro.setLongitudX(rs.getInt("longitudX"));
-                siniestro.setLatitudY(rs.getInt("latitudX"));
+                siniestro.setLatitudY(rs.getInt("latitudY"));
                 siniestro.setDetalles(rs.getString("detalles"));
                 
                 siniestros.add(siniestro);
             }
             ps.close();
         } catch (SQLException ex) {
+            ex.printStackTrace(); 
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Siniestro");
         }
         return siniestros;
