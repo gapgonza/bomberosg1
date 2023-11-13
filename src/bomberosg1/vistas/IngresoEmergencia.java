@@ -4,17 +4,25 @@
  */
 package bomberosg1.vistas;
 
+import bomberosg1.accesoadatos.SiniestroData;
+import bomberosg1.entidades.Siniestro;
+import java.time.*;
+import java.util.Date;
+import javax.swing.SpinnerDateModel;
+
 /**
  *
  * @author Gonza
  */
 public class IngresoEmergencia extends javax.swing.JInternalFrame {
-
+    SiniestroData siniestroData = null;
+    SpinnerDateModel modeloDate = new SpinnerDateModel();
     /**
      * Creates new form IngresoEmergencia
      */
     public IngresoEmergencia() {
         initComponents();
+        siniestroData = new SiniestroData();
     }
 
     /**
@@ -29,22 +37,22 @@ public class IngresoEmergencia extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jcSiniestro = new javax.swing.JComboBox<>();
+        jcTipoSiniestro = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jtLongX = new javax.swing.JTextField();
         jtLatY = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jsHora = new javax.swing.JSpinner();
+        jsFechaHora = new javax.swing.JSpinner();
         jLabel9 = new javax.swing.JLabel();
         jbGuardar = new javax.swing.JButton();
-        jbSalir = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jbSalir = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 51, 51));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -61,8 +69,9 @@ public class IngresoEmergencia extends javax.swing.JInternalFrame {
         jLabel3.setText("Tipo de siniestro: ");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 110, -1, -1));
 
-        jcSiniestro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "1- Incendios en viviendas e industrias", "2- Salvamento en derrumbes", "3- Rescates en ámbito montaña", "4- Rescate de personas atrapadas en accidentes de tráfico", "5- Socorrer inundaciones", "6- Operativos de prevención" }));
-        getContentPane().add(jcSiniestro, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 143, 247, -1));
+        jcTipoSiniestro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "1- Incendios en viviendas e industrias", "2- Salvamento en derrumbes", "3- Rescates en ámbito montaña", "4- Rescate de personas atrapadas en accidentes de tráfico", "5- Socorrer inundaciones", "6- Operativos de prevención" }));
+        jcTipoSiniestro.setToolTipText("");
+        getContentPane().add(jcTipoSiniestro, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 143, 247, -1));
 
         jLabel4.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         jLabel4.setText("Ingrese Fecha y Hora del siniestro: ");
@@ -82,9 +91,9 @@ public class IngresoEmergencia extends javax.swing.JInternalFrame {
         jLabel7.setText("LatitY");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 335, -1, -1));
 
-        jsHora.setModel(new javax.swing.SpinnerDateModel());
-        jsHora.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jsHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 217, 247, -1));
+        jsFechaHora.setModel(new javax.swing.SpinnerDateModel());
+        jsFechaHora.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(jsFechaHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 217, 247, -1));
 
         jLabel9.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         jLabel9.setText("Detalles del Siniestro: ");
@@ -98,14 +107,6 @@ public class IngresoEmergencia extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 391, -1, -1));
 
-        jbSalir.setText("Salir");
-        jbSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbSalirActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(504, 391, -1, -1));
-
         jLabel10.setText("--------------------------------------------------------------");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 330, -1));
 
@@ -118,15 +119,28 @@ public class IngresoEmergencia extends javax.swing.JInternalFrame {
         jLabel8.setText("-------------------------------------------------------------------------------------------------------------");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 91, -1, -1));
 
+        jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 610, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(501, Short.MAX_VALUE)
+                .addComponent(jbSalir)
+                .addGap(37, 37, 37))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(391, Short.MAX_VALUE)
+                .addComponent(jbSalir)
+                .addGap(26, 26, 26))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 440));
@@ -136,12 +150,46 @@ public class IngresoEmergencia extends javax.swing.JInternalFrame {
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // TODO add your handling code here:
+     // Recoge los valores de los campos de entrada
+    String tipo = jcTipoSiniestro.getSelectedItem().toString();
+    int longitudX = Integer.parseInt(jtLongX.getText());
+    int latitudY = Integer.parseInt(jtLatY.getText());
+    String detalles = jTextArea1.getText();
+    boolean activo = true; // Asume que el siniestro está activo
+
+    // Obtenemos la fecha y la hora
+    Date fechaHoraSeleccionada = (Date) jsFechaHora.getValue();
+    Instant instant = fechaHoraSeleccionada.toInstant();
+    LocalDate fechaSeleccionada = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+    LocalTime horaSeleccionada = instant.atZone(ZoneId.systemDefault()).toLocalTime();
+
+    // Creamo el objeto
+    Siniestro siniestro = new Siniestro();
+    siniestro.setTipo(tipo);
+    siniestro.setFechaSiniestro(fechaSeleccionada);
+    siniestro.setLongitudX(longitudX);
+    siniestro.setLatitudY(latitudY);
+    siniestro.setDetalles(detalles);
+    siniestro.setActivo(activo);
+    siniestro.setHoraSiniestro(horaSeleccionada);
+
+    // Agrega el nuevo siniestro a la base de datos
+    siniestroData.agregarSiniestro(siniestro);
+    limpiarCampos();
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
+    private void limpiarCampos(){
+        jcTipoSiniestro.setSelectedIndex(0);
+        jtLongX.setText("");
+        jtLatY.setText("");
+        jTextArea1.setText("");
+        
+        jsFechaHora.setValue(new Date());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -159,8 +207,8 @@ public class IngresoEmergencia extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbSalir;
-    private javax.swing.JComboBox<String> jcSiniestro;
-    private javax.swing.JSpinner jsHora;
+    private javax.swing.JComboBox<String> jcTipoSiniestro;
+    private javax.swing.JSpinner jsFechaHora;
     private javax.swing.JTextField jtLatY;
     private javax.swing.JTextField jtLongX;
     // End of variables declaration//GEN-END:variables

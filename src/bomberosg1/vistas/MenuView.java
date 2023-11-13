@@ -49,8 +49,8 @@ public class MenuView extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        menu_asignarBrigada = new javax.swing.JMenuItem();
+        EstadoSiniestroMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,6 +137,11 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bomberosg1/recursos/Incidente.png"))); // NOI18N
         jMenu4.setText("Emergencia");
+        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu4ActionPerformed(evt);
+            }
+        });
 
         jMenuItem4.setText("Ingresar Emergencia");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -146,21 +151,21 @@ public class MenuView extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem4);
 
-        jMenuItem8.setText("Asignar Brigada");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        menu_asignarBrigada.setText("Asignar Brigada");
+        menu_asignarBrigada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                menu_asignarBrigadaActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem8);
+        jMenu4.add(menu_asignarBrigada);
 
-        jMenuItem9.setText("Estado del siniestro");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        EstadoSiniestroMenu.setText("Estado del siniestro");
+        EstadoSiniestroMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                EstadoSiniestroMenuActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem9);
+        jMenu4.add(EstadoSiniestroMenu);
 
         jMenuBar1.add(jMenu4);
 
@@ -249,23 +254,31 @@ public class MenuView extends javax.swing.JFrame {
         escritorio.moveToFront(ingresoEmergencia);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        escritorio.removeAll();
-        escritorio.repaint();
-        AsignarBrigada asignarBrigada = new AsignarBrigada();
-        asignarBrigada.setVisible(true);
-        escritorio.add(asignarBrigada);
-        escritorio.moveToFront(asignarBrigada);
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
-
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+    private void EstadoSiniestroMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstadoSiniestroMenuActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
         EstadoSiniestro estadoSiniestro = new EstadoSiniestro();
         estadoSiniestro.setVisible(true);
         escritorio.add(estadoSiniestro);
         escritorio.moveToFront(estadoSiniestro);
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
+    }//GEN-LAST:event_EstadoSiniestroMenuActionPerformed
+
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu4ActionPerformed
+
+    private void menu_asignarBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_asignarBrigadaActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        AsignarBrigada asignarBrigada = new AsignarBrigada();
+        asignarBrigada.setVisible(true);
+        escritorio.add(asignarBrigada);
+        escritorio.moveToFront(asignarBrigada);
+    }//GEN-LAST:event_menu_asignarBrigadaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -303,6 +316,7 @@ public class MenuView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem EstadoSiniestroMenu;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -316,7 +330,6 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem menu_asignarBrigada;
     // End of variables declaration//GEN-END:variables
 }

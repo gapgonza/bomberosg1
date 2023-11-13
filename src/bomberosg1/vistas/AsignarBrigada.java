@@ -4,17 +4,30 @@
  */
 package bomberosg1.vistas;
 
+import bomberosg1.accesoadatos.*;
+import bomberosg1.entidades.*;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Gonza
  */
 public class AsignarBrigada extends javax.swing.JInternalFrame {
-
+    DefaultTableModel modelo = new DefaultTableModel();
+    BrigadaData brigadaData = null;
+    SiniestroData siniestroData = null;
+    CuartelData cuartelData = null;
+    
     /**
      * Creates new form AsignarBrigada
      */
     public AsignarBrigada() {
         initComponents();
+        brigadaData = new BrigadaData();
+        siniestroData = new SiniestroData();
+        cuartelData = new CuartelData();
+        armarCabecera();
+        cargarSiniestros();
     }
 
     /**
@@ -26,21 +39,166 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaSiniestro = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jbAsignar = new javax.swing.JButton();
+        jbSalir = new javax.swing.JButton();
+        jcCuarteles = new javax.swing.JComboBox<>();
+        jcBrigadas = new javax.swing.JComboBox<>();
+
+        jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
+        jLabel1.setText("Siniestros");
+
+        jLabel2.setText("----------------------------------------------------------------------------------------------------------------------------------------------");
+
+        TablaSiniestro.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(TablaSiniestro);
+
+        jLabel3.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel3.setText("Asignar Brigadas:");
+
+        jLabel4.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel4.setText("Cuarteles:");
+
+        jLabel5.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel5.setText("Brigadas:");
+
+        jLabel6.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel6.setText("Calcular distancias:");
+
+        jbAsignar.setText("Asignar");
+
+        jbSalir.setText("Salir");
+
+        jcCuarteles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcCuartelesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jbAsignar, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addGap(123, 123, 123)))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jcBrigadas, javax.swing.GroupLayout.Alignment.LEADING, 0, 230, Short.MAX_VALUE)
+                                .addComponent(jbSalir)
+                                .addComponent(jcCuarteles, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(346, 346, 346)
+                        .addComponent(jLabel1)))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jcCuarteles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jcBrigadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbAsignar)
+                            .addComponent(jbSalir)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jcCuartelesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcCuartelesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcCuartelesActionPerformed
+
+    private void armarCabecera(){
+        modelo.addColumn("Id");
+        modelo.addColumn("Tipo");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("LongX");
+        modelo.addColumn("LatiY");
+        modelo.addColumn("Detalles");
+        TablaSiniestro.setModel(modelo);
+    }
+    
+    private void cargarSiniestros(){
+        for(Siniestro siniestro: siniestroData.obtenerSiniestros()){
+            modelo.addRow(new Object[]{
+                siniestro.getIdSiniestro(),
+                siniestro.getTipo(),
+                siniestro.getFechaSiniestro(),
+                siniestro.getLongitudX(),
+                siniestro.getLatitudY(),
+                siniestro.getDetalles()
+            });
+        }
+    }
+    
+    private void comboCuartel(){
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablaSiniestro;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbAsignar;
+    private javax.swing.JButton jbSalir;
+    private javax.swing.JComboBox<Brigada> jcBrigadas;
+    private javax.swing.JComboBox<Cuartel> jcCuarteles;
     // End of variables declaration//GEN-END:variables
 }
