@@ -243,7 +243,8 @@ public class FormBombero extends javax.swing.JInternalFrame {
                     .addComponent(jbGuardar)
                     .addComponent(jbModificar)
                     .addComponent(jbDarBaja)
-                    .addComponent(jbSalir)))
+                    .addComponent(jbSalir))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
