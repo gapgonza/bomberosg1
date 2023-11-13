@@ -15,44 +15,15 @@ import javax.swing.table.DefaultTableModel;
  * @author Gonza
  */
 public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
-
+    private DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form ResolucionDeSiniestros
      */
     public ResolucionDeSiniestros() {
         initComponents();
-          armarCabecera();
-    }
-private DefaultTableModel modelo = new DefaultTableModel();
-    // </editor-fold>
-
-
-
-      private void armarCabecera() {
-        modelo.addColumn("Fecha Resolucion");
-        modelo.addColumn("Puntuacion Asignada");  
-        TablaSiniestro.setModel(modelo);
-    }
-    
-     private void limpiarCampos() {
-        jdFechaResolucion.setDate(null);
-        jTextField_puntuacion.setText(" ");
-    }
-     
-       private void enabled(){
-        jdFechaResolucion.setEnabled(true);
-        jTextField_puntuacion.setEnabled(true);      
+        armarCabecera();
     }
 
-                                              
-                                             
-
-private void llenarTabla(LocalDate fechaResolucion, Integer puntuacion) {
-    Object[] rowData = {fechaResolucion, puntuacion};
-    modelo.addRow(rowData);
-}    
-    
-   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,10 +45,7 @@ private void llenarTabla(LocalDate fechaResolucion, Integer puntuacion) {
         jLabel1 = new javax.swing.JLabel();
         jcPuntuacion = new javax.swing.JComboBox<>();
 
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         Subtitulo.setText("Formulario de Resolucion del Siniestro Afectado");
-        getContentPane().add(Subtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 79, 279, -1));
 
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +53,6 @@ private void llenarTabla(LocalDate fechaResolucion, Integer puntuacion) {
                 jbSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 390, 57, -1));
 
         jbGuardar.setText("Guardar");
         jbGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -93,17 +60,13 @@ private void llenarTabla(LocalDate fechaResolucion, Integer puntuacion) {
                 jbGuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(jbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 391, -1, -1));
 
         Titulo.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         Titulo.setText("Siniestro");
-        getContentPane().add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 96, -1));
 
         jLabel_fechaResolucion.setText("Fecha de Resolucion:");
-        getContentPane().add(jLabel_fechaResolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 79, -1, -1));
 
         jLabel_puntuacion.setText("Escriba su puntuacion:");
-        getContentPane().add(jLabel_puntuacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 181, 132, 30));
 
         TablaSiniestro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -118,41 +81,142 @@ private void llenarTabla(LocalDate fechaResolucion, Integer puntuacion) {
         ));
         jScrollPane1.setViewportView(TablaSiniestro);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 109, 349, 305));
-        getContentPane().add(jdFechaResolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 109, 220, -1));
-
-        jLabel1.setText("--------------------------------------------------------------------------------------------------------------------------------");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 51, -1, -1));
+        jLabel1.setText("------------------------------------------------------------------------------------------------------------------------");
 
         jcPuntuacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
-        getContentPane().add(jcPuntuacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 210, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(300, 300, 300)
+                        .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(Subtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(93, 93, 93)
+                        .addComponent(jLabel_fechaResolucion))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jdFechaResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(jcPuntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel_puntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jbGuardar)
+                                .addGap(100, 100, 100)
+                                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel1)))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(Titulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Subtitulo)
+                    .addComponent(jLabel_fechaResolucion))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jdFechaResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(jcPuntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel_puntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(158, 158, 158)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jbGuardar))
+                            .addComponent(jbSalir))))
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-        dispose();
+////        dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         enabled();
-        if (jdFechaResolucion.getDate() == null || jTextField_puntuacion.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Complete los campos, Todos son obligatorios");
-        } else {
-            try {
-                Date fresolucion = jdFechaResolucion.getDate();
-                LocalDate feDate = fresolucion.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                Integer puntuacion = Integer.parseInt(jTextField_puntuacion.getText().trim());
 
-                llenarTabla(feDate, puntuacion);
-                limpiarCampos();
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "La puntuación debe ser un número válido");
-            }
+    // Verifica si los campos obligatorios están completos
+    if (jdFechaResolucion.getDate() == null || "Seleccione".equals(jcPuntuacion.getSelectedItem())) {
+        JOptionPane.showMessageDialog(null, "Complete todos los campos, son obligatorios");
+    } else {
+        try {
+            // Convierte la fecha y la puntuación
+            Date fresolucion = jdFechaResolucion.getDate();
+            LocalDate feDate = fresolucion.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            Integer puntuacion = Integer.parseInt(jcPuntuacion.getSelectedItem().toString());
+
+            // Llena la tabla
+            llenarTabla(feDate, puntuacion);
+
+            // Limpia los campos
+            limpiarCampos();
+        } catch (NumberFormatException e) {
+            // Muestra un mensaje si la puntuación no es un número válido
+            JOptionPane.showMessageDialog(null, "La puntuación debe ser un número válido");
         }
+    }
+//        enabled();
+//        if (jdFechaResolucion.getDate() == null || jTextField_puntuacion.getText().trim().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Complete los campos, Todos son obligatorios");
+//        } else {
+//            try {
+//                Date fresolucion = jdFechaResolucion.getDate();
+//                LocalDate feDate = fresolucion.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//                Integer puntuacion = Integer.parseInt(jTextField_puntuacion.getText().trim());
+//
+//                llenarTabla(feDate, puntuacion);
+//                limpiarCampos();
+//            } catch (NumberFormatException e) {
+//                JOptionPane.showMessageDialog(null, "La puntuación debe ser un número válido");
+//            }
+//        }
 
     }//GEN-LAST:event_jbGuardarActionPerformed
 
+    private void armarCabecera() {
+        modelo.addColumn("Fecha Resolucion");
+        modelo.addColumn("Puntuacion Asignada");
+        TablaSiniestro.setModel(modelo);
+    }
+
+    private void limpiarCampos() {
+        jdFechaResolucion.setDate(null);
+        jcPuntuacion.setSelectedItem("Seleccione");
+    }
+
+    private void enabled() {
+        jdFechaResolucion.setEnabled(true);
+        jcPuntuacion.setEnabled(true);
+    }
+
+    private void llenarTabla(LocalDate fechaResolucion, Integer puntuacion) {
+        Object[] rowData = {fechaResolucion, puntuacion};
+        modelo.addRow(rowData);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Subtitulo;
