@@ -200,6 +200,7 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void armarCabecera() {
+        modelo.addColumn("Siniestro");
         modelo.addColumn("Fecha Resolucion");
         modelo.addColumn("Puntuacion Asignada");
         TablaSiniestro.setModel(modelo);

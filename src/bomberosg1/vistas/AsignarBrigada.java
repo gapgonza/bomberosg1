@@ -74,7 +74,7 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
         jbSalir = new javax.swing.JButton();
         jcCuarteles = new javax.swing.JComboBox<>();
         jcBrigadas = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        jbSeleccionar = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         jLabel1.setText("Siniestros");
@@ -122,7 +122,12 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Seleccionar");
+        jbSeleccionar.setText("Seleccionar");
+        jbSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSeleccionarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,7 +140,7 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
+                            .addComponent(jbSeleccionar))
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jbAsignar)
@@ -180,7 +185,7 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
                             .addComponent(jbSalir)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(jbSeleccionar)
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -194,6 +199,11 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jbSeleccionarActionPerformed
 
     private void armarCabecera(){
         modelo.addColumn("Id");
@@ -232,7 +242,6 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaSiniestro;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -242,6 +251,7 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbAsignar;
     private javax.swing.JButton jbSalir;
+    private javax.swing.JButton jbSeleccionar;
     private javax.swing.JComboBox<Brigada> jcBrigadas;
     private javax.swing.JComboBox<Cuartel> jcCuarteles;
     // End of variables declaration//GEN-END:variables
