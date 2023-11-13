@@ -157,13 +157,13 @@ public class IngresoEmergencia extends javax.swing.JInternalFrame {
     String detalles = jTextArea1.getText();
     boolean activo = true; // Asume que el siniestro está activo
 
-    // Obtén la fecha y la hora del Spinner
+    // Obtenemos la fecha y la hora
     Date fechaHoraSeleccionada = (Date) jsFechaHora.getValue();
     Instant instant = fechaHoraSeleccionada.toInstant();
     LocalDate fechaSeleccionada = instant.atZone(ZoneId.systemDefault()).toLocalDate();
     LocalTime horaSeleccionada = instant.atZone(ZoneId.systemDefault()).toLocalTime();
 
-    // Crea un nuevo objeto Siniestro
+    // Creamo el objeto
     Siniestro siniestro = new Siniestro();
     siniestro.setTipo(tipo);
     siniestro.setFechaSiniestro(fechaSeleccionada);
