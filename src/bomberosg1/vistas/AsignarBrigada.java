@@ -156,7 +156,7 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(346, 346, 346)
                         .addComponent(jLabel1)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

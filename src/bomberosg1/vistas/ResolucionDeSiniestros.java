@@ -4,6 +4,7 @@
  */
 package bomberosg1.vistas;
 
+import bomberosg1.accesoadatos.SiniestroData;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -15,8 +16,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Gonza
  */
 public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
-
     private DefaultTableModel modelo = new DefaultTableModel();
+    SiniestroData siniestroData = null;
+    
 
     /**
      * Creates new form ResolucionDeSiniestros
