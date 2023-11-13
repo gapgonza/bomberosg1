@@ -15,7 +15,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Gonza
  */
 public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
+
     private DefaultTableModel modelo = new DefaultTableModel();
+
     /**
      * Creates new form ResolucionDeSiniestros
      */
@@ -153,32 +155,32 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-////        dispose();
+        dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         enabled();
 
-    // Verifica si los campos obligatorios están completos
-    if (jdFechaResolucion.getDate() == null || "Seleccione".equals(jcPuntuacion.getSelectedItem())) {
-        JOptionPane.showMessageDialog(null, "Complete todos los campos, son obligatorios");
-    } else {
-        try {
-            // Convierte la fecha y la puntuación
-            Date fresolucion = jdFechaResolucion.getDate();
-            LocalDate feDate = fresolucion.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            Integer puntuacion = Integer.parseInt(jcPuntuacion.getSelectedItem().toString());
+        // Verifica si los campos obligatorios están completos
+        if (jdFechaResolucion.getDate() == null || "Seleccione".equals(jcPuntuacion.getSelectedItem())) {
+            JOptionPane.showMessageDialog(null, "Complete todos los campos, son obligatorios");
+        } else {
+            try {
+                // Convierte la fecha y la puntuación
+                Date fresolucion = jdFechaResolucion.getDate();
+                LocalDate feDate = fresolucion.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                Integer puntuacion = Integer.parseInt(jcPuntuacion.getSelectedItem().toString());
 
-            // Llena la tabla
-            llenarTabla(feDate, puntuacion);
+                // Llena la tabla
+                llenarTabla(feDate, puntuacion);
 
-            // Limpia los campos
-            limpiarCampos();
-        } catch (NumberFormatException e) {
-            // Muestra un mensaje si la puntuación no es un número válido
-            JOptionPane.showMessageDialog(null, "La puntuación debe ser un número válido");
+                // Limpia los campos
+                limpiarCampos();
+            } catch (NumberFormatException e) {
+                // Muestra un mensaje si la puntuación no es un número válido
+                JOptionPane.showMessageDialog(null, "La puntuación debe ser un número válido");
+            }
         }
-    }
 //        enabled();
 //        if (jdFechaResolucion.getDate() == null || jTextField_puntuacion.getText().trim().isEmpty()) {
 //            JOptionPane.showMessageDialog(null, "Complete los campos, Todos son obligatorios");
