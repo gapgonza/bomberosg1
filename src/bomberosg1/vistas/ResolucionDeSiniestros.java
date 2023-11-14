@@ -5,6 +5,7 @@
 package bomberosg1.vistas;
 
 import bomberosg1.accesoadatos.SiniestroData;
+import bomberosg1.entidades.Siniestro;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -26,6 +27,9 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
     public ResolucionDeSiniestros() {
         initComponents();
         armarCabecera();
+//        cargaTabla();
+        siniestroData = new SiniestroData();
+        
     }
 
     /**
@@ -174,7 +178,7 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
                 Integer puntuacion = Integer.parseInt(jcPuntuacion.getSelectedItem().toString());
 
                 // Llena la tabla
-                llenarTabla(feDate, puntuacion);
+//                llenarTabla(feDate, puntuacion);
 
                 // Limpia los campos
                 limpiarCampos();
@@ -218,9 +222,19 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
         jcPuntuacion.setEnabled(true);
     }
 
-    private void llenarTabla(LocalDate fechaResolucion, Integer puntuacion) {
-        Object[] rowData = {fechaResolucion, puntuacion};
-        modelo.addRow(rowData);
+//    private void llenarTabla(LocalDate fechaResolucion, Integer puntuacion) {
+//        Object[] rowData = {fechaResolucion, puntuacion};
+//        modelo.addRow(rowData);
+//    }
+    
+    private void cargaTabla(){
+        for (Siniestro siniestro : siniestroData.obtenerSiniestros()) {
+            modelo.addRow(new Object[]{
+                siniestro.getFechaSiniestro(),
+                siniestro.getTipo(),
+                siniestro.getDetalles()
+            });
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

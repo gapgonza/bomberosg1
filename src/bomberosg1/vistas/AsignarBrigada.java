@@ -16,11 +16,12 @@ import javax.swing.table.DefaultTableModel;
  * @author Gonza
  */
 public class AsignarBrigada extends javax.swing.JInternalFrame {
+
     DefaultTableModel modelo = new DefaultTableModel();
     BrigadaData brigadaData = null;
     SiniestroData siniestroData = null;
     CuartelData cuartelData = null;
-    
+
     /**
      * Creates new form AsignarBrigada
      */
@@ -33,7 +34,7 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
         cargarSiniestros();
         comboCuartel();
         cargarBrigada();
-        
+
         //Este actionListener, obtiene las brigadas asociadas al cuartel
         jcCuarteles.addActionListener(new ActionListener() {
             @Override
@@ -69,12 +70,14 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jlDistBrigada = new javax.swing.JLabel();
         jbAsignar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
         jcCuarteles = new javax.swing.JComboBox<>();
         jcBrigadas = new javax.swing.JComboBox<>();
         jbSeleccionar = new javax.swing.JButton();
+        jlDistCuartel = new javax.swing.JLabel();
+        BrigmasCerca = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         jLabel1.setText("Siniestros");
@@ -103,11 +106,16 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel5.setText("Brigadas:");
 
-        jLabel6.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jLabel6.setText("Calcular distancias:");
-        jLabel6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jlDistBrigada.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jlDistBrigada.setText("Distancia:");
+        jlDistBrigada.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         jbAsignar.setText("Asignar");
+        jbAsignar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAsignarActionPerformed(evt);
+            }
+        });
 
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -129,6 +137,10 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
             }
         });
 
+        jlDistCuartel.setText("Distancia:");
+
+        BrigmasCerca.setText("Mas cercana:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -140,16 +152,22 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbSeleccionar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jbSeleccionar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BrigmasCerca)))
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jbAsignar)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jbAsignar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jbSalir))
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jcBrigadas, 0, 230, Short.MAX_VALUE)
-                            .addComponent(jbSalir, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jcCuarteles, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jlDistBrigada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlDistCuartel)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2))
@@ -173,19 +191,21 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jcCuarteles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
+                        .addGap(18, 18, 18)
+                        .addComponent(jlDistCuartel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jcBrigadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jbAsignar)
-                            .addComponent(jbSalir)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlDistBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbSeleccionar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbSeleccionar)
+                    .addComponent(jbAsignar)
+                    .addComponent(jbSalir)
+                    .addComponent(BrigmasCerca))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -202,10 +222,28 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
 
     private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
         // TODO add your handling code here:
+        int filaSeleccionada = TablaSiniestro.getSelectedRow();
+        double xSiniestro = (double) TablaSiniestro.getValueAt(filaSeleccionada, 3); // Columna de LongitudX
+        double ySiniestro = (double) TablaSiniestro.getValueAt(filaSeleccionada, 4); // Columna de LatitudY
+
+        Cuartel cuartelSeleccionado = (Cuartel) jcCuarteles.getSelectedItem();
+        double xCuartel = cuartelSeleccionado.getLongitudX();
+        double yCuartel = cuartelSeleccionado.getLatitudY();
+
+//        Brigada brigadaSeleccionada = (Brigada) jcBrigadas.getSelectedItem();
+//        double xBrigada = brigadaSeleccionada.get();
+//        double yBrigada = brigadaSeleccionada.getLatitudY();
+
+        double distanciaCuartel = calcularDistancia(xSiniestro, ySiniestro, xCuartel, yCuartel);
         
+        jlDistCuartel.setText("Distancia al Cuartel: " + distanciaCuartel);
     }//GEN-LAST:event_jbSeleccionarActionPerformed
 
-    private void armarCabecera(){
+    private void jbAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAsignarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbAsignarActionPerformed
+
+    private void armarCabecera() {
         modelo.addColumn("Id");
         modelo.addColumn("Tipo");
         modelo.addColumn("Fecha");
@@ -214,9 +252,9 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
         modelo.addColumn("Detalles");
         TablaSiniestro.setModel(modelo);
     }
-    
-    private void cargarSiniestros(){
-        for(Siniestro siniestro: siniestroData.obtenerSiniestros()){
+
+    private void cargarSiniestros() {
+        for (Siniestro siniestro : siniestroData.obtenerSiniestros()) {
             modelo.addRow(new Object[]{
                 siniestro.getIdSiniestro(),
                 siniestro.getTipo(),
@@ -227,32 +265,39 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
             });
         }
     }
-    
-    private void comboCuartel(){
+
+    private void comboCuartel() {
         for (Cuartel listCuartel : cuartelData.verCuartel()) {
             jcCuarteles.addItem(listCuartel);
         }
     }
-    
+
     private void cargarBrigada() {
         for (Brigada b : brigadaData.verBrigadas()) {
             jcBrigadas.addItem(b);
         }
     }
+//agregado para prueba calculo distancia
+
+    private double calcularDistancia(double x1, double y1, double x2, double y2) {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BrigmasCerca;
     private javax.swing.JTable TablaSiniestro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbAsignar;
     private javax.swing.JButton jbSalir;
     private javax.swing.JButton jbSeleccionar;
     private javax.swing.JComboBox<Brigada> jcBrigadas;
     private javax.swing.JComboBox<Cuartel> jcCuarteles;
+    private javax.swing.JLabel jlDistBrigada;
+    private javax.swing.JLabel jlDistCuartel;
     // End of variables declaration//GEN-END:variables
 }
