@@ -210,7 +210,7 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
 //            JOptionPane.showMessageDialog(null, "Seleccione una fila para editar");
 //        }
 //    }
-///////////////////////////////////////
+///////////////////////////////////////ARREGLARRRRRRR
         enabled();
         if (jsFechaHoraResolucion.getValue()== null || jcPuntuacion.getSelectedItem().equals("Seleccione")) {
             JOptionPane.showMessageDialog(null, "Seleccione de la lista");
