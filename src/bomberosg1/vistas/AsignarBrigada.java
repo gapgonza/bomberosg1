@@ -261,9 +261,9 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
         renovarTabla();
               
         }catch(NullPointerException npe){
-            JOptionPane.showMessageDialog(null, "Selecciona ambos Cuartel y Brigada.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Por favor, selecciona el Cuartel y la brigada", "Error", JOptionPane.ERROR_MESSAGE);
         }catch(ArrayIndexOutOfBoundsException a){
-            JOptionPane.showMessageDialog(null, "Seleccione un siniestro a asignar","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Seleccione un siniestro","Error",JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_jbAsignarActionPerformed

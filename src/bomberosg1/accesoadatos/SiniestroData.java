@@ -7,6 +7,7 @@ package bomberosg1.accesoadatos;
 import bomberosg1.entidades.Siniestro;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -79,6 +80,36 @@ public class SiniestroData {
         }
         return siniestros;
     }
+    //crear este metodo
+    public List<Siniestro> obtenerSiniestrosRe() {
+        List<Siniestro> siniestros = new ArrayList<>();
+        String sql = "SELECT * FROM `siniestro`";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Siniestro siniestro = new Siniestro();
+                BrigadaData bri = new BrigadaData();
+                siniestro.setIdSiniestro(rs.getInt("idSiniestro"));
+                siniestro.setTipo(rs.getString("tipo"));
+                siniestro.setFechaSiniestro(rs.getDate("fechaSiniestro").toLocalDate());
+                siniestro.setLongitudX(rs.getInt("longitudX"));
+                siniestro.setLatitudY(rs.getInt("latitudY"));
+                siniestro.setDetalles(rs.getString("detalles"));
+                siniestro.setCodBrigada(bri.verBrigadasPorID(rs.getInt("codBrigada")));
+                siniestro.setFechaResolucion(rs.getDate("fechaResolucion").toLocalDate());
+                siniestro.setPuntuacion(rs.getInt("puntuacion"));
+                siniestro.setHoraSiniestro(rs.getTime("horaSiniestro").toLocalTime());
+
+                siniestros.add(siniestro);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Siniestro");
+        }
+        return siniestros;
+    }
     
     public Siniestro obtenerSiniestroPorId(int idSiniestro){
         Siniestro siniestroID = null;
@@ -108,13 +139,14 @@ public class SiniestroData {
         return siniestroID;
     }
 
-    public void actualizarSiniestro(LocalDate fechaResolucion, int puntuacion, int idSiniestro) {
+    public void actualizarSiniestro(LocalDate fechaResolucion,LocalTime horaResolucion, int puntuacion, int idSiniestro) {
         try {
-            String sql = "UPDATE siniestro SET fechaResolucion=?, puntuacion=? WHERE idSiniestro=?";
+            String sql = "UPDATE siniestro SET fechaResolucion=?, horaSiniestro = ?, puntuacion=? WHERE idSiniestro=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setDate(1, Date.valueOf(fechaResolucion));
-            ps.setInt(2, puntuacion);
-            ps.setInt(3, idSiniestro);
+            ps.setTime(2, Time.valueOf(horaResolucion));
+            ps.setInt(3, puntuacion);
+            ps.setInt(4, idSiniestro);
             ps.executeUpdate();
         } catch (SQLException ex) {
             // Manejo de excepciones, por ejemplo:

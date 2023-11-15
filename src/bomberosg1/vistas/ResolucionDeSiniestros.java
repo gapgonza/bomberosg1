@@ -173,69 +173,36 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-//        enabled();
-//
-//    // Verifica si los campos obligatorios están completos
-//    if (jsFechaHoraResolucion.getValue() == null || "Seleccione".equals(jcPuntuacion.getSelectedItem())) {
-//        JOptionPane.showMessageDialog(null, "Complete todos los campos, son obligatorios");
-//    } else {
-//        int filaSeleccionada = TablaSiniestro.getSelectedRow();
-//        if (filaSeleccionada != -1) {
-//            try {
-//                // Obtener valores de los componentes y convertirlos a tipos de fecha y hora adecuados
-//                Date fechaHoraSeleccionada = (Date) jsFechaHoraResolucion.getValue();
-//                Instant instant = fechaHoraSeleccionada.toInstant();
-//                LocalDateTime fechaHoraResolucion = instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
-//                
-//                LocalDate fechaResolucion;
-//                fechaResolucion = jsFechaHoraResolucion.getValue().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//                int puntuacion = Integer.parseInt((String) jcPuntuacion.getSelectedItem());
-//
-//                // Establecer valores en la tabla y limpiar campos
-//                TablaSiniestro.setValueAt(fechaResolucion, filaSeleccionada, 2);
-//                TablaSiniestro.setValueAt(puntuacion, filaSeleccionada, 3);
-//                limpiarCampos();
-//
-//                // Obtener el ID del siniestro y actualizar los datos
-//                int idSiniestro = (int) TablaSiniestro.getValueAt(filaSeleccionada, 0);
-//                siniestroData.actualizarSiniestro(fechaHoraResolucion, fechaResolucion, puntuacion, idSiniestro);
-//
-//            } catch (NumberFormatException e) {
-//                JOptionPane.showMessageDialog(null, "La puntuación debe ser un número válido");
-//            } catch (Exception ex) {
-//                JOptionPane.showMessageDialog(null, "Ocurrió un error al guardar los datos");
-//                ex.printStackTrace(); // Aquí puedes registrar el error para su posterior revisión
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Seleccione una fila para editar");
-//        }
-//    }
-///////////////////////////////////////ARREGLARRRRRRR
-        enabled();
-        if (jsFechaHoraResolucion.getValue()== null || jcPuntuacion.getSelectedItem().equals("Seleccione")) {
-            JOptionPane.showMessageDialog(null, "Seleccione de la lista");
-        } else {
-            try {
-                Date fechaHoraSeleccionada = (Date) jsFechaHoraResolucion.getValue();
-                Instant instant = fechaHoraSeleccionada.toInstant();
-                LocalDate fechaSeleccionada = instant.atZone(ZoneId.systemDefault()).toLocalDate();
-                LocalTime horaSeleccionada = instant.atZone(ZoneId.systemDefault()).toLocalTime();
-                Integer puntuacion = Integer.parseInt(jcPuntuacion.getSelectedItem().toString());
-                
-                siniestroData.actualizarSiniestro(fechaSeleccionada, 0, 0);
-//                llenarTabla(feDate, puntuacion);
-                limpiarCampos();
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "La puntuación debe ser un número válido");
-            }
-        }
 
+        int filaSeleccionada = TablaSiniestro.getSelectedRow();
+
+        if (filaSeleccionada != -1) {
+
+            Date fechaHoraResolucion = (Date) jsFechaHoraResolucion.getValue();
+            Instant instant = fechaHoraResolucion.toInstant();
+            LocalDate fechaSeleccionada = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalTime horaSeleccionada = instant.atZone(ZoneId.systemDefault()).toLocalTime();
+            int puntuacion = Integer.parseInt(jcPuntuacion.getSelectedItem().toString());
+
+
+            int idSiniestro = (int) TablaSiniestro.getValueAt(filaSeleccionada, 0); 
+
+
+            TablaSiniestro.setValueAt(fechaSeleccionada, filaSeleccionada, 2);
+            TablaSiniestro.setValueAt(horaSeleccionada, filaSeleccionada, 3); 
+            TablaSiniestro.setValueAt(puntuacion, filaSeleccionada, 4); 
+
+            siniestroData.actualizarSiniestro(fechaSeleccionada, horaSeleccionada, puntuacion, idSiniestro);
+        } else {
+
+        }
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void armarCabecera() {
         modelo.addColumn("Siniestro");
         modelo.addColumn("Brigada");
         modelo.addColumn("Fecha Resolucion");
+        modelo.addColumn("Hora Resolucion");
         modelo.addColumn("Puntuacion Asignada");
         TablaSiniestro.setModel(modelo);
     }
@@ -254,7 +221,6 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
 //        Object[] rowData = {fechaResolucion, puntuacion};
 //        modelo.addRow(rowData);
 //    }
-    
 //    private void cargarTabla() {
 //    Iterator<Siniestro> iterador = siniestroData.obtenerSiniestros().iterator();
 //    while (iterador.hasNext()) {
@@ -270,16 +236,17 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
 //    }
 //}
     private void cargaTabla() {
-        for(Siniestro sinis: siniestroData.obtenerSiniestros()){
+        for (Siniestro sinis : siniestroData.obtenerSiniestrosRe()) {
             modelo.addRow(new Object[]{
                 sinis.getIdSiniestro(),
                 sinis.getCodBrigada().getNombreBrigada(),
                 sinis.getFechaResolucion(),
+                sinis.getHoraSiniestro(),
                 sinis.getPuntuacion()
             });
         }
     }
-    
+
     private void actualizarTabla() {
         modelo.setRowCount(0);
         cargaTabla();
