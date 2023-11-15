@@ -97,7 +97,13 @@ public class SiniestroData {
                 siniestro.setLatitudY(rs.getInt("latitudY"));
                 siniestro.setDetalles(rs.getString("detalles"));
                 siniestro.setCodBrigada(bri.verBrigadasPorID(rs.getInt("codBrigada")));
-                siniestro.setFechaResolucion(rs.getDate("fechaResolucion").toLocalDate());
+                java.sql.Date fechaResolucionSQL = rs.getDate("fechaResolucion");
+                if (fechaResolucionSQL != null) {
+                siniestro.setFechaResolucion(fechaResolucionSQL.toLocalDate());
+//                siniestro.setFechaResolucion(rs.getDate("fechaResolucion").toLocalDate());
+                }else{
+                    siniestro.setFechaResolucion(null);
+                }
                 siniestro.setPuntuacion(rs.getInt("puntuacion"));
                 siniestro.setHoraSiniestro(rs.getTime("horaSiniestro").toLocalTime());
 
