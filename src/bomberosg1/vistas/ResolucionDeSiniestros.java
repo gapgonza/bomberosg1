@@ -211,21 +211,24 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
 //        }
 //    }
 ///////////////////////////////////////
-//        enabled();
-//        if (jdFechaResolucion.getDate() == null || jTextField_puntuacion.getText().trim().isEmpty()) {
-//            JOptionPane.showMessageDialog(null, "Complete los campos, Todos son obligatorios");
-//        } else {
-//            try {
-//                Date fresolucion = jdFechaResolucion.getDate();
-//                LocalDate feDate = fresolucion.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//                Integer puntuacion = Integer.parseInt(jTextField_puntuacion.getText().trim());
-//
+        enabled();
+        if (jsFechaHoraResolucion.getValue()== null || jcPuntuacion.getSelectedItem().equals("Seleccione")) {
+            JOptionPane.showMessageDialog(null, "Seleccione de la lista");
+        } else {
+            try {
+                Date fechaHoraSeleccionada = (Date) jsFechaHoraResolucion.getValue();
+                Instant instant = fechaHoraSeleccionada.toInstant();
+                LocalDate fechaSeleccionada = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalTime horaSeleccionada = instant.atZone(ZoneId.systemDefault()).toLocalTime();
+                Integer puntuacion = Integer.parseInt(jcPuntuacion.getSelectedItem().toString());
+                
+                siniestroData.actualizarSiniestro(fechaSeleccionada, 0, 0);
 //                llenarTabla(feDate, puntuacion);
-//                limpiarCampos();
-//            } catch (NumberFormatException e) {
-//                JOptionPane.showMessageDialog(null, "La puntuación debe ser un número válido");
-//            }
-//        }
+                limpiarCampos();
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "La puntuación debe ser un número válido");
+            }
+        }
 
     }//GEN-LAST:event_jbGuardarActionPerformed
 
@@ -270,7 +273,7 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
         for(Siniestro sinis: siniestroData.obtenerSiniestros()){
             modelo.addRow(new Object[]{
                 sinis.getIdSiniestro(),
-                sinis.getCodBrigada(),
+                sinis.getCodBrigada().getNombreBrigada(),
                 sinis.getFechaResolucion(),
                 sinis.getPuntuacion()
             });

@@ -59,12 +59,14 @@ public class SiniestroData {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Siniestro siniestro = new Siniestro();
+                BrigadaData bri = new BrigadaData();
                 siniestro.setIdSiniestro(rs.getInt("idSiniestro"));
                 siniestro.setTipo(rs.getString("tipo"));
                 siniestro.setFechaSiniestro(rs.getDate("fechaSiniestro").toLocalDate());
                 siniestro.setLongitudX(rs.getInt("longitudX"));
                 siniestro.setLatitudY(rs.getInt("latitudY"));
                 siniestro.setDetalles(rs.getString("detalles"));
+                siniestro.setCodBrigada(bri.verBrigadasPorID(rs.getInt("codBrigada")));
 //                siniestro.setFechaResolucion(rs.getDate("fechaResolucion").toLocalDate());
 //                siniestro.setPuntuacion(rs.getInt("puntuacion"));
 
