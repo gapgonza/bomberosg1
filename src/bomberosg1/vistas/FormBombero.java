@@ -32,6 +32,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
         armarCabecera();
         cargarBomberos();//debe tener un error
         cargarBrigada();
+        disabledd();
     }
 
     /**
@@ -70,6 +71,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
         jdFechaNac = new com.toedter.calendar.JDateChooser();
         jrEstado = new javax.swing.JRadioButton();
         jLabel13 = new javax.swing.JLabel();
+        jbEliminarDef = new javax.swing.JButton();
         jbNuevo = new javax.swing.JButton();
         jbGuardar = new javax.swing.JButton();
         jbModificar = new javax.swing.JButton();
@@ -175,6 +177,14 @@ public class FormBombero extends javax.swing.JInternalFrame {
         jLabel13.setText("Estado:");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, -1, -1));
 
+        jbEliminarDef.setText("EliminarDef");
+        jbEliminarDef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEliminarDefActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jbEliminarDef, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 210, -1, -1));
+
         jbNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbNuevo.setText("Nuevo");
         jbNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -256,6 +266,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
         // TODO add your handling code here:
+        enabledd();
         jbModificar.setEnabled(false);
         jbDarBaja.setEnabled(false);
         jbGuardar.setEnabled(true);
@@ -282,6 +293,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
                     boolean activo = jrEstado.isSelected();
                     Bombero bombero = new Bombero(dni, nombre, apellido, feDate, celular, brig, grupoSan, activo);
                     bomData.altaBombero(bombero);
+                    disabledd();
 
                     modelo.setRowCount(0);
                     cargarBomberos();
@@ -346,6 +358,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
 
     private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
 
+        enabledd();
         if (TablaBombero.getSelectedRow() != -1) {
             int dni = Integer.parseInt(String.valueOf(TablaBombero.getValueAt(TablaBombero.getSelectedRow(), 0)));
             for (Bombero bombero : bomData.verBomberos()) {
@@ -518,6 +531,39 @@ public class FormBombero extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jcBrigadaAsignarActionPerformed
 
+    private void jbEliminarDefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarDefActionPerformed
+        // TODO add your handling code here:
+        try {
+            String seleccionado = TablaBombero.getValueAt(TablaBombero.getSelectedRow(), 1).toString();
+            Bombero bomberoSelec = null;
+            for (Bombero listBombero : bomData.verBomberos()) {
+                if (seleccionado.contains(listBombero.getNombre())) {
+                    bomberoSelec = listBombero;
+                    break;
+                }
+            }
+
+            if (bomberoSelec != null) {
+                int confirmar = JOptionPane.showConfirmDialog(null, "¿Seguro desea eliminar el bombero?");
+                if (confirmar == JOptionPane.YES_OPTION) {
+                    bomData.eliminarBombero(bomberoSelec.getIdBombero());
+                    modelo.setRowCount(0);
+                    cargarBomberos();
+                }
+            }
+        } catch (Exception e) {
+        }
+        int filaSeleccionada = TablaBombero.getSelectedRow();
+        if(filaSeleccionada != -1){
+            int idBombero = (int)TablaBombero.getValueAt(filaSeleccionada, 0);
+            bomData.eliminarBombero(idBombero);
+//            cargarBomberos();
+            limpiar();
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione un Bombero de la Tabla");
+        }
+    }//GEN-LAST:event_jbEliminarDefActionPerformed
+
     private void armarCabecera() {
         modelo.addColumn("Dni");
         modelo.addColumn("Nombre");
@@ -550,6 +596,28 @@ public class FormBombero extends javax.swing.JInternalFrame {
         jtCelular.setText("");
         jcGrupoSang.setSelectedItem("Seleccione");
     }
+    
+    private void disabledd(){
+        jtDni.setEnabled(false);
+        jtNombre.setEnabled(false);
+        jtApellido.setEnabled(false);
+        jtCelular.setEnabled(false);
+        jrEstado.setEnabled(false);
+        jdFechaNac.setEnabled(false);
+        jcGrupoSang.setEnabled(false);
+        jcBrigadaAsignar.setEnabled(false);
+    }
+    
+    private void enabledd(){
+        jtDni.setEnabled(true);
+        jtNombre.setEnabled(true);
+        jtApellido.setEnabled(true);
+        jtCelular.setEnabled(true);
+        jrEstado.setEnabled(true);
+        jdFechaNac.setEnabled(true);
+        jcGrupoSang.setEnabled(true);
+        jcBrigadaAsignar.setEnabled(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaBombero;
@@ -569,6 +637,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbDarBaja;
+    private javax.swing.JButton jbEliminarDef;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbNuevo;

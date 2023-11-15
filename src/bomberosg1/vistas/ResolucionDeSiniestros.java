@@ -252,36 +252,35 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
 //        modelo.addRow(rowData);
 //    }
     
-    private void cargarTabla() {
-    Iterator<Siniestro> iterador = siniestroData.obtenerSiniestros().iterator();
-    while (iterador.hasNext()) {
-        Siniestro cosa = iterador.next();
-        String briNombreID = "[" + cosa.getCodBrigada().getIdBrigada() + "] " + cosa.getCodBrigada().getNombreBrigada();
+//    private void cargarTabla() {
+//    Iterator<Siniestro> iterador = siniestroData.obtenerSiniestros().iterator();
+//    while (iterador.hasNext()) {
+//        Siniestro cosa = iterador.next();
+//        String briNombreID = "[" + cosa.getCodBrigada().getIdBrigada() + "] " + cosa.getCodBrigada().getNombreBrigada();
+//        modelo.addRow(new Object[]{
+//            cosa.getIdSiniestro(),
+//            cosa.getFechaSiniestro(),
+//            cosa.getTipo(),
+//            briNombreID, //Nombre e identificador de la brigada
+//            cosa.getDetalles()
+//        });
+//    }
+//}
+    private void cargaTabla() {
+        for (Siniestro siniestro : siniestroData.obtenerSiniestros()) {
+        String nombreBrigadaAsignada = siniestro.getCodBrigada().getNombreBrigada();
         modelo.addRow(new Object[]{
-            cosa.getIdSiniestro(),
-            cosa.getFechaSiniestro(),
-            cosa.getTipo(),
-            briNombreID, //Nombre e identificador de la brigada
-            cosa.getDetalles()
+            siniestro.getIdSiniestro(),
+            nombreBrigadaAsignada,
+            siniestro.getFechaResolucion(),
+            siniestro.getPuntuacion()
         });
     }
-}
-//    private void cargaTabla() {
-//        for (Siniestro siniestro : siniestroData.obtenerSiniestros()) {
-//            modelo.addRow(new Object[]{
-//                siniestro.getIdSiniestro(),
-//                siniestro.getCodBrigada(),
-//                "no asignada",
-//                siniestro.getFechaResolucion()
-//                + "no asignada",
-//                siniestro.getPuntuacion()
-//            });
-//        }
-//    }
+    }
     
     private void actualizarTabla() {
         modelo.setRowCount(0);
-        cargarTabla();
+        cargaTabla();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
