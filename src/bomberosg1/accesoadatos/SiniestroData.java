@@ -105,6 +105,7 @@ public class SiniestroData {
                     siniestro.setFechaResolucion(null);
                 }
                 siniestro.setPuntuacion(rs.getInt("puntuacion"));
+//                siniestro.setActivo(rs.getBoolean("activo"));
                 siniestro.setHoraSiniestro(rs.getTime("horaSiniestro").toLocalTime());
 
                 siniestros.add(siniestro);

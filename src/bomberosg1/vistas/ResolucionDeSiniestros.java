@@ -204,6 +204,7 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
         modelo.addColumn("Fecha Resolucion");
         modelo.addColumn("Hora Resolucion");
         modelo.addColumn("Puntuacion Asignada");
+//        modelo.addColumn("Estado");
         TablaSiniestro.setModel(modelo);
     }
 
@@ -243,6 +244,7 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
                 sinis.getFechaResolucion(),
                 sinis.getHoraSiniestro(),
                 sinis.getPuntuacion()
+//                sinis.isActivo()
             });
         }
     }
