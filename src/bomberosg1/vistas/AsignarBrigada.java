@@ -80,6 +80,9 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
         jlDistCuartel = new javax.swing.JLabel();
         BrigmasCerca = new javax.swing.JLabel();
 
+        setClosable(true);
+        setIconifiable(true);
+
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         jLabel1.setText("Siniestros - Asignacion de Brigadas");
 
