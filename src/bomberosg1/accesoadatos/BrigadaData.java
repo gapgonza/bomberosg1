@@ -151,22 +151,40 @@ public class BrigadaData {
     }
 
     public List<Brigada> brigadasInactivas() {
-        String sql = "SELECT DISTINCT codBrigada FROM bombero WHERE activo = 0";
-        List<Brigada> listaBrigadas = new ArrayList<>();
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Brigada brigadaI = new Brigada();
-                int idBrigada = rs.getInt("codBrigada");
-                brigadaI.setIdBrigada(idBrigada);
-                listaBrigadas.add(brigadaI);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla brigada ");
+         String sql = "SELECT * FROM Brigada WHERE idBrigada IN (SELECT DISTINCT codBrigada FROM bombero WHERE activo = 0)";
+    List<Brigada> listaBrigadas = new ArrayList<>();
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Brigada brigada1 = new Brigada();
+            CuartelData cd = new CuartelData();
+            brigada1.setIdBrigada(rs.getInt("idBrigada"));
+            brigada1.setEspecialidad(rs.getString("especialidad"));
+            brigada1.setNumeroCuartel(cd.verCuarteles(rs.getInt("numeroCuartel")));
+            listaBrigadas.add(brigada1);
         }
-
-        return listaBrigadas;
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Brigada");
+    }
+    return listaBrigadas;
+        
+//        String sql = "SELECT DISTINCT codBrigada FROM bombero WHERE activo = 0";
+//        List<Brigada> listaBrigadas = new ArrayList<>();
+//        try {
+//            PreparedStatement ps = con.prepareStatement(sql);
+//            ResultSet rs = ps.executeQuery();
+//            while (rs.next()) {
+//                Brigada brigadaI = new Brigada();
+//                int idBrigada = rs.getInt("codBrigada");
+//                brigadaI.setIdBrigada(idBrigada);
+//                listaBrigadas.add(brigadaI);
+//            }
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla brigada ");
+//        }
+//
+//        return listaBrigadas;
 
     }
 
@@ -192,4 +210,5 @@ public class BrigadaData {
         }
         return brigadasAsociadas;
     }
+    
 }

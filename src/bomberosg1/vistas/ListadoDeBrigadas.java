@@ -14,16 +14,18 @@ import javax.swing.table.DefaultTableModel;
  * @author Gonza
  */
 public class ListadoDeBrigadas extends javax.swing.JInternalFrame {
+
     private DefaultTableModel modelo = new DefaultTableModel();
     BrigadaData briData = null;
     CuartelData cuartelData = null;
+
     /**
      * Creates new form ListadoDeBrigadas
      */
     public ListadoDeBrigadas() {
         initComponents();
-        briData = new BrigadaData();
         cuartelData = new CuartelData();
+        briData = new BrigadaData();
         cargaCuarteles();
         armarCabecera();
     }
@@ -136,33 +138,54 @@ public class ListadoDeBrigadas extends javax.swing.JInternalFrame {
 
     private void jcCuartelesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcCuartelesActionPerformed
 //        // TODO add your handling code here:
-//        //        limpiarTabla();
-//        //        Brigada brigada=(Brigada)jcBrigadas.getSelectedItem();
-//        //
-//        //        if (brigada != null) {
-//            //            List<Bombero> listaBomberos = bomData.verBomberos();
-//            //        for(Bombero aux: listaBomberos){
-//                //            modelo.addRow(new  Object[]{aux.getDni(), aux.getNombre(), aux.getApellido(),
-//                    //            aux.getFechaNac(),aux.getGrupoSanguineo(),aux.isActivo()
-//                    //                    });
-//            //        }
-//        //        }
         limpiarTabla();
         Cuartel cuartelSel = (Cuartel) jcCuarteles.getSelectedItem();
         int cuartelID = cuartelSel.getIdCuartel();
         for (Brigada aux : briData.verBrigadas()) {
-            if (aux.getNumeroCuartel().getIdCuartel()== cuartelID) {
+            if (aux.getNumeroCuartel().getIdCuartel() == cuartelID) {
                 modelo.addRow(new Object[]{
                     aux.getNombreBrigada(),
                     aux.getEspecialidad(),
+                    "No esta asiganada"
                 });
             }
         }
+/////////////////////////////////////////////////////////////////
+//        limpiarTabla();
+//        Brigada brigada=(Brigada)jcBrigadas.getSelectedItem();
+//        
+//        if (brigada != null) {
+//        List<Bombero> listaBomberos = bomData.verBomberos();
+//            for(Bombero aux: listaBomberos){
+//                modelo.addRow(new  Object[]{aux.getDni(), aux.getNombre(), aux.getApellido(),
+//                       aux.getFechaNac(),aux.getGrupoSanguineo(),aux.isActivo()
+//                        });
+//             }
+//        }
     }//GEN-LAST:event_jcCuartelesActionPerformed
 
     private void JtoInactivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtoInactivosActionPerformed
         // TODO add your handling code here:
-
+        try {
+            if (JtoInactivos.isSelected()) {
+                jcCuarteles.setEnabled(false);
+                limpiarTabla();
+                for (Brigada bri : briData.brigadasInactivas()) {
+                    if (bri.isLibre() == false) {
+                        modelo.addRow(new Object[]{
+                            bri.getIdBrigada(),
+                            bri.getEspecialidad(),
+                            bri.getNumeroCuartel()
+                        });
+                    }
+                }
+            } else {
+                jcCuarteles.setEnabled(true);
+                limpiarTabla();
+            }
+        } catch (Exception e) {
+        }
+////////////////////////////////////////////        
 //        try {
 //            if(JtoInactivos.isSelected()){
 //                jcCuarteles.setEnabled(false);
@@ -186,26 +209,6 @@ public class ListadoDeBrigadas extends javax.swing.JInternalFrame {
 //        } catch (Exception e) {
 //        }
 
-        try {
-            if(JtoInactivos.isSelected()){
-                jcCuarteles.setEnabled(false);
-                limpiarTabla();
-                for(Brigada bri : briData.brigadasInactivas()){
-                    if(bri.isLibre() == false){
-                        modelo.addRow(new Object[]{
-                            bri.getIdBrigada(),
-                            bri.getEspecialidad(),
-                            bri.getNumeroCuartel()
-                        });
-                    }
-                }
-            }else{
-                jcCuarteles.setEnabled(true);
-                limpiarTabla();
-            }
-        } catch (Exception e) {
-        }
-
     }//GEN-LAST:event_JtoInactivosActionPerformed
 
     private void cargaCuarteles() {
@@ -213,12 +216,12 @@ public class ListadoDeBrigadas extends javax.swing.JInternalFrame {
             jcCuarteles.addItem(listaCuartel);
         }
     }
-    
+
     private void limpiarTabla() {
         modelo.setRowCount(0);
     }
-    
-    private void armarCabecera(){
+
+    private void armarCabecera() {
         modelo.addColumn("Brigada");
         modelo.addColumn("Especialidad");
         modelo.addColumn("Asignado a: ");

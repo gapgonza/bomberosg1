@@ -6,9 +6,13 @@ package bomberosg1.vistas;
 
 import bomberosg1.accesoadatos.SiniestroData;
 import bomberosg1.entidades.Siniestro;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,19 +21,19 @@ import javax.swing.table.DefaultTableModel;
  * @author Gonza
  */
 public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
+
     private DefaultTableModel modelo = new DefaultTableModel();
     SiniestroData siniestroData = null;
-    
 
     /**
      * Creates new form ResolucionDeSiniestros
      */
     public ResolucionDeSiniestros() {
         initComponents();
-        armarCabecera();
-//        cargaTabla();
         siniestroData = new SiniestroData();
-        
+        armarCabecera();
+        cargaTabla();
+
     }
 
     /**
@@ -49,9 +53,9 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
         jLabel_puntuacion = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaSiniestro = new javax.swing.JTable();
-        jdFechaResolucion = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jcPuntuacion = new javax.swing.JComboBox<>();
+        jsFechaHoraResolucion = new javax.swing.JSpinner();
 
         Subtitulo.setText("Formulario de Resolucion del Siniestro Afectado");
 
@@ -74,7 +78,7 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
 
         jLabel_fechaResolucion.setText("Fecha de Resolucion:");
 
-        jLabel_puntuacion.setText("Escriba su puntuacion:");
+        jLabel_puntuacion.setText("Seleccione una puntuacion:");
 
         TablaSiniestro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,6 +97,9 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
 
         jcPuntuacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
 
+        jsFechaHoraResolucion.setModel(new javax.swing.SpinnerDateModel());
+        jsFechaHoraResolucion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,31 +107,37 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(300, 300, 300)
-                        .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(Subtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(93, 93, 93)
-                        .addComponent(jLabel_fechaResolucion))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jdFechaResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jcPuntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel_puntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(300, 300, 300)
+                                        .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(31, 31, 31)
+                                        .addComponent(jLabel1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(46, 46, 46)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel_fechaResolucion)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(Subtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jsFechaHoraResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(111, 111, 111)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jcPuntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabel_puntuacion))))))
+                                .addGap(16, 16, 16))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jbGuardar)
-                                .addGap(100, 100, 100)
-                                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(472, 472, 472)
+                                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 28, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel1)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,27 +147,22 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Subtitulo)
-                    .addComponent(jLabel_fechaResolucion))
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jdFechaResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(jcPuntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel_puntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(158, 158, 158)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jbGuardar))
-                            .addComponent(jbSalir))))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addComponent(Subtitulo)
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_fechaResolucion)
+                    .addComponent(jLabel_puntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcPuntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jsFechaHoraResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbGuardar)
+                    .addComponent(jbSalir))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
@@ -165,28 +173,44 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        enabled();
-
-        // Verifica si los campos obligatorios están completos
-        if (jdFechaResolucion.getDate() == null || "Seleccione".equals(jcPuntuacion.getSelectedItem())) {
-            JOptionPane.showMessageDialog(null, "Complete todos los campos, son obligatorios");
-        } else {
-            try {
-                // Convierte la fecha y la puntuación
-                Date fresolucion = jdFechaResolucion.getDate();
-                LocalDate feDate = fresolucion.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                Integer puntuacion = Integer.parseInt(jcPuntuacion.getSelectedItem().toString());
-
-                // Llena la tabla
-//                llenarTabla(feDate, puntuacion);
-
-                // Limpia los campos
-                limpiarCampos();
-            } catch (NumberFormatException e) {
-                // Muestra un mensaje si la puntuación no es un número válido
-                JOptionPane.showMessageDialog(null, "La puntuación debe ser un número válido");
-            }
-        }
+//        enabled();
+//
+//    // Verifica si los campos obligatorios están completos
+//    if (jsFechaHoraResolucion.getValue() == null || "Seleccione".equals(jcPuntuacion.getSelectedItem())) {
+//        JOptionPane.showMessageDialog(null, "Complete todos los campos, son obligatorios");
+//    } else {
+//        int filaSeleccionada = TablaSiniestro.getSelectedRow();
+//        if (filaSeleccionada != -1) {
+//            try {
+//                // Obtener valores de los componentes y convertirlos a tipos de fecha y hora adecuados
+//                Date fechaHoraSeleccionada = (Date) jsFechaHoraResolucion.getValue();
+//                Instant instant = fechaHoraSeleccionada.toInstant();
+//                LocalDateTime fechaHoraResolucion = instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
+//                
+//                LocalDate fechaResolucion;
+//                fechaResolucion = jsFechaHoraResolucion.getValue().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//                int puntuacion = Integer.parseInt((String) jcPuntuacion.getSelectedItem());
+//
+//                // Establecer valores en la tabla y limpiar campos
+//                TablaSiniestro.setValueAt(fechaResolucion, filaSeleccionada, 2);
+//                TablaSiniestro.setValueAt(puntuacion, filaSeleccionada, 3);
+//                limpiarCampos();
+//
+//                // Obtener el ID del siniestro y actualizar los datos
+//                int idSiniestro = (int) TablaSiniestro.getValueAt(filaSeleccionada, 0);
+//                siniestroData.actualizarSiniestro(fechaHoraResolucion, fechaResolucion, puntuacion, idSiniestro);
+//
+//            } catch (NumberFormatException e) {
+//                JOptionPane.showMessageDialog(null, "La puntuación debe ser un número válido");
+//            } catch (Exception ex) {
+//                JOptionPane.showMessageDialog(null, "Ocurrió un error al guardar los datos");
+//                ex.printStackTrace(); // Aquí puedes registrar el error para su posterior revisión
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Seleccione una fila para editar");
+//        }
+//    }
+///////////////////////////////////////
 //        enabled();
 //        if (jdFechaResolucion.getDate() == null || jTextField_puntuacion.getText().trim().isEmpty()) {
 //            JOptionPane.showMessageDialog(null, "Complete los campos, Todos son obligatorios");
@@ -207,18 +231,19 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
 
     private void armarCabecera() {
         modelo.addColumn("Siniestro");
+        modelo.addColumn("Brigada");
         modelo.addColumn("Fecha Resolucion");
         modelo.addColumn("Puntuacion Asignada");
         TablaSiniestro.setModel(modelo);
     }
 
     private void limpiarCampos() {
-        jdFechaResolucion.setDate(null);
+        jsFechaHoraResolucion.setValue(null);
         jcPuntuacion.setSelectedItem("Seleccione");
     }
 
     private void enabled() {
-        jdFechaResolucion.setEnabled(true);
+        jsFechaHoraResolucion.setEnabled(true);
         jcPuntuacion.setEnabled(true);
     }
 
@@ -227,14 +252,36 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
 //        modelo.addRow(rowData);
 //    }
     
-    private void cargaTabla(){
-        for (Siniestro siniestro : siniestroData.obtenerSiniestros()) {
-            modelo.addRow(new Object[]{
-                siniestro.getFechaSiniestro(),
-                siniestro.getTipo(),
-                siniestro.getDetalles()
-            });
-        }
+    private void cargarTabla() {
+    Iterator<Siniestro> iterador = siniestroData.obtenerSiniestros().iterator();
+    while (iterador.hasNext()) {
+        Siniestro cosa = iterador.next();
+        String briNombreID = "[" + cosa.getCodBrigada().getIdBrigada() + "] " + cosa.getCodBrigada().getNombreBrigada();
+        modelo.addRow(new Object[]{
+            cosa.getIdSiniestro(),
+            cosa.getFechaSiniestro(),
+            cosa.getTipo(),
+            briNombreID, //Nombre e identificador de la brigada
+            cosa.getDetalles()
+        });
+    }
+}
+//    private void cargaTabla() {
+//        for (Siniestro siniestro : siniestroData.obtenerSiniestros()) {
+//            modelo.addRow(new Object[]{
+//                siniestro.getIdSiniestro(),
+//                siniestro.getCodBrigada(),
+//                "no asignada",
+//                siniestro.getFechaResolucion()
+//                + "no asignada",
+//                siniestro.getPuntuacion()
+//            });
+//        }
+//    }
+    
+    private void actualizarTabla() {
+        modelo.setRowCount(0);
+        cargarTabla();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -248,6 +295,6 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbSalir;
     private javax.swing.JComboBox<String> jcPuntuacion;
-    private com.toedter.calendar.JDateChooser jdFechaResolucion;
+    private javax.swing.JSpinner jsFechaHoraResolucion;
     // End of variables declaration//GEN-END:variables
 }

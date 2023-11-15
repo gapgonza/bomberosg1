@@ -49,6 +49,13 @@ public class Siniestro {
         this.horaSiniestro = horaSiniestro;
     }
 
+    public Siniestro(int idSiniestro, Brigada codBrigada) {
+        this.idSiniestro = idSiniestro;
+        this.codBrigada = codBrigada;
+    }
+    
+    
+
     public int getIdSiniestro() {
         return idSiniestro;
     }

@@ -279,7 +279,7 @@ public class FormBombero extends javax.swing.JInternalFrame {
                     String celular = jtCelular.getText();
                     String grupoSan = (String) jcGrupoSang.getSelectedItem();
                     Brigada brig = (Brigada) jcBrigadaAsignar.getSelectedItem();
-                    boolean activo = jrEstado.isSelected(); // Obtener el estado del RadioButton
+                    boolean activo = jrEstado.isSelected();
                     Bombero bombero = new Bombero(dni, nombre, apellido, feDate, celular, brig, grupoSan, activo);
                     bomData.altaBombero(bombero);
 

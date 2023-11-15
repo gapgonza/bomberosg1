@@ -9,6 +9,7 @@ import bomberosg1.entidades.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -33,7 +34,7 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
         armarCabecera();
         cargarSiniestros();
         comboCuartel();
-        cargarBrigada();
+//        cargarBrigada();
 
         //Este actionListener, obtiene las brigadas asociadas al cuartel
         jcCuarteles.addActionListener(new ActionListener() {
@@ -80,7 +81,7 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
         BrigmasCerca = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
-        jLabel1.setText("Siniestros");
+        jLabel1.setText("Siniestros - Asignacion de Brigadas");
 
         jLabel2.setText("----------------------------------------------------------------------------------------------------------------------------------------------");
 
@@ -170,11 +171,12 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
                             .addComponent(jlDistCuartel)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(346, 346, 346)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel2)))
                 .addContainerGap(43, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(221, 221, 221))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,6 +216,19 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
 
     private void jcCuartelesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcCuartelesActionPerformed
         // TODO add your handling code here:
+    
+//        Cuartel cuartelselec = (Cuartel) jcCuarteles.getSelectedItem();
+//        int idCuartel = cuartelselec.getIdCuartel();
+//        int sinSelec = TablaSiniestro.getSelectedRow();
+//        if (sinSelec >= 0) {
+//            String sintipo = (String) TablaSiniestro.getValueAt(sinSelec, 1);
+//            jcBrigadas.removeAllItems();
+//            for (Brigada brgda : brigadaData.verBrigadas()) {
+//                if (brgda.getNumeroCuartel().getIdCuartel() == idCuartel && brgda.getEspecialidad().contains(sintipo) && brgda.isLibre()) {
+//                    jcBrigadas.addItem(brgda);
+//                }
+//            }
+//        }
     }//GEN-LAST:event_jcCuartelesActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -222,25 +237,32 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
 
     private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
         // TODO add your handling code here:
-        int filaSeleccionada = TablaSiniestro.getSelectedRow();
-        double xSiniestro = (double) TablaSiniestro.getValueAt(filaSeleccionada, 3); // Columna de LongitudX
-        double ySiniestro = (double) TablaSiniestro.getValueAt(filaSeleccionada, 4); // Columna de LatitudY
 
-        Cuartel cuartelSeleccionado = (Cuartel) jcCuarteles.getSelectedItem();
-        double xCuartel = cuartelSeleccionado.getLongitudX();
-        double yCuartel = cuartelSeleccionado.getLatitudY();
-
-//        Brigada brigadaSeleccionada = (Brigada) jcBrigadas.getSelectedItem();
-//        double xBrigada = brigadaSeleccionada.get();
-//        double yBrigada = brigadaSeleccionada.getLatitudY();
-
-        double distanciaCuartel = calcularDistancia(xSiniestro, ySiniestro, xCuartel, yCuartel);
-        
-        jlDistCuartel.setText("Distancia al Cuartel: " + distanciaCuartel);
     }//GEN-LAST:event_jbSeleccionarActionPerformed
 
     private void jbAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAsignarActionPerformed
         // TODO add your handling code here:
+        try{
+
+        Brigada codBrigada = (Brigada) jcBrigadas.getSelectedItem();
+        int sinSelec =TablaSiniestro.getSelectedRow();
+        int idSiniestro= (Integer)TablaSiniestro.getValueAt(sinSelec, 0);
+        Siniestro nuevo= new Siniestro(idSiniestro,codBrigada);
+        siniestroData.asignarElSiniestro(nuevo);
+
+        boolean libre=false;
+        int idBrigada = codBrigada.getIdBrigada();
+
+        siniestroData.actualizarBrigada(idBrigada,libre);  
+       
+        renovarTabla();
+              
+        }catch(NullPointerException npe){
+            JOptionPane.showMessageDialog(null, "Selecciona ambos Cuartel y Brigada.", "Error", JOptionPane.ERROR_MESSAGE);
+        }catch(ArrayIndexOutOfBoundsException a){
+            JOptionPane.showMessageDialog(null, "Seleccione un siniestro a asignar","Error",JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_jbAsignarActionPerformed
 
     private void armarCabecera() {
@@ -272,15 +294,32 @@ public class AsignarBrigada extends javax.swing.JInternalFrame {
         }
     }
 
-    private void cargarBrigada() {
-        for (Brigada b : brigadaData.verBrigadas()) {
-            jcBrigadas.addItem(b);
+//    private void cargarBrigada() {
+//        for (Brigada b : brigadaData.verBrigadas()) {
+//            jcBrigadas.addItem(b);
+//        }
+//    }
+//agregado para prueba calculo distancia
+    public double calcularDistancia(double x1, double y1, double x2, double y2) {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
+
+    private void actualizarBrigadasDisponibles(int idCuartel, String tipoSiniestro) {
+        jcBrigadas.removeAllItems();
+
+        for (Brigada brigada : brigadaData.verBrigadas()) {
+            int idCuartelBrigada = brigada.getNumeroCuartel().getIdCuartel();
+            String especialidad = brigada.getEspecialidad();
+
+            if (idCuartelBrigada == idCuartel && especialidad.contains(tipoSiniestro) && brigada.isLibre()) {
+                jcBrigadas.addItem(brigada);
+            }
         }
     }
-//agregado para prueba calculo distancia
-
-    private double calcularDistancia(double x1, double y1, double x2, double y2) {
-        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    
+    private void renovarTabla() {
+        modelo.setRowCount(0);
+        cargarSiniestros();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
