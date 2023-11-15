@@ -417,6 +417,9 @@ public class FormBombero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSeleccionarActionPerformed
 
     private void jbDarBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDarBajaActionPerformed
+        if (TablaBombero.getSelectedRow() != -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione");
+        }
         for (Bombero listaBombero : bomData.verBomberos()) {
             int cambio = Integer.parseInt(jtDni.getText());
             if (cambio == listaBombero.getDni()) {

@@ -267,15 +267,14 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
 //    }
 //}
     private void cargaTabla() {
-        for (Siniestro siniestro : siniestroData.obtenerSiniestros()) {
-        String nombreBrigadaAsignada = siniestro.getCodBrigada().getNombreBrigada();
-        modelo.addRow(new Object[]{
-            siniestro.getIdSiniestro(),
-            nombreBrigadaAsignada,
-            siniestro.getFechaResolucion(),
-            siniestro.getPuntuacion()
-        });
-    }
+        for(Siniestro sinis: siniestroData.obtenerSiniestros()){
+            modelo.addRow(new Object[]{
+                sinis.getIdSiniestro(),
+                sinis.getCodBrigada(),
+                sinis.getFechaResolucion(),
+                sinis.getPuntuacion()
+            });
+        }
     }
     
     private void actualizarTabla() {

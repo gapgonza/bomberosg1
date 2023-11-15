@@ -53,7 +53,7 @@ public class SiniestroData {
 
     public List<Siniestro> obtenerSiniestros() {
         List<Siniestro> siniestros = new ArrayList<>();
-        String sql = "SELECT * FROM `siniestro` WHERE `codBrigada` IS NULL";
+        String sql = "SELECT * FROM `siniestro`";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -65,6 +65,8 @@ public class SiniestroData {
                 siniestro.setLongitudX(rs.getInt("longitudX"));
                 siniestro.setLatitudY(rs.getInt("latitudY"));
                 siniestro.setDetalles(rs.getString("detalles"));
+//                siniestro.setFechaResolucion(rs.getDate("fechaResolucion").toLocalDate());
+//                siniestro.setPuntuacion(rs.getInt("puntuacion"));
 
                 siniestros.add(siniestro);
             }
