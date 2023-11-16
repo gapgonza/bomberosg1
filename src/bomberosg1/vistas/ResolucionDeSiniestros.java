@@ -5,6 +5,7 @@
 package bomberosg1.vistas;
 
 import bomberosg1.accesoadatos.SiniestroData;
+import bomberosg1.entidades.Brigada;
 import bomberosg1.entidades.Siniestro;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -184,13 +185,11 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
             LocalTime horaSeleccionada = instant.atZone(ZoneId.systemDefault()).toLocalTime();
             int puntuacion = Integer.parseInt(jcPuntuacion.getSelectedItem().toString());
 
-
-            int idSiniestro = (int) TablaSiniestro.getValueAt(filaSeleccionada, 0); 
-
+            int idSiniestro = (int) TablaSiniestro.getValueAt(filaSeleccionada, 0);
 
             TablaSiniestro.setValueAt(fechaSeleccionada, filaSeleccionada, 2);
-            TablaSiniestro.setValueAt(horaSeleccionada, filaSeleccionada, 3); 
-            TablaSiniestro.setValueAt(puntuacion, filaSeleccionada, 4); 
+            TablaSiniestro.setValueAt(horaSeleccionada, filaSeleccionada, 3);
+            TablaSiniestro.setValueAt(puntuacion, filaSeleccionada, 4);
 
             siniestroData.actualizarSiniestro(fechaSeleccionada, horaSeleccionada, puntuacion, idSiniestro);
         } else {
@@ -238,14 +237,19 @@ public class ResolucionDeSiniestros extends javax.swing.JInternalFrame {
 //}
     private void cargaTabla() {
         for (Siniestro sinis : siniestroData.obtenerSiniestrosRe()) {
-            modelo.addRow(new Object[]{
-                sinis.getIdSiniestro(),
-                sinis.getCodBrigada().getNombreBrigada(),
-                sinis.getFechaResolucion(),
-                sinis.getHoraSiniestro(),
-                sinis.getPuntuacion()
+            Brigada brigada = sinis.getCodBrigada();
+            if (brigada != null) {
+                modelo.addRow(new Object[]{
+                    sinis.getIdSiniestro(),
+                    sinis.getCodBrigada().getNombreBrigada(),
+                    sinis.getFechaResolucion(),
+                    sinis.getHoraSiniestro(),
+                    sinis.getPuntuacion()
 //                sinis.isActivo()
-            });
+                });
+            } else {
+
+            }
         }
     }
 

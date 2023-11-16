@@ -8,7 +8,6 @@ import bomberosg1.accesoadatos.SiniestroData;
 import bomberosg1.entidades.Siniestro;
 import java.time.*;
 import java.util.Date;
-import javax.swing.JOptionPane;
 import javax.swing.SpinnerDateModel;
 
 /**
@@ -217,65 +216,35 @@ public class IngresoEmergencia extends javax.swing.JInternalFrame {
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // TODO add your handling code here:
-        
-        String tipo = jcTipoSiniestro.getSelectedItem().toString();
-    String longitudXText = jtLongX.getText();
-    String latitudYText = jtLatY.getText();
+     // Recoge los valores de los campos de entrada
+    String tipo = jcTipoSiniestro.getSelectedItem().toString();
+    String longXText = jtLongX.getText();
+    int longitudX = longXText.isEmpty() ? 0 : Integer.parseInt(longXText);
+
+    String latYText = jtLatY.getText();
+    int latitudY = latYText.isEmpty() ? 0 : Integer.parseInt(latYText);
     String detalles = jTextArea1.getText();
-    boolean activo = true;
-    
-    if (longitudXText.isEmpty() || latitudYText.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Ingrese numeros");
-    }else{
-        try{
-            int longitudX = Integer.parseInt(longitudXText);
-            int latitudY = Integer.parseInt(latitudYText);
-             Date fechaHoraSeleccionada = (Date) jsFechaHora.getValue();
-            Instant instant = fechaHoraSeleccionada.toInstant();
-            LocalDate fechaSeleccionada = instant.atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalTime horaSeleccionada = instant.atZone(ZoneId.systemDefault()).toLocalTime();
-            
-             Siniestro siniestro = new Siniestro();
-            siniestro.setTipo(tipo);
-            siniestro.setFechaSiniestro(fechaSeleccionada);
-            siniestro.setLongitudX(longitudX);
-            siniestro.setLatitudY(latitudY);
-            siniestro.setDetalles(detalles);
-            siniestro.setActivo(activo);
-            siniestro.setHoraSiniestro(horaSeleccionada);
-            
-            siniestroData.agregarSiniestro(siniestro);
-            limpiarCampos();
-        }catch(NumberFormatException ex){
-            
-        }
-    }
-//////////////////////////////////////////////////////
-//    String tipo = jcTipoSiniestro.getSelectedItem().toString();
-//    int longitudX = Integer.parseInt(jtLongX.getText());
-//    int latitudY = Integer.parseInt(jtLatY.getText());
-//    String detalles = jTextArea1.getText();
-//    boolean activo = true; // Asume que el siniestro está activo
-//
-//    // Obtenemos la fecha y la hora
-//    Date fechaHoraSeleccionada = (Date) jsFechaHora.getValue();
-//    Instant instant = fechaHoraSeleccionada.toInstant();
-//    LocalDate fechaSeleccionada = instant.atZone(ZoneId.systemDefault()).toLocalDate();
-//    LocalTime horaSeleccionada = instant.atZone(ZoneId.systemDefault()).toLocalTime();
-//
-//    // Creamo el objeto
-//    Siniestro siniestro = new Siniestro();
-//    siniestro.setTipo(tipo);
-//    siniestro.setFechaSiniestro(fechaSeleccionada);
-//    siniestro.setLongitudX(longitudX);
-//    siniestro.setLatitudY(latitudY);
-//    siniestro.setDetalles(detalles);
-//    siniestro.setActivo(activo);
-//    siniestro.setHoraSiniestro(horaSeleccionada);
-//
-//    // Agrega el nuevo siniestro a la base de datos
-//    siniestroData.agregarSiniestro(siniestro);
-//    limpiarCampos();
+    boolean activo = true; // Asume que el siniestro está activo
+
+    // Obtenemos la fecha y la hora
+    Date fechaHoraSeleccionada = (Date) jsFechaHora.getValue();
+    Instant instant = fechaHoraSeleccionada.toInstant();
+    LocalDate fechaSeleccionada = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+    LocalTime horaSeleccionada = instant.atZone(ZoneId.systemDefault()).toLocalTime();
+
+    // Creamo el objeto
+    Siniestro siniestro = new Siniestro();
+    siniestro.setTipo(tipo);
+    siniestro.setFechaSiniestro(fechaSeleccionada);
+    siniestro.setLongitudX(longitudX);
+    siniestro.setLatitudY(latitudY);
+    siniestro.setDetalles(detalles);
+    siniestro.setActivo(activo);
+    siniestro.setHoraSiniestro(horaSeleccionada);
+
+    // Agrega el nuevo siniestro a la base de datos
+    siniestroData.agregarSiniestro(siniestro);
+    limpiarCampos();
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void limpiarCampos(){
